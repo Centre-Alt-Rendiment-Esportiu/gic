@@ -1,0 +1,53 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Modificar Rols</title>
+    <link rel="stylesheet" href="../static/css/foundation.css" />
+    <script src="../static/js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+<form action="" method="post">
+<table>
+		<tr>
+			<td>
+				<label>ID
+				{{rols.id_rol}}
+				</label>
+			</td>	
+		</tr>
+
+                <tr>
+                        <td>
+			      	<label>Nom Rol
+					<input type="text" name="nom_rol" value="{{rols.nom_rol}}"/>
+			      	</label>
+                        </td>
+                        <td>
+			      	<label>Template
+			        	<input type="text" name="template" value="{{rols.template}}"/>
+			      	</label>
+                        </td>
+                </tr>
+		<tr>
+			<td>
+				<button class="button postfix" type="submit">Edit</button>
+        	        </td>
+        		<td>
+        			<a href="/" class="button postfix">Enrere</a>
+       			</td>
+		<tr>
+			<td>
+			<a href="/upload" class="button postfix">Pujar Template</a>				
+</form>			</td>
+		</tr>
+	</table>
+
+<script src="../static/js/vendor/jquery.js"></script>
+    <script src="../static/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+Llista de paquets i extensions necessaries
+apt-get install:
+- mariadb-server
+- libmariadbd-dev
+
+pip install:
+- Mysql-python
+- WTforms
+- SQLalchemy
+- Flask-Login
+- Flask-Migrate
+- Flask-Script
+- Flask-SQLAlchemy
+- Flask-WTF
+
+Iniciar base de dades:
+- python db.py db init
+Migrar:
+- python db.py db migrate
+Actualitzar
+- python db.py db upgrade

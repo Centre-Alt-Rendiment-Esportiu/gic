@@ -9,8 +9,11 @@
   </head>
   <body>
 <h2>Flask Blog</h2>
-<table width=30%>
+<table>
 <tr>	<td><a href='add' class="button postfix">Afegir nou registre</a></td>
+        <td>
+                <a href='add_rol' class="button postfix">Afegir nou ROL</a>
+        </td>
 	<td>
 {% block container %}
   {% if current_user.is_authenticated() %}
@@ -101,6 +104,30 @@
           </article>
          	{% endfor %}
 
+<h3>ROLS</h3>
+{% for rols in rols %}
+        <div>
+          <article>
+                <table>
+                <tr>
+                        <td>
+				Nom Rol <hr>
+                                {{ rols.nom_rol }}
+                        </td>
+		</tr>
+		<tr>
+                        <td>
+                                <a href="{{ url_for('edit_rol', id_rol=rols.id_rol) }}">Edita</a>
+                        </td>
+                        <td>
+                                <a href="{{ url_for('delete_rol', id_rol=rols.id_rol) }}">Elimina</a>
+                        </td>
+                </tr>
+
+
+		</table>
+	</article>
+	{% endfor %}
 <script src="../static/js/vendor/jquery.js"></script>
     <script src="../static/js/foundation.min.js"></script>
     <script>

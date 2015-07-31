@@ -2,7 +2,7 @@ import ldap
 from flask import render_template, request, flash, redirect, url_for, send_from_directory, Blueprint, g
 from flask.ext.login import current_user, login_user, logout_user, login_required
 from app import app, db, login_manager
-from app.models import User, LoginForm, Post
+from app.models import User, LoginForm, Post, GIC_CFG_ROL
 from werkzeug import secure_filename
 import os
 
@@ -63,6 +63,16 @@ def add():
 		return redirect(url_for('upload'))     
 	return render_template('add.html')
 
+@app.route('/add_rol' , methods=['POST', 'GET'])
+def add_rol():
+        if request.method == 'POST':
+                post=GIC_CFG_ROL(request.form['nom_rol'],request.form['template'])
+                db.session.add(post)
+                db.session.commit()
+                flash('New entry was successfully posted')
+                return redirect(url_for('auth.index'))
+        return render_template('add_rol.html')
+
 @app.route('/upload', methods=['POST','GET'])
 def upload():
 	if request.method == 'POST':
@@ -70,13 +80,14 @@ def upload():
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-			return redirect(url_for('index'))
+			return redirect(url_for('auth.index'))
 	return render_template('up.html')
 
 @auth.route('/' )
 def index():
 	post = Post.query.all()
-	return render_template('index.html', post=post)
+	rols = GIC_CFG_ROL.query.all()
+	return render_template('index.html', post=post,rols=rols)
 
 @app.route('/edit/<id>' , methods=['POST', 'GET'])
 def edit (id):
@@ -100,11 +111,29 @@ def edit (id):
 		return  redirect(url_for('auth.index'))
 	return render_template('edit.html',post=post)
 
+@app.route('/edit_rol/<id_rol>' , methods=['POST', 'GET'])
+def edit_rol (id_rol):
+        rols = GIC_CFG_ROL.query.get(id_rol)
+        if request.method == 'POST':
+                rols.nom_rol = request.form['nom_rol']
+                rols.template = request.form['template']
+                db.session.commit()
+                return  redirect(url_for('auth.index'))
+        return render_template('edit_rol.html',rols=rols)
+
 @app.route('/delete/<id>' , methods=['POST', 'GET'])
 def delete (id):
 	post = Post.query.get(id)
 	db.session.delete(post)
 	db.session.commit()
 	flash ('deleted')
-	return redirect(url_for('index'))
+	return redirect(url_for('auth.index'))
+
+@app.route('/delete_rol/<id_rol>' , methods=['POST', 'GET'])
+def delete_rol (id_rol):
+        rols = GIC_CFG_ROL.query.get(id_rol)
+        db.session.delete(rols)
+        db.session.commit()
+        flash ('deleted')
+        return redirect(url_for('auth.index'))
 

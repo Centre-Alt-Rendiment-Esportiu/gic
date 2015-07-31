@@ -8,7 +8,9 @@ class GIC_CFG_ROL(db.Model):
 	nom_rol = db.Column(db.String(30))
 	template = db.Column(db.String(50))
 	rols = db.relationship('GIC_ROL', backref='GIC_ROL.id_rol',primaryjoin='GIC_CFG_ROL.id_rol==GIC_ROL.id_rol', lazy='dynamic')	
-
+	def __init__(self,nom_rol,template):
+		self.nom_rol = nom_rol
+		self.template = template
 class Post(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	nom = db.Column(db.String(50))
