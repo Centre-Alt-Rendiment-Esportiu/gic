@@ -1,0 +1,133 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Modificar Dades</title>
+    <link rel="stylesheet" href="../static/css/foundation.css" />
+    <script src="../static/js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+<form action="" method="post">
+<table>
+		<tr>
+			<td>
+				<label>ID
+				{{post.id}}
+				</label>
+			</td>	
+		</tr>
+
+                <tr>
+                        <td>
+			      	<label>Nom
+					<input type="text" name="nom" value="{{post.nom}}"/>
+			      	</label>
+                        </td>
+                        <td>
+			      	<label>Cognom 1
+			        	<input type="text" name="cognom1" value="{{post.cognom1}}"/>
+			      	</label>
+                        </td>
+                        <td>
+			      	<label>Cognom 2
+			        	<input type="text" name="cognom2" value="{{post.cognom2}}"/>
+			      	</label>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+			      	<label>Sexe
+				<select id="sexe" name="sexe" size="1">
+                			<option value="{{post.sexe}}" selected="selected">
+					{% if 1 == post.sexe %}
+						Home
+					{% elif 0 == post.sexe %}
+						Dona
+					{% endif %}
+					</option>
+                			<option value="1">Home</option>
+        		        	<option value="0">Dona</option>
+	        		</select>
+				</label>
+                        </td>
+                        <td>
+				<label>DNI
+                	                <input type="text" name="dni" value="{{post.dni}}"/>
+        	        	</label>
+                        </td>
+                        <td>
+				<label>PASSPORT
+                	                <input type="text" name="passport" value="{{post.passport}}"/>
+	                        </label>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+				<label>Data Naixement
+                        	        <input type="text" name="data_naix" value="{{post.data_naix}}"/>
+                              	</label>
+                        </td>
+                        <td>
+				<label>Telefon 1
+                                	<input type="text" name="telefon1" value="{{post.telefon1}}"/>
+                              	</label>
+                        </td>
+                        <td>
+                                <label>Telefon 2
+                                        <input type="text" name="telefon2" value="{{post.telefon2}}"/>
+                                </label>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                                <label>Email 1
+                                        <input type="text" name="email1" value="{{post.email1}}"/>
+                                </label>
+                        </td>
+                        <td>
+                                <label>Email 2
+                                        <input type="text" name="email2" value="{{post.email2}}"/>
+                                </label>
+                        </td>
+                        <td>
+                                <label>Actiu
+                                        <select id="actiu" name="actiu" size="1">
+        				        <option value="{{post.actiu}}" selected="selected">
+						{% if post.actiu == 1 %}
+							Si
+						{% elif post.actiu == 0 %}
+							No
+						{% endif %}
+						</option>
+						<option value="1">Si</option>
+				                <option value="0">No</option>	
+				        </select>
+
+                                </label>
+                        </td>
+                </tr>
+		<tr>
+			<td>
+				<button class="button postfix" type="submit">Edit</button>
+        	        </td>
+        		<td>
+        			<a href="/" class="button postfix">Enrere</a>
+       			</td>
+			<td>
+				Foto
+				<input type="text" name="foto" value="{{post.foto}}"/>
+			<br>
+			<a href="/upload" class="button postfix">Puja'n una</a>				
+</form>
+			</td>
+		</tr>
+	</table>
+
+<script src="../static/js/vendor/jquery.js"></script>
+    <script src="../static/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
