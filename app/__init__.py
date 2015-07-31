@@ -10,7 +10,7 @@ from werkzeug import secure_filename
 app = Flask(__name__)
 #Include config from config.py
 app.config.from_object('config')
-app.config['UPLOAD_FOLDER'] = '/home/dani.ruiz/flask-blog/app/static/img/'
+app.config['UPLOAD_FOLDER'] = 'app/static/img/'
 app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg', 'jpeg'])
 app.config['WTF_CSRF_SECRET_KEY'] = '1234'
 app.config['LDAP_PROVIDER_URL'] = 'ldap://dc1.carsc.loc:389/'
