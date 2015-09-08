@@ -1,8 +1,9 @@
 import ldap
 from flask import render_template, request, flash, redirect, url_for, send_from_directory, Blueprint, g
 from flask.ext.login import current_user, login_user, logout_user, login_required
+from sqlalchemy import or_
 from app import app, db, login_manager
-from app.models import User, LoginForm, Post, GIC_CFG_ROL
+from app.models import User, LoginForm, Post, GIC_CFG_ROL, GIC_ROL
 from werkzeug import secure_filename
 import os
 
@@ -59,7 +60,6 @@ def add():
 		post=Post(request.form['nom'],request.form['cognom1'],request.form['cognom2'],request.form['sexe'],request.form['dni'],request.form['passport'],request.form['data_naix'],request.form['telefon1'],request.form['telefon2'],request.form['email1'],request.form['email2'],request.form['actiu'],request.form['foto'])#,request.form['password'])
 		db.session.add(post)
 		db.session.commit()
-		flash('New entry was successfully posted')
 		return redirect(url_for('upload'))     
 	return render_template('add.html')
 
@@ -83,6 +83,21 @@ def upload():
 			return redirect(url_for('auth.index'))
 	return render_template('up.html')
 
+@app.route('/cerca_per', methods=['POST','GET'])
+def cerca_per():
+	if request.method == 'POST':
+		nom = request.form['cerca']
+		post = Post.query.filter(or_(Post.nom==nom,Post.cognom1==nom))
+		#tip = GIC_ROL.query.filter_by(id_persona=id)
+	return render_template('cerca_persones.html', post=post)	
+
+@app.route('/cerca_rol', methods=['POST','GET'])
+def cerca_rol():
+        if request.method == 'POST':
+                nom = request.form['cerca']
+                post = GIC_CFG_ROL.query.filter_by(nom_rol=nom)
+        return render_template('cerca_rols.html', post=post)
+
 @auth.route('/' )
 def index():
 	post = Post.query.all()
@@ -92,7 +107,9 @@ def index():
 @app.route('/edit/<id>' , methods=['POST', 'GET'])
 def edit (id):
 	post = Post.query.get(id)
+	tip = GIC_ROL.query.filter_by(id_persona=id)
 	if request.method == 'POST':		
+		tip.id_rol = request.form['rol']
 		post.nom = request.form['nom']
 		post.cognom1 = request.form['cognom1']
 		post.cognom2 = request.form['cognom2']
@@ -109,7 +126,7 @@ def edit (id):
 #		post.password = request.form['password']
 		db.session.commit()
 		return  redirect(url_for('auth.index'))
-	return render_template('edit.html',post=post)
+	return render_template('edit.html',post=post,tip=tip)
 
 @app.route('/edit_rol/<id_rol>' , methods=['POST', 'GET'])
 def edit_rol (id_rol):
@@ -136,4 +153,5 @@ def delete_rol (id_rol):
         db.session.commit()
         flash ('deleted')
         return redirect(url_for('auth.index'))
+
 

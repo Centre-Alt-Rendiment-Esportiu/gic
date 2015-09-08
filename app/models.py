@@ -51,7 +51,11 @@ class GIC_ROL(db.Model):
 
 	persona = db.relationship('Post', foreign_keys='GIC_ROL.id_persona')
 	rol = db.relationship('GIC_CFG_ROL', foreign_keys='GIC_ROL.id_rol')
-
+	def __init__(self,id_persona,id_rol,inici,fi):
+		self.id_persona = id_persona
+		self.id_rol = id_rol
+		self.inici = inici
+		self.fi = fi
 
 def get_ldap_connection():
 	conn = ldap.initialize(app.config['LDAP_PROVIDER_URL'])

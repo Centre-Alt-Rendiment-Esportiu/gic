@@ -1,6 +1,7 @@
 import os
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy import or_
 from flask.ext.login import LoginManager
 from werkzeug import secure_filename
 

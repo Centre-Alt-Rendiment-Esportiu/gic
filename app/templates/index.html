@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flask Blog</title>
-	<link rel="stylesheet" href="/static/css/foundation.css" />
-	<script src="/static/js/vendor/modernizr.js"></script>
+    <title>GIC</title>
+	<link rel="stylesheet" href="static/css/foundation.css" />
+	<script src="static/js/vendor/modernizr.js"></script>
   </head>
   <body>
-<h2>Flask Blog</h2>
+<h2>Gestió d'Identitats del CAR</h2>
 <table>
 <tr>	<td><a href='add' class="button postfix">Afegir nou registre</a></td>
         <td>
@@ -20,116 +20,44 @@
     <h3>Hey {{ current_user.username }}!!</h3>
     <a href="{{ url_for('auth.logout') }}">Click here to logout</a>
   {% else %}
-  Click here to <a href="{{ url_for('auth.login') }}">login with LDAP</a>
+  Click aqui per <a href="{{ url_for('auth.login') }}">login amb LDAP</a>
   {% endif %}
 {% endblock %}
 	</td>
 </tr>
 </table>
 <hr>
-<h3>Persones</h3>
-     {% for post in post %}
-        <div>
+<table>
+	<tr>
+		<td>
+<form action="cerca_per" method="POST">
+			Cerca Persones:
+			<hr>
+			<input type="text" name="cerca"/>			
+		</td>
+		<td width=40%>
+			<button class="button postfix" type="submit">Cerca</button>
+		</td>
+</form>
+	</tr>
+</table>
+<table>
+        <tr>
+                <td>
+                        Cerca Rols:
+<form action="cerca_rol" method="POST">
+                        <hr>
+                        <input type="text" name="cerca"/>
+                </td>
+                <td width=40%>
+                        <button class="button postfix" type="submit">Cerca</button>
+                </td>
+</form>
+        </tr>
+</table>
 
-          <article>
-		<table>
-		<tr> 
-			<td>
-			<img src=/static/img/{{ post.foto }} width=100px height=30px >
-			</td>
-		</tr>
-		<tr>
-			<td>	Nom <hr>
-				{{ post.nom }}
-			</td>
-			<td>	Cognom 1 <hr>
-				{{ post.cognom1 }}
-			</td>
-			<td> Cognom 2 <hr>
-				{{ post.cognom2 }}
-			</td>
-		</tr>
-		<tr>
-			<td>	Sexe <hr>
-				{{post.sexe}}
-				{% if 1 == post.sexe %}
-                                	Home
-                                {% elif 0 == post.sexe %}
-                                	Dona
-                                {% endif %}
-			</td>
-                        <td>	DNI <hr>
-                                {{ post.dni }}
-                        </td>
-                        <td>	PASSPORT <hr>
-                                {{ post.passport }}
-                        </td>
-		</tr>
-		<tr>
-			<td>	Data Naixement <hr>
-				{{ post.data_naix }}
-			</td>
-			<td>	Telefon 1 <hr>
-				{{ post.telefon1 }}
-                        </td>
-			<td>	Telefon 2 <hr>
-				{{ post.telefon2 }}
-                        </td>
-		</tr>
-                <tr>
-                        <td>	Email 1 <hr>
-				{{ post.email1 }}
-                        </td>
-			<td>	Email 2 <hr>
-				{{ post.email2 }}
-                        </td>
-			<td>	Actiu	<hr>
-				{{post.actiu}}
-				{% if post.actiu == 1 %}
-                                	Si
-                                {% elif post.actiu == 0 %}
-                                	No
-                                {% endif %}
-                        </td>
-                </tr>
-		<tr>
-			<td>
-				<a href="{{ url_for('edit', id=post.id) }}">Edita</a>
-			</td>
-			<td>
-				<a href="{{ url_for('delete', id=post.id) }}">Elimina</a>
-			</td>
-		</tr>	
-	</table>
-          </article>
-         	{% endfor %}
-
-<h3>ROLS</h3>
-{% for rols in rols %}
-        <div>
-          <article>
-                <table>
-                <tr>
-                        <td>
-				Nom Rol <hr>
-                                {{ rols.nom_rol }}
-                        </td>
-		</tr>
-		<tr>
-                        <td>
-                                <a href="{{ url_for('edit_rol', id_rol=rols.id_rol) }}">Edita</a>
-                        </td>
-                        <td>
-                                <a href="{{ url_for('delete_rol', id_rol=rols.id_rol) }}">Elimina</a>
-                        </td>
-                </tr>
-
-
-		</table>
-	</article>
-	{% endfor %}
-<script src="../static/js/vendor/jquery.js"></script>
-    <script src="../static/js/foundation.min.js"></script>
+<script src="static/js/vendor/jquery.js"></script>
+    <script src="static/js/foundation.min.js"></script>
     <script>
       $(document).foundation();
     </script>

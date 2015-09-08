@@ -16,6 +16,24 @@
 				{{post.id}}
 				</label>
 			</td>	
+			<td>
+				<label> Rol</label>
+				<select id="rol" name="rol" size="1">
+                                        <option value={{tip.id_rol}} selected="selected">
+                                        {% if 1 == tip.id_rol %}
+                                                Entrenador
+                                        {% elif 2 == tip.id_rol %}
+                                                Jugador
+					{% elif 3 == tip.id_rol %}
+						Empleat
+                                        {% endif %}
+                                        </option>
+                                        <option value="1">Entrenador</option>
+                                        <option value="2">Jugador</option>
+					<option value="3">Empleat</option>
+                                </select>
+			</td>		
+
 		</tr>
 
                 <tr>
