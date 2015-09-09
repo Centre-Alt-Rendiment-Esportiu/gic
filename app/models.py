@@ -7,10 +7,12 @@ class GIC_CFG_ROL(db.Model):
 	id_rol = db.Column(db.Integer,primary_key=True)
 	nom_rol = db.Column(db.String(30))
 	template = db.Column(db.String(50))
+	actiu = db.Column(db.String(1))
 	rols = db.relationship('GIC_ROL', backref='GIC_ROL.id_rol',primaryjoin='GIC_CFG_ROL.id_rol==GIC_ROL.id_rol', lazy='dynamic')	
-	def __init__(self,nom_rol,template):
+	def __init__(self,nom_rol,template,actiu):
 		self.nom_rol = nom_rol
 		self.template = template
+		self.actiu = actiu
 class Post(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	nom = db.Column(db.String(50))
@@ -48,7 +50,6 @@ class GIC_ROL(db.Model):
 	id_rol = db.Column(db.Integer,db.ForeignKey(GIC_CFG_ROL.id_rol),primary_key=True)
 	inici = db.Column(db.Date)
 	fi = db.Column(db.Date)
-
 	persona = db.relationship('Post', foreign_keys='GIC_ROL.id_persona')
 	rol = db.relationship('GIC_CFG_ROL', foreign_keys='GIC_ROL.id_rol')
 	def __init__(self,id_persona,id_rol,inici,fi):

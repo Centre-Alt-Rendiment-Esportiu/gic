@@ -18,14 +18,10 @@
 		<input type="text" name="cognom2"/>
 	</td>
 	<td>
-		Rol
-		<select id="rol" name="rol" size="1">
-                	<option value"" selected="selected">- selecciona -</option>
-                	<option value="1">Entrenador</option>
-        	        <option value="2">Jugador</option>
-			<option value="3">Empleat</option>
-	        </select>
-
+		Rol<br>
+		{% for rols in rols %}		
+		<input type="checkbox" name="rol" value={{rols.id_rol}}> {{ rols.nom_rol }}<br>
+		{% endfor %}
 	</td>
 </tr>
 <tr>	<td>	

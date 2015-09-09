@@ -56,20 +56,22 @@ def allowed_file(filename):
 
 @app.route('/add' , methods=['POST', 'GET'])
 def add():
+	rols = GIC_CFG_ROL.query.filter_by(actiu="1")
 	if request.method == 'POST':
 		post=Post(request.form['nom'],request.form['cognom1'],request.form['cognom2'],request.form['sexe'],request.form['dni'],request.form['passport'],request.form['data_naix'],request.form['telefon1'],request.form['telefon2'],request.form['email1'],request.form['email2'],request.form['actiu'],request.form['foto'])#,request.form['password'])
 		db.session.add(post)
+		#tip=GIC_ROL(request.form['rol'])
+		#db.session.add(tip)
 		db.session.commit()
 		return redirect(url_for('upload'))     
-	return render_template('add.html')
+	return render_template('add.html',rols=rols)
 
 @app.route('/add_rol' , methods=['POST', 'GET'])
 def add_rol():
         if request.method == 'POST':
-                post=GIC_CFG_ROL(request.form['nom_rol'],request.form['template'])
+                post=GIC_CFG_ROL(request.form['nom_rol'],request.form['template'],request.form['actiu'])
                 db.session.add(post)
                 db.session.commit()
-                flash('New entry was successfully posted')
                 return redirect(url_for('auth.index'))
         return render_template('add_rol.html')
 
@@ -87,15 +89,17 @@ def upload():
 def cerca_per():
 	if request.method == 'POST':
 		nom = request.form['cerca']
-		post = Post.query.filter(or_(Post.nom==nom,Post.cognom1==nom))
-		#tip = GIC_ROL.query.filter_by(id_persona=id)
-	return render_template('cerca_persones.html', post=post)	
+		conc = "%" + nom + "%"
+		post = Post.query.filter(or_(Post.nom.like(conc),Post.cognom1.like(conc)))
+		rols = GIC_ROL.query.filter(GIC_ROL.id_persona.like(Post.id))
+	return render_template('cerca_persones.html', post=post,rols=rols)	
 
 @app.route('/cerca_rol', methods=['POST','GET'])
 def cerca_rol():
         if request.method == 'POST':
                 nom = request.form['cerca']
-                post = GIC_CFG_ROL.query.filter_by(nom_rol=nom)
+		conc = "%" + nom + "%"
+                post = GIC_CFG_ROL.query.filter(GIC_CFG_ROL.nom_rol.like(conc))
         return render_template('cerca_rols.html', post=post)
 
 @auth.route('/' )
@@ -108,6 +112,7 @@ def index():
 def edit (id):
 	post = Post.query.get(id)
 	tip = GIC_ROL.query.filter_by(id_persona=id)
+	rols = GIC_CFG_ROL.query.filter_by(actiu="1")
 	if request.method == 'POST':		
 		tip.id_rol = request.form['rol']
 		post.nom = request.form['nom']
@@ -126,12 +131,13 @@ def edit (id):
 #		post.password = request.form['password']
 		db.session.commit()
 		return  redirect(url_for('auth.index'))
-	return render_template('edit.html',post=post,tip=tip)
+	return render_template('edit.html',post=post,tip=tip,rols=rols)
 
 @app.route('/edit_rol/<id_rol>' , methods=['POST', 'GET'])
 def edit_rol (id_rol):
         rols = GIC_CFG_ROL.query.get(id_rol)
         if request.method == 'POST':
+		rols.actiu = request.form['actiu']
                 rols.nom_rol = request.form['nom_rol']
                 rols.template = request.form['template']
                 db.session.commit()
@@ -143,7 +149,6 @@ def delete (id):
 	post = Post.query.get(id)
 	db.session.delete(post)
 	db.session.commit()
-	flash ('deleted')
 	return redirect(url_for('auth.index'))
 
 @app.route('/delete_rol/<id_rol>' , methods=['POST', 'GET'])
@@ -151,7 +156,6 @@ def delete_rol (id_rol):
         rols = GIC_CFG_ROL.query.get(id_rol)
         db.session.delete(rols)
         db.session.commit()
-        flash ('deleted')
         return redirect(url_for('auth.index'))
 
 

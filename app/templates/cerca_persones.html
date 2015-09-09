@@ -26,7 +26,9 @@
                         </td>
 			<td>
 				Rol <hr>
-				
+				{% for rols in rols %}
+                                        {{ rols.nom_rol }}
+                                {% endfor %}				
 			</td>
                 </tr>
                 <tr>
@@ -42,7 +44,7 @@
                 </tr>
                 <tr>
                         <td> 	Sexe <hr>
-                                {{post.sexe}}
+				{{ post.sexe }}
                                 {% if 1 == post.sexe %}
                                         Home
                                 {% elif 0 == post.sexe %}
@@ -75,7 +77,7 @@
                                 {{ post.email2 }}
                         </td>
                         <td>    Actiu   <hr>
-                                {{post.actiu}}
+				{{ post.actiu }}
                                 {% if post.actiu == 1 %}
                                         Si
                                 {% elif post.actiu == 0 %}
