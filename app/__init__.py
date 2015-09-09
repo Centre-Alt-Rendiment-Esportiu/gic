@@ -5,8 +5,6 @@ from sqlalchemy import or_
 from flask.ext.login import LoginManager
 from werkzeug import secure_filename
 
-
-
 #Create an Instance of Flask
 app = Flask(__name__)
 #Include config from config.py
