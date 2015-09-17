@@ -13,20 +13,20 @@
 		<tr>
 			<td>
 				<label>ID
-				{{post.id}}
+				{{ post.id }}
 				</label>
-			</td>	
-			<td>
-				<label> Rol
-				<select id="rol" name="rol" size="1">
-                                        <option value={{tip.id_rol}} selected="selected">
-						{{tip.id_rol}}						
-					</option>
-				{% for rols in rols %}
-                        		<option value={{rols.id_rol}}>{{rols.nom_rol}}</option>
-                		{% endfor %}
-                                </select>
-				</label>
+			</td>
+			<td colspan="2">
+				<label> Rols<br>
+                    {% for rols in rols %}		
+                		<input type="checkbox" name="rol" value={{rols.id_rol}}
+                            {% if tip.id_rol == rols.id_rol %}
+                                checked
+                            {% endif %}
+                        > {{ rols.nom_rol }}
+                            <input type="date" name="cumpleanios" step="1" min="1910-01-01" max="2015-09-10" value="2015-09-10">
+                    {% endfor %}
+                    </label>
 			</td>		
 		</tr>
                 <tr>

@@ -25,10 +25,12 @@
                         <img src=/static/img/{{ post.foto }} width=100px height=30px >
                         </td>
 			<td>
-				Rol <hr>
-				{% for rols in rols %}
-                                        {{ rols.nom_rol }}
-                                {% endfor %}				
+				Rols <hr>
+                    {% for rols in rols %}                    
+                        {% if post.id == rols.id_rol %}				
+                                {{ rols.nom_rol }}
+                        {% endif %}			
+                    {% endfor %}
 			</td>
                 </tr>
                 <tr>
@@ -44,9 +46,9 @@
                 </tr>
                 <tr>
                         <td> 	Sexe <hr>
-				{{ post.sexe }}
-                                {% if 1 == post.sexe %}
-                                        Home
+            			     {{ post.sexe }}
+                                  {% if 1 == post.sexe %}
+                                           Home
                                 {% elif 0 == post.sexe %}
                                         Dona
                                 {% endif %}

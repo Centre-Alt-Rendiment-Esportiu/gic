@@ -9,6 +9,11 @@
   </head>
   <body>
 <h2>Gestió d'Identitats del CAR</h2>
+	<ul class="nav">
+		<li><a href="{{url_for('auth.index')}}">Inici</a></li>
+		<li><a href="{{url_for('auth.conf')}}">Configuració</a></li>
+	</ul>
+<br><br>
 <table>
 <tr>	<td><a href='add' class="button postfix">Afegir nou registre</a></td>
         <td>
@@ -45,14 +50,14 @@
         <tr>
                 <td>
                         Cerca Rols:
-<form action="cerca_rol" method="POST">
+    <form action="cerca_rol" method="POST">
                         <hr>
                         <input type="text" name="cerca"/>
                 </td>
                 <td width=40%>
                         <button class="button postfix" type="submit">Cerca</button>
                 </td>
-</form>
+    </form>
         </tr>
 </table>
 

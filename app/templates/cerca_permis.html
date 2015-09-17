@@ -8,7 +8,7 @@
         <script src="static/js/vendor/modernizr.js"></script>
   </head>
   <body>
-<h3>Cerca de Rols</h3>
+<h3>Cerca de Permisos</h3>
 <table width=20%>
 <tr>
 	<td>
@@ -21,19 +21,16 @@
 	<article>
                 <table>
                 <tr>
-                        <td> 	Nom Rol <hr>
-                                {{ post.nom_rol }}
-                        </td>
-                        <td> 	Template <hr>
-                                {{ post.template }}
+                        <td colspan="2"> 	Nom Permis <hr>
+                                {{ post.nom_permis }}
                         </td>
                 </tr>
                 <tr>
                         <td>
-				<a href="{{ url_for('edit_rol', id_rol=post.id_rol) }}">Edita</a>
+                            <a href="{{ url_for('edit_permis', id_permis=post.id_permis) }}">Edita</a>
                         </td>
                         <td>
-                                <a href="{{ url_for('delete_rol', id_rol=post.id_rol) }}">Elimina</a>
+                            <a href="{{ url_for('delete_permis', id_permis=post.id_permis) }}">Elimina</a>
                         </td>
                 </tr>
         </table>

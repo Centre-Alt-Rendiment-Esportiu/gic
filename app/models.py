@@ -19,6 +19,16 @@ class GIC_CFG_ROL(db.Model):
         self.template = template
         self.actiu = actiu
 
+class GIC_CFG_PERMIS(db.Model):
+    """taula de permisos"""
+    id_permis = db.Column(db.Integer, primary_key=True)
+    nom_permis = db.Column(db.String(40))
+    actiu = db.Column(db.String(1))
+    permisos = db.relationship('GIC_PERMIS', backref='GIC_PERMIS.id_permis', primaryjoin='GIC_CFG_PERMIS.id_permis==GIC_PERMIS.id_permis', lazy='dynamic')
+    def __init__(self, nom_permis, actiu):
+        self.nom_permis = nom_permis
+        self.actiu = actiu
+
 class Post(db.Model):
     """taula de persones"""
     id = db.Column(db.Integer, primary_key=True)
@@ -51,6 +61,20 @@ class Post(db.Model):
         self.actiu = actiu
         self.foto = foto
 #        self.password = password
+
+class GIC_PERMIS(db.Model):
+    """taula que relaciona permisos amb persones"""
+    id_persona = db.Column(db.Integer, db.ForeignKey(Post.id), primary_key=True)
+    id_permis = db.Column(db.Integer, db.ForeignKey(GIC_CFG_PERMIS.id_permis), primary_key=True)
+    inici = db.Column(db.Date)
+    fi = db.Column(db.Date)
+    persona = db.relationship('Post', foreign_keys='GIC_PERMIS.id_persona')
+    rol = db.relationship('GIC_CFG_PERMIS', foreign_keys='GIC_PERMIS.id_permis')
+    def __init__(self, id_persona, id_permis, inici, fi):
+        self.id_persona = id_persona
+        self.id_permis = id_permis
+        self.inici = inici
+        self.fi = fi
 
 class GIC_ROL(db.Model):
     """taula que relaciona rols amb persones"""
@@ -92,6 +116,6 @@ class User(db.Model):
         return unicode(self.id)
 
 class LoginForm(Form):
-"""formulari per fer login"""
+    """formulari per fer login"""
     username = TextField('Username', [InputRequired()])
     password = PasswordField('Password', [InputRequired()])

@@ -6,7 +6,7 @@ from flask import render_template, request, flash, redirect, url_for, Blueprint,
 from flask.ext.login import current_user, login_user, logout_user, login_required
 from sqlalchemy import or_
 from app import app, db, login_manager
-from app.models import User, LoginForm, Post, GIC_CFG_ROL, GIC_ROL
+from app.models import User, LoginForm, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, GIC_PERMIS
 from werkzeug import secure_filename
 import os
 
@@ -21,6 +21,11 @@ def load_user(id):
 def get_current_user():
     """current user"""
     g.user = current_user
+
+@auth.route('/conf', methods=['GET','POST'])
+def conf():
+    rols = GIC_CFG_ROL.query.all()
+    return render_template('configuracio.html',rols=rols)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -38,7 +43,6 @@ def login():
             flash('Invalid username or password. Try again.', 'danger')
             return render_template('login_fail.html', form=form)
         user = User.query.filter_by(username=username).first()
-
         if not user:
             user = User(username, password)
             db.session.add(user)
@@ -75,6 +79,16 @@ def add():
         return redirect(url_for('upload'))
     return render_template('add.html', rols=rols)
 
+@auth.route('/add_permis', methods=['POST', 'GET'])
+def add_permis():
+    """afegir permisos"""
+    if request.method == 'POST':
+        post = GIC_CFG_PERMIS(request.form['nom_permis'], request.form['actiu'])
+        db.session.add(post)
+        db.session.commit()
+        return redirect(url_for('auth.conf'))
+    return render_template('add_permis.html')
+
 @app.route('/add_rol', methods=['POST', 'GET'])
 def add_rol():
     """afegir rols"""
@@ -103,7 +117,8 @@ def cerca_per():
         nom = request.form['cerca']
         conc = "%" + nom + "%"
         post = Post.query.filter(or_(Post.nom.like(conc), Post.cognom1.like(conc)))
-        rols = GIC_ROL.query.filter(GIC_ROL.id_persona.like(Post.id))
+        rols = GIC_ROL.query.all()
+        #rols = GIC_ROL.query.filter(GIC_ROL.id_persona.like(Post.id))
     return render_template('cerca_persones.html', post=post, rols=rols)
 
 @app.route('/cerca_rol', methods=['POST', 'GET'])
@@ -114,6 +129,15 @@ def cerca_rol():
         conc = "%" + nom + "%"
         post = GIC_CFG_ROL.query.filter(GIC_CFG_ROL.nom_rol.like(conc))
     return render_template('cerca_rols.html', post=post)
+
+@auth.route('/cerca_permis', methods=['POST', 'GET'])
+def cerca_permis():
+    """buscar permisos"""
+    if request.method == 'POST':
+        nom = request.form['cerca']
+        conc = "%" + nom + "%"
+        post = GIC_CFG_PERMIS.query.filter(GIC_CFG_PERMIS.nom_permis.like(conc))
+    return render_template('cerca_permis.html', post=post)
 
 @auth.route('/')
 def index():
@@ -160,6 +184,17 @@ def edit_rol(id_rol):
         return  redirect(url_for('auth.index'))
     return render_template('edit_rol.html', rols=rols)
 
+@app.route('/edit_permis/<id_permis>', methods=['POST', 'GET'])
+def edit_permis(id_permis):
+    """pagina editar permisos"""
+    permisos = GIC_CFG_PERMIS.query.get(id_permis)
+    if request.method == 'POST':
+        permisos.actiu = request.form['actiu']
+        permisos.nom_permis = request.form['nom_permis']
+        db.session.commit()
+        return  redirect(url_for('auth.conf'))
+    return render_template('edit_permis.html', permisos=permisos)
+
 @app.route('/delete/<id>', methods=['POST', 'GET'])
 def delete(id):
     """eliminar persones"""
@@ -176,4 +211,11 @@ def delete_rol(id_rol):
     db.session.commit()
     return redirect(url_for('auth.index'))
 
+@app.route('/delete_permis/<id_permis>', methods=['POST', 'GET'])
+def delete_permis(id_permis):
+    """eliminar permisos"""
+    permisos = GIC_CFG_PERMIS.query.get(id_permis)
+    db.session.delete(permisos)
+    db.session.commit()
+    return redirect(url_for('auth.index'))
 
