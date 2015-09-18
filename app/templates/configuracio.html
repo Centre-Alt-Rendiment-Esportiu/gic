@@ -20,6 +20,9 @@
         <td>
             <a href="{{url_for('auth.add_permis')}}">Afegir Permis</a>
         </td>
+        <td>
+            <a href="{{url_for('auth.add_grup')}}">Afegir Grup</a>
+        </td>
     </tr>
 </table>
 <table><tr>
@@ -29,6 +32,9 @@
                         <input type="text" name="cerca"/>
                 
                 <button class="button postfix" type="submit">Cerca</button>
+                </td>
+                <td>
+                    <a href="{{url_for('auth.cerca_grup')}}">Grups</a>
                 </td>
     </form></tr>
 </table>

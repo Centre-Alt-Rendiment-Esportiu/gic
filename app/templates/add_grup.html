@@ -1,16 +1,15 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Nou Permis</title>
+		<title>Nou Grup</title>
 		<link rel="stylesheet" href="static/css/foundation.css" />
 		<script src="static/js/vendor/modernizr.js"></script>
 		</head>
-<body>
 <table>
 </tr>
 <form action="" method="POST">		
-<tr>	<td>	Nom Permis
-		<input type="text" name="nom_permis"/> 
+<tr>	<td>	Nom Grup
+		<input type="text" name="nom_grup"/> 
 	</td>
 	<td>
 		Actiu
@@ -20,24 +19,14 @@
                 	<option value=0>No</option>
 		</select>		
 	</td>
-        <td>
-            <select id="grup" name="grup" size="1">
-                        <option value"" selected="selected">- Selecciona -</option>
-                    {% for grups in grups %}                        
-                        <option value={{grups.id_grup}}>{{ grups.nom_grup }}</option>
-                    {% endfor %}		
-            </select>
-        </td>
-        
 </tr>
 <tr>
 	<td>
 	<button class="button postfix" type="submit">Afegeix</button>
 	</td>
 	<td>
-	<a href="{{url_for('auth.conf')}}" class="button postfix">Enrere</a>
+	<a href="/" class="button postfix">Enrere</a>
 	</td>
 </tr>
 </table>
-</body>
 </html>

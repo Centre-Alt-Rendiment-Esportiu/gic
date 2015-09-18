@@ -17,7 +17,7 @@
 	<td>	Cognom 2
 		<input type="text" name="cognom2"/>
 	</td>
-	<td>
+	<td rowspan="2">
 		Rol<br>
 		{% for rols in rols %}		
 		<input type="checkbox" name="rol" value={{rols.id_rol}}> {{ rols.nom_rol }}<br>
@@ -51,6 +51,12 @@
         </td>
         <td>    Telefon 2
                 <input type="text" name="telefon2"/>
+        </td>
+        <td rowspan="3">
+            Assignació de permisos<br>
+            {% for grups in grups %}                        
+                <input type="checkbox" name="grup" value={{grups.id_grup}}>{{ grups.nom_grup }}<br>
+            {% endfor %}		
         </td>
 </tr>
 <tr>

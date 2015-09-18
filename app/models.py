@@ -19,15 +19,28 @@ class GIC_CFG_ROL(db.Model):
         self.template = template
         self.actiu = actiu
 
+class GIC_CFG_GRUP(db.Model):
+    """taula de grups de permisos"""
+    id_grup = db.Column(db.Integer, primary_key=True)
+    nom_grup = db.Column(db.String(40))
+    actiu = db.Column(db.String(1))
+    grups = db.relationship('GIC_CFG_PERMIS', backref='GIC_CFG_PERMIS.grup', primaryjoin='GIC_CFG_GRUP.id_grup==GIC_CFG_PERMIS.grup', lazy='dynamic')
+    def __init__(self, nom_grup, actiu):
+        self.nom_grup = nom_grup
+        self.actiu = actiu
+
 class GIC_CFG_PERMIS(db.Model):
     """taula de permisos"""
     id_permis = db.Column(db.Integer, primary_key=True)
     nom_permis = db.Column(db.String(40))
     actiu = db.Column(db.String(1))
+    grup = db.Column(db.Integer, db.ForeignKey(GIC_CFG_GRUP.id_grup))
+    grupr = db.relationship('GIC_CFG_GRUP', foreign_keys='GIC_CFG_PERMIS.grup')
     permisos = db.relationship('GIC_PERMIS', backref='GIC_PERMIS.id_permis', primaryjoin='GIC_CFG_PERMIS.id_permis==GIC_PERMIS.id_permis', lazy='dynamic')
-    def __init__(self, nom_permis, actiu):
+    def __init__(self, nom_permis, actiu, grup):
         self.nom_permis = nom_permis
         self.actiu = actiu
+        self.grup = grup
 
 class Post(db.Model):
     """taula de persones"""

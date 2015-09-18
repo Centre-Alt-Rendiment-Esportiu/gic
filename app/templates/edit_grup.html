@@ -1,0 +1,57 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Modificar Grup</title>
+    <link rel="stylesheet" href="../static/css/foundation.css" />
+    <script src="../static/js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+<form action="" method="POST">
+<table>
+    <tr>
+        <td>
+		<label>ID
+		{{grups.id_rol}}
+		</label>
+        </td>
+        <td>
+            <label>Actiu
+                <select id="actiu" name="actiu" size="1">
+                    <option value"" selected="selected">{{ grups.actiu }}</option>
+				{% if 1 == grups.actiu %}
+                            Si
+               		{% elif 0 == grups.actiu %}
+                            No
+                      	{% endif %}
+                    <option value=0>No</option>
+                    <option value=1>Si</option>
+                </select>
+		</label>
+        </td>	
+    </tr>
+    <tr>
+        <td>
+            <label>Nom Grup
+                <input type="text" name="nom_grup" value="{{grups.nom_grup}}"/>
+            </label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button class="button postfix" type="submit">Edita</button>
+        </td>
+        <td>
+            <a href="/conf" class="button postfix">Enrere</a>
+        </td>
+    </tr>
+</form>
+</table>
+<script src="../static/js/vendor/jquery.js"></script>
+    <script src="../static/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

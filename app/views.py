@@ -6,7 +6,7 @@ from flask import render_template, request, flash, redirect, url_for, Blueprint,
 from flask.ext.login import current_user, login_user, logout_user, login_required
 from sqlalchemy import or_
 from app import app, db, login_manager
-from app.models import User, LoginForm, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, GIC_PERMIS
+from app.models import User, LoginForm, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, GIC_PERMIS, GIC_CFG_GRUP
 from werkzeug import secure_filename
 import os
 
@@ -68,8 +68,9 @@ def allowed_file(filename):
 
 @app.route('/add', methods=['POST', 'GET'])
 def add():
-    """afegi persones"""
+    """afegir persones"""
     rols = GIC_CFG_ROL.query.filter_by(actiu="1")
+    grups = GIC_CFG_GRUP.query.filter_by(actiu="1")
     if request.method == 'POST':
         post = Post(request.form['nom'], request.form['cognom1'], request.form['cognom2'], request.form['sexe'], request.form['dni'], request.form['passport'], request.form['data_naix'], request.form['telefon1'], request.form['telefon2'], request.form['email1'], request.form['email2'], request.form['actiu'], request.form['foto'])#,request.form['password'])
         db.session.add(post)
@@ -77,17 +78,18 @@ def add():
         #db.session.add(tip)
         db.session.commit()
         return redirect(url_for('upload'))
-    return render_template('add.html', rols=rols)
+    return render_template('add.html', rols=rols, grups=grups)
 
 @auth.route('/add_permis', methods=['POST', 'GET'])
 def add_permis():
     """afegir permisos"""
+    grups = GIC_CFG_GRUP.query.filter_by(actiu="1")
     if request.method == 'POST':
-        post = GIC_CFG_PERMIS(request.form['nom_permis'], request.form['actiu'])
+        post = GIC_CFG_PERMIS(request.form['nom_permis'], request.form['actiu'], request.form['grup'])
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('auth.conf'))
-    return render_template('add_permis.html')
+    return render_template('add_permis.html', grups=grups)
 
 @app.route('/add_rol', methods=['POST', 'GET'])
 def add_rol():
@@ -98,6 +100,16 @@ def add_rol():
         db.session.commit()
         return redirect(url_for('auth.index'))
     return render_template('add_rol.html')
+
+@auth.route('/add_grup', methods=['POST', 'GET'])
+def add_grup():
+    """afegir grups"""
+    if request.method == 'POST':
+        post = GIC_CFG_GRUP(request.form['nom_grup'], request.form['actiu'])
+        db.session.add(post)
+        db.session.commit()
+        return redirect(url_for('auth.conf'))
+    return render_template('add_grup.html')
 
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
@@ -120,6 +132,12 @@ def cerca_per():
         rols = GIC_ROL.query.all()
         #rols = GIC_ROL.query.filter(GIC_ROL.id_persona.like(Post.id))
     return render_template('cerca_persones.html', post=post, rols=rols)
+
+@auth.route('/cerca_grup', methods=['POST', 'GET'])
+def cerca_grup():
+    """buscar grups"""
+    post = GIC_CFG_GRUP.query.all()
+    return render_template('cerca_grup.html', post=post)
 
 @app.route('/cerca_rol', methods=['POST', 'GET'])
 def cerca_rol():
@@ -152,6 +170,7 @@ def edit(id):
     post = Post.query.get(id)
     tip = GIC_ROL.query.filter_by(id_persona=id)
     rols = GIC_CFG_ROL.query.filter_by(actiu="1")
+    grups = GIC_CFG_GRUP.query.filter_by(actiu="1")
     if request.method == 'POST':
         tip.id_rol = request.form['rol']
         post.nom = request.form['nom']
@@ -170,7 +189,7 @@ def edit(id):
 #        post.password = request.form['password']
         db.session.commit()
         return  redirect(url_for('auth.index'))
-    return render_template('edit.html', post=post, tip=tip, rols=rols)
+    return render_template('edit.html', post=post, tip=tip, rols=rols, grups=grups)
 
 @app.route('/edit_rol/<id_rol>', methods=['POST', 'GET'])
 def edit_rol(id_rol):
@@ -195,6 +214,17 @@ def edit_permis(id_permis):
         return  redirect(url_for('auth.conf'))
     return render_template('edit_permis.html', permisos=permisos)
 
+@app.route('/edit_grup/<id_grup>', methods=['POST', 'GET'])
+def edit_grup(id_grup):
+    """pagina editar grups de permisos"""
+    grups = GIC_CFG_GRUP.query.get(id_grup)
+    if request.method == 'POST':
+        grups.actiu = request.form['actiu']
+        grups.nom_grup = request.form['nom_grup']
+        db.session.commit()
+        return  redirect(url_for('auth.conf'))
+    return render_template('edit_grup.html', grups=grups)
+
 @app.route('/delete/<id>', methods=['POST', 'GET'])
 def delete(id):
     """eliminar persones"""
@@ -210,6 +240,14 @@ def delete_rol(id_rol):
     db.session.delete(rols)
     db.session.commit()
     return redirect(url_for('auth.index'))
+
+@app.route('/delete_grup/<id_grup>', methods=['POST', 'GET'])
+def delete_grup(id_grup):
+    """eliminar grups"""
+    grup = GIC_CFG_GRUP.query.get(id_grup)
+    db.session.delete(grup)
+    db.session.commit()
+    return redirect(url_for('auth.conf'))
 
 @app.route('/delete_permis/<id_permis>', methods=['POST', 'GET'])
 def delete_permis(id_permis):
