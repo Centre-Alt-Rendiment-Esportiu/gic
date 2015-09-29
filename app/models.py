@@ -13,7 +13,8 @@ class GIC_CFG_ROL(db.Model):
     nom_rol = db.Column(db.String(30))
     template = db.Column(db.String(50))
     actiu = db.Column(db.String(1))
-    rols = db.relationship('GIC_ROL', backref='GIC_ROL.id_rol', primaryjoin='GIC_CFG_ROL.id_rol==GIC_ROL.id_rol', lazy='dynamic')    
+    rols = db.relationship('GIC_ROL', backref='GIC_ROL.id_rol', \
+    primaryjoin='GIC_CFG_ROL.id_rol==GIC_ROL.id_rol', lazy='dynamic')
     def __init__(self, nom_rol, template, actiu):
         self.nom_rol = nom_rol
         self.template = template
@@ -24,7 +25,8 @@ class GIC_CFG_GRUP(db.Model):
     id_grup = db.Column(db.Integer, primary_key=True)
     nom_grup = db.Column(db.String(40))
     actiu = db.Column(db.String(1))
-    grups = db.relationship('GIC_CFG_PERMIS', backref='GIC_CFG_PERMIS.grup', primaryjoin='GIC_CFG_GRUP.id_grup==GIC_CFG_PERMIS.grup', lazy='dynamic')
+    grups = db.relationship('GIC_CFG_PERMIS', backref='GIC_CFG_PERMIS.grup', \
+    primaryjoin='GIC_CFG_GRUP.id_grup==GIC_CFG_PERMIS.grup', lazy='dynamic')
     def __init__(self, nom_grup, actiu):
         self.nom_grup = nom_grup
         self.actiu = actiu
@@ -36,7 +38,8 @@ class GIC_CFG_PERMIS(db.Model):
     actiu = db.Column(db.String(1))
     grup = db.Column(db.Integer, db.ForeignKey(GIC_CFG_GRUP.id_grup))
     grupr = db.relationship('GIC_CFG_GRUP', foreign_keys='GIC_CFG_PERMIS.grup')
-    permisos = db.relationship('GIC_PERMIS', backref='GIC_PERMIS.id_permis', primaryjoin='GIC_CFG_PERMIS.id_permis==GIC_PERMIS.id_permis', lazy='dynamic')
+    permisos = db.relationship('GIC_PERMIS', backref='GIC_PERMIS.id_permis', \
+    primaryjoin='GIC_CFG_PERMIS.id_permis==GIC_PERMIS.id_permis', lazy='dynamic')
     def __init__(self, nom_permis, actiu, grup):
         self.nom_permis = nom_permis
         self.actiu = actiu
@@ -59,7 +62,8 @@ class Post(db.Model):
     actiu = db.Column(db.String(1))
     foto = db.Column(db.String(50))
 #    password = db.Column(db.String(50))
-    def __init__(self, nom, cognom1, cognom2, sexe, dni, passport, data_naix, telefon1, telefon2, email1, email2, actiu, foto):#,password):
+    def __init__(self, nom, cognom1, cognom2, sexe, dni, passport, data_naix, \
+    telefon1, telefon2, email1, email2, actiu, foto):#,password):
         self.nom = nom
         self.cognom1 = cognom1
         self.cognom2 = cognom2
@@ -113,19 +117,24 @@ class User(db.Model):
     """taula de logins"""
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100))
-    def __init__(self, username, password):
+    def __init__(self, username):
         self.username = username
     @staticmethod
     def try_login(username, password):
+        """proba el login"""
         conn = get_ldap_connection()
         conn.simple_bind_s('cn=%s, dc=dc1, dc=carsc, dc=loc' %username, password)
     def is_authenticated(self):
+        """esta autenticat?"""
         return True
     def is_active(self):
+        """esta actiu?"""
         return True
     def is_anonymous(self):
+        """es anonim?"""
         return False
     def get_id(self):
+        """agafa el id"""
         return unicode(self.id)
 
 class LoginForm(Form):

@@ -6,7 +6,8 @@ from flask import render_template, request, flash, redirect, url_for, Blueprint,
 from flask.ext.login import current_user, login_user, logout_user, login_required
 from sqlalchemy import or_
 from app import app, db, login_manager
-from app.models import User, LoginForm, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, GIC_PERMIS, GIC_CFG_GRUP
+from app.models import User, LoginForm, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \
+GIC_CFG_GRUP, GIC_PERMIS
 from werkzeug import secure_filename
 import os
 
@@ -15,17 +16,17 @@ auth = Blueprint('auth', __name__)
 @login_manager.user_loader
 def load_user(id):
     """get user id for login"""
-    return User.query.get(int(id))
+    return User.query.get(id)
 
 @auth.before_request
 def get_current_user():
     """current user"""
     g.user = current_user
 
-@auth.route('/conf', methods=['GET','POST'])
+@auth.route('/conf', methods=['GET', 'POST'])
 def conf():
     rols = GIC_CFG_ROL.query.all()
-    return render_template('configuracio.html',rols=rols)
+    return render_template('configuracio.html', rols=rols)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -72,10 +73,26 @@ def add():
     rols = GIC_CFG_ROL.query.filter_by(actiu="1")
     grups = GIC_CFG_GRUP.query.filter_by(actiu="1")
     if request.method == 'POST':
-        post = Post(request.form['nom'], request.form['cognom1'], request.form['cognom2'], request.form['sexe'], request.form['dni'], request.form['passport'], request.form['data_naix'], request.form['telefon1'], request.form['telefon2'], request.form['email1'], request.form['email2'], request.form['actiu'], request.form['foto'])#,request.form['password'])
+        post = Post(request.form['nom'], request.form['cognom1'], \
+        request.form['cognom2'], request.form['sexe'], request.form['dni'], \
+        request.form['passport'], request.form['data_naix'], request.form['telefon1'], \
+        request.form['telefon2'], request.form['email1'], request.form['email2'], \
+        request.form['actiu'], request.form['foto'])#,request.form['password'])
         db.session.add(post)
-        #tip=GIC_ROL(request.form['rol'])
-        #db.session.add(tip)
+        db.session.flush()
+        rols = request.form.getlist('rol')
+        for rols in rols:
+            rol = GIC_CFG_ROL.query.filter_by(id_rol=rols)
+            tip = GIC_ROL(post.id, rols, request.form['inici'], request.form['fi'])
+            db.session.add(tip)
+            db.session.flush()
+        grups = request.form.getlist('grup')
+        for grups in grups:
+            perm = GIC_CFG_PERMIS.query.filter_by(grup=grups)
+            for perm in perm:
+                grups = GIC_PERMIS(post.id, perm.id_permis, request.form['inici_permis'], request.form['fi_permis'])
+                db.session.add(grups)
+                db.session.flush()
         db.session.commit()
         return redirect(url_for('upload'))
     return render_template('add.html', rols=rols, grups=grups)
@@ -85,7 +102,8 @@ def add_permis():
     """afegir permisos"""
     grups = GIC_CFG_GRUP.query.filter_by(actiu="1")
     if request.method == 'POST':
-        post = GIC_CFG_PERMIS(request.form['nom_permis'], request.form['actiu'], request.form['grup'])
+        post = GIC_CFG_PERMIS(request.form['nom_permis'], request.form['actiu'], \
+        request.form['grup'])
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('auth.conf'))
@@ -130,7 +148,6 @@ def cerca_per():
         conc = "%" + nom + "%"
         post = Post.query.filter(or_(Post.nom.like(conc), Post.cognom1.like(conc)))
         rols = GIC_ROL.query.all()
-        #rols = GIC_ROL.query.filter(GIC_ROL.id_persona.like(Post.id))
     return render_template('cerca_persones.html', post=post, rols=rols)
 
 @auth.route('/cerca_grup', methods=['POST', 'GET'])
@@ -172,7 +189,7 @@ def edit(id):
     rols = GIC_CFG_ROL.query.filter_by(actiu="1")
     grups = GIC_CFG_GRUP.query.filter_by(actiu="1")
     if request.method == 'POST':
-        tip.id_rol = request.form['rol']
+#        tip.id_rol = request.form['rol']
         post.nom = request.form['nom']
         post.cognom1 = request.form['cognom1']
         post.cognom2 = request.form['cognom2']
@@ -228,7 +245,15 @@ def edit_grup(id_grup):
 @app.route('/delete/<id>', methods=['POST', 'GET'])
 def delete(id):
     """eliminar persones"""
+    gic_rol = GIC_ROL.query.filter_by(id_persona=id)
+    gic_permis = GIC_PERMIS.query.filter_by(id_persona=id)
     post = Post.query.get(id)
+    for gic_rol in gic_rol:
+        db.session.delete(gic_rol)
+        db.session.flush()
+    for gic_permis in gic_permis:
+        db.session.delete(gic_permis)
+        db.session.flush()
     db.session.delete(post)
     db.session.commit()
     return redirect(url_for('auth.index'))
