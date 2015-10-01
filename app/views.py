@@ -189,7 +189,6 @@ def edit(id):
     rols = GIC_CFG_ROL.query.filter_by(actiu="1")
     grups = GIC_CFG_GRUP.query.filter_by(actiu="1")
     if request.method == 'POST':
-#        tip.id_rol = request.form['rol']
         post.nom = request.form['nom']
         post.cognom1 = request.form['cognom1']
         post.cognom2 = request.form['cognom2']
@@ -203,6 +202,19 @@ def edit(id):
         post.email2 = request.form['email2']
         post.actiu = request.form['actiu']
         post.foto = request.form['foto']
+        rols = request.form.getlist('rol')
+        for rols in rols:
+            rol = GIC_CFG_ROL.query.filter_by(id_rol=rols)
+            tip = GIC_ROL(post.id, rols, request.form['inici'], request.form['fi'])
+            db.session.add(tip)
+            db.session.flush()
+        grups = request.form.getlist('grup')
+        for grups in grups:
+            perm = GIC_CFG_PERMIS.query.filter_by(grup=grups)
+            for perm in perm:
+                grups = GIC_PERMIS(post.id, perm.id_permis, request.form['inici_permis'], request.form['fi_permis'])
+                db.session.add(grups)
+                db.session.flush()
 #        post.password = request.form['password']
         db.session.commit()
         return  redirect(url_for('auth.index'))

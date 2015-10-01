@@ -10,28 +10,28 @@
   <body>
 <h3>Cerca de Persones</h3>
 <table width=20%>
-<tr>
-	<td>
-		<a href="/" class="button postfix">Enrere</a>
-	</td>
-</tr>
+    <tr>
+        <td>
+            <a href="/" class="button postfix">Enrere</a>
+        </td>
+    </tr>
 </table>
-     {% for post in post %}
-        <div>
+{% for post in post %}
+<div>
 	<article>
-                <table>
+        <table>
                 <tr>
-                        <td>
-                        <img src=/static/img/{{ post.foto }} width=100px height=30px >
+                      <td>
+                              <img src=/static/img/{{ post.foto }} width=100px height=30px >
+                      </td>
+        			<td>
+                                Rols <hr>
+                                {% for rols in rols %}                    
+                                    {% if post.id == rols.id_persona %}				
+                                        {{ rols.id_rol }}
+                                    {% endif %}			
+                                {% endfor %}
                         </td>
-			<td>
-				Rols <hr>
-                    {% for rols in rols %}                    
-                        {% if post.id == rols.id_rol %}				
-                                {{ rols.nom_rol }}
-                        {% endif %}			
-                    {% endfor %}
-			</td>
                 </tr>
                 <tr>
                         <td> 	Nom <hr>
@@ -71,7 +71,7 @@
                                 {{ post.telefon2 }}
                         </td>
                 </tr>
-		<tr>
+                <tr>
                         <td>    Email 1 <hr>
                                 {{ post.email1 }}
                         </td>
@@ -79,7 +79,7 @@
                                 {{ post.email2 }}
                         </td>
                         <td>    Actiu   <hr>
-				{{ post.actiu }}
+                                {{ post.actiu }}
                                 {% if post.actiu == 1 %}
                                         Si
                                 {% elif post.actiu == 0 %}

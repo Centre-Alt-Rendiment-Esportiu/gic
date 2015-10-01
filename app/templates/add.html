@@ -17,12 +17,12 @@
 	<td>	Cognom 2
 		<input type="text" name="cognom2"/>
 	</td>
-	<td rowspan="2">
+	<td rowspan="3">
 		Rol<br>
             {% for rols in rols %}		
             <input type="checkbox" name="rol" value={{rols.id_rol}}> {{ rols.nom_rol }}<br>
+            <input type="date" name="inici"><input type="date" name="fi">            
             {% endfor %}
-            <input type="date" name="inici"><br><input type="date" name="fi">
 	</td>
 </tr>
 <tr>	<td>	
@@ -53,13 +53,6 @@
         <td>    Telefon 2
                 <input type="text" name="telefon2"/>
         </td>
-        <td rowspan="3">
-            Assignació de permisos<br><br>
-            {% for grups in grups %}                        
-                <input type="checkbox" name="grup" value={{grups.id_grup}}>{{ grups.nom_grup }}<br>
-            {% endfor %}
-            <input type="date" name="inici_permis"><input type="date" name="fi_permis">
-        </td>
 </tr>
 <tr>
         <td>    Email 1
@@ -76,6 +69,13 @@
                 <option value="0">No</option>
         </select>
 	</td>
+        <td rowspan="2">
+            Assignació de permisos<br><br>
+            {% for grups in grups %}                        
+                <input type="checkbox" name="grup" value={{grups.id_grup}}>{{ grups.nom_grup }}<br>
+            {% endfor %}
+            <input type="date" name="inici_permis"><input type="date" name="fi_permis">
+        </td>
 </tr>
 <tr>
 	<td>
