@@ -122,7 +122,11 @@
                         <td rowspan="2">
                             Assignació de permisos<br>
                             {% for grups in grups %}                        
-                                <input type="checkbox" name="grup" value={{grups.id_grup}}>{{ grups.nom_grup }}<br>
+                                <input type="checkbox" name="grup" value={{grups.id_grup}}
+                                {% if perm_grup.grup == grups.id_grup %}
+                                    checked="True"
+                                {% endif %}
+                                >{{ grups.nom_grup }}<br>
                             {% endfor %}
                         <input type="date" name="inici_permis"><input type="date" name="fi_permis">
                         </td>

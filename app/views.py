@@ -80,16 +80,22 @@ def add():
         request.form['actiu'], request.form['foto'])#,request.form['password'])
         db.session.add(post)
         db.session.flush()
-        rols = request.form.getlist('rol')
-        for rols in rols:
-            rol = GIC_CFG_ROL.query.filter_by(id_rol=rols)
-            tip = GIC_ROL(post.id, rols, request.form['inici'], request.form['fi'])
+        lrol = request.form.getlist('rol')
+        i = len(lrol)
+        lista = []
+        a = 0
+        lini = request.form.getlist('inici')
+        lfi = request.form.getlist('fi')
+        for a in range(i):
+            lista.insert(a, [lrol[a],lini[a],lfi[a]])
+        for li in lista:
+            tip = GIC_ROL(post.id, li[0], li[1], li[2])
             db.session.add(tip)
-            db.session.flush()
+            db.session.flush()       
         grups = request.form.getlist('grup')
-        for grups in grups:
+        for gru in grups:
             perm = GIC_CFG_PERMIS.query.filter_by(grup=grups)
-            for perm in perm:
+            for per in perm:
                 grups = GIC_PERMIS(post.id, perm.id_permis, request.form['inici_permis'], request.form['fi_permis'])
                 db.session.add(grups)
                 db.session.flush()
@@ -147,7 +153,7 @@ def cerca_per():
         nom = request.form['cerca']
         conc = "%" + nom + "%"
         post = Post.query.filter(or_(Post.nom.like(conc), Post.cognom1.like(conc)))
-        rols = GIC_ROL.query.all()
+        rols = GIC_ROL.query.all()      
     return render_template('cerca_persones.html', post=post, rols=rols)
 
 @auth.route('/cerca_grup', methods=['POST', 'GET'])
@@ -188,6 +194,7 @@ def edit(id):
     tip = GIC_ROL.query.filter_by(id_persona=id)
     rols = GIC_CFG_ROL.query.filter_by(actiu="1")
     grups = GIC_CFG_GRUP.query.filter_by(actiu="1")
+    perm_grup = GIC_CFG_PERMIS.query.filter_by(grup=grups)
     if request.method == 'POST':
         post.nom = request.form['nom']
         post.cognom1 = request.form['cognom1']
@@ -218,7 +225,7 @@ def edit(id):
 #        post.password = request.form['password']
         db.session.commit()
         return  redirect(url_for('auth.index'))
-    return render_template('edit.html', post=post, tip=tip, rols=rols, grups=grups)
+    return render_template('edit.html', post=post, tip=tip, rols=rols, grups=grups, perm_grup=perm_grup)
 
 @app.route('/edit_rol/<id_rol>', methods=['POST', 'GET'])
 def edit_rol(id_rol):
