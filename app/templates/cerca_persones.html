@@ -26,10 +26,17 @@
                       </td>
         			<td>
                                 Rols <hr>
-                                {% for rols in rols %}                    
-                                    {% if post.id == rols.id_persona %}				
-                                        {{ rols.id_rol }}
-                                    {% endif %}			
+                                {% for rols in rols %}
+                                    {% if rols.id_persona == post.id %}
+                                        {% if 1 == rols.id_rol %}
+                                            Entrenador
+                                            {% elif 2 == rols.id_rol %}
+                                                Jugador
+                                                {% elif 3 == rols.id_rol %}
+                                                    Empleat
+                                        {% endif %}
+                                        <br>                                
+                                    {% endif %}                                    
                                 {% endfor %}
                         </td>
                 </tr>
@@ -46,10 +53,9 @@
                 </tr>
                 <tr>
                         <td> 	Sexe <hr>
-            			     {{ post.sexe }}
-                                  {% if 1 == post.sexe %}
+                                {% if 1 == post.sexe|int() %}
                                            Home
-                                {% elif 0 == post.sexe %}
+                                {% elif 0 == post.sexe|int() %}
                                         Dona
                                 {% endif %}
                         </td>
@@ -79,10 +85,9 @@
                                 {{ post.email2 }}
                         </td>
                         <td>    Actiu   <hr>
-                                {{ post.actiu }}
-                                {% if post.actiu == 1 %}
+                                {% if 1 == post.actiu|int() %}
                                         Si
-                                {% elif post.actiu == 0 %}
+                                {% elif 0 == post.actiu|int() %}
                                         No
                                 {% endif %}
                         </td>

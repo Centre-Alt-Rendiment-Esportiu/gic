@@ -20,15 +20,16 @@
                 </td>
 			<td rowspan="4">
 				<label> Rols<br>
-                    {% for rols in rols %}		
-                		<input type="checkbox" name="rol" value={{rols.id_rol}} 
+                    {% for rols in rols %}
+                        <input type="hidden" name="rol" value="">
+                        <input type="checkbox" name="rol" value={{rols.id_rol}} 
                             {% if rols.id_rol == tip.id_rol %}
                                 checked="True"
                             {% endif %}
                         /> {{ rols.nom_rol }}<br>
-                    {% endfor %}
                             <input type="date" name="inici">
                             <input type="date" name="fi">
+                    {% endfor %}
                     </label>
 			</td>		
 		</tr>
@@ -96,12 +97,12 @@
                 <tr>
                         <td>
                                 <label>Email 1
-                                        <input type="text" name="email1" value="{{post.email1}}"/>
+                                        <input type="email" name="email1" value="{{post.email1}}"/>
                                 </label>
                         </td>
                         <td>
                                 <label>Email 2
-                                        <input type="text" name="email2" value="{{post.email2}}"/>
+                                        <input type="email" name="email2" value="{{post.email2}}"/>
                                 </label>
                         </td>
                         <td>

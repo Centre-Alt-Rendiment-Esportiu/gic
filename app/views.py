@@ -96,7 +96,7 @@ def add():
         for gru in grups:
             perm = GIC_CFG_PERMIS.query.filter_by(grup=grups)
             for per in perm:
-                grups = GIC_PERMIS(post.id, perm.id_permis, request.form['inici_permis'], request.form['fi_permis'])
+                grups = GIC_PERMIS(post.id, per.id_permis, request.form['inici_permis'], request.form['fi_permis'])
                 db.session.add(grups)
                 db.session.flush()
         db.session.commit()
@@ -153,7 +153,7 @@ def cerca_per():
         nom = request.form['cerca']
         conc = "%" + nom + "%"
         post = Post.query.filter(or_(Post.nom.like(conc), Post.cognom1.like(conc)))
-        rols = GIC_ROL.query.all()      
+        rols = GIC_ROL.query.all()
     return render_template('cerca_persones.html', post=post, rols=rols)
 
 @auth.route('/cerca_grup', methods=['POST', 'GET'])
@@ -209,10 +209,9 @@ def edit(id):
         post.email2 = request.form['email2']
         post.actiu = request.form['actiu']
         post.foto = request.form['foto']
-        rols = request.form.getlist('rol')
+        rols = request.form.getlist('rol')        
         for rols in rols:
-            rol = GIC_CFG_ROL.query.filter_by(id_rol=rols)
-            tip = GIC_ROL(post.id, rols, request.form['inici'], request.form['fi'])
+            tip = GIC_ROL(id, rols, request.form['inici'], request.form['fi'])
             db.session.add(tip)
             db.session.flush()
         grups = request.form.getlist('grup')
