@@ -19,12 +19,12 @@
 			<td>
 				<label>Actiu
                 			<select id="actiu" name="actiu" size="1">
-                        			<option value"" selected="selected">{{ rols.actiu }}</option>
-							{% if 1 == rols.actiu %}
+                        			<option value"" selected="selected">
+                                       {% if 1 == rols.actiu|int() %}
                                                 Si
-                                		{% elif 0 == rols.actiu %}
+                                		{% elif 0 == rols.actiu|int() %}
                                                 No
-                                    	{% endif %}
+                                    	{% endif %}</option>
                                     <option value=0>No</option>
                                     <option value=1>Si</option>
                             </select>

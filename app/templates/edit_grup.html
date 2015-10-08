@@ -13,18 +13,18 @@
     <tr>
         <td>
 		<label>ID
-		{{grups.id_rol}}
+		{{grups.id_grup}}
 		</label>
         </td>
         <td>
             <label>Actiu
                 <select id="actiu" name="actiu" size="1">
-                    <option value"" selected="selected">{{ grups.actiu }}</option>
-				{% if 1 == grups.actiu %}
+                    <option value"" selected="selected">
+				{% if 1 == grups.actiu|int() %}
                             Si
-               		{% elif 0 == grups.actiu %}
+               		{% elif 0 == grups.actiu|int() %}
                             No
-                      	{% endif %}
+                      	{% endif %}</option>
                     <option value=0>No</option>
                     <option value=1>Si</option>
                 </select>

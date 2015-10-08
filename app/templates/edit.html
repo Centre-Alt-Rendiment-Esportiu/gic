@@ -55,9 +55,9 @@
 			      	<label>Sexe
 				<select id="sexe" name="sexe" size="1">
                 			<option value="{{post.sexe}}" selected="selected">
-					{% if 1 == post.sexe %}
+					{% if 1 == post.sexe|int() %}
 						Home
-					{% elif 0 == post.sexe %}
+					{% elif 0 == post.sexe|int() %}
 						Dona
 					{% endif %}
 					</option>
@@ -109,9 +109,9 @@
                             <label>Actiu
                                 <select id="actiu" name="actiu" size="1">
         				        <option value="{{post.actiu}}" selected="selected">
-        						{% if post.actiu == 1 %}
+        						{% if post.actiu|int() == 1 %}
         							Si
-        						{% elif post.actiu == 0 %}
+        						{% elif post.actiu|int() == 0 %}
         							No
         						{% endif %}
                                     </option>
