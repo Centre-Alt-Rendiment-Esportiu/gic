@@ -9,7 +9,7 @@
 </tr>
 <form action="" method="POST">		
 <tr>	<td>	Nom Rol
-		<input type="text" name="nom_rol"/> 
+		<input type="text" name="nom_rol" pattern="([A-Za-z]{1,30})"/> 
 	</td>
 	<td>	Template
 		<input type="text" name="template"/>
@@ -17,9 +17,9 @@
 	<td>
 		Actiu
 		<select id="actiu" name="actiu" size="1">
-                        <option value"" selected="selected">- Selecciona -</option>
-                        <option value=1>Si</option>
-                	<option value=0>No</option>
+                        <option value="" selected="selected">- Selecciona -</option>
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
 		</select>		
 	</td>
 </tr>

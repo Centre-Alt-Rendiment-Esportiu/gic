@@ -19,14 +19,14 @@
         <td>
             <label>Actiu
                 <select id="actiu" name="actiu" size="1">
-                    <option value"" selected="selected">
+                    <option value="" selected="selected">
 				{% if 1 == grups.actiu|int() %}
                             Si
                		{% elif 0 == grups.actiu|int() %}
                             No
                       	{% endif %}</option>
-                    <option value=0>No</option>
-                    <option value=1>Si</option>
+                    <option value="0">No</option>
+                    <option value="1">Si</option>
                 </select>
 		</label>
         </td>	
@@ -34,7 +34,7 @@
     <tr>
         <td>
             <label>Nom Grup
-                <input type="text" name="nom_grup" value="{{grups.nom_grup}}"/>
+                <input type="text" name="nom_grup" value="{{grups.nom_grup}}" pattern="([A-Za-z0-9]{1,40})"/>
             </label>
         </td>
     </tr>

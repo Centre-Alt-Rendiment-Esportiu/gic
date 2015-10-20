@@ -212,7 +212,7 @@ def edit(id):
         rols = request.form.getlist('rol')        
         for rols in rols:
             tip = GIC_ROL(id, rols, request.form['inici'], request.form['fi'])
-            db.session.add(tip)
+            #db.session.add(tip)
             db.session.flush()
         grups = request.form.getlist('grup')
         for grups in grups:

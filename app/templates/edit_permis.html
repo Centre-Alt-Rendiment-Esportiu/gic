@@ -19,14 +19,14 @@
 			<td>
 				<label>Actiu
                 			<select id="actiu" name="actiu" size="1">
-                        			<option value"" selected="selected">
+                        			<option value="" selected="selected">
 							{% if 1 == permisos.actiu|int() %}
                                                 Si
                                 		{% elif 0 == permisos.actiu|int() %}
                                                 No
                                     	{% endif %}</option>
-                                    <option value=0>No</option>
-                                    <option value=1>Si</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Si</option>
                             </select>
 
 				</label>
@@ -35,7 +35,7 @@
         <tr>
                 <td>
                     <label>Nom Permis
-					<input type="text" name="nom_permis" value="{{permisos.nom_permis}}"/>
+					<input type="text" name="nom_permis" value="{{permisos.nom_permis}}" pattern="([A-Za-z]{1,40})"/>
                     </label>
                 </td>	     
         </tr>

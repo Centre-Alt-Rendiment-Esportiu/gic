@@ -31,79 +31,79 @@
                             <input type="date" name="fi">
                     {% endfor %}
                     </label>
-			</td>		
+			</td>
 		</tr>
                 <tr>
                         <td>
 			      	<label>Nom
-					<input type="text" name="nom" value="{{post.nom}}"/>
+					<input type="text" name="nom" value="{{post.nom}}" pattern="([A-Za-z]{1,50})"/>
 			      	</label>
                         </td>
                         <td>
 			      	<label>Cognom 1
-			        	<input type="text" name="cognom1" value="{{post.cognom1}}"/>
+			        	<input type="text" name="cognom1" value="{{post.cognom1}}" pattern=".{0}|([A-Za-z]{1,50})"/>
 			      	</label>
                         </td>
                         <td>
 			      	<label>Cognom 2
-			        	<input type="text" name="cognom2" value="{{post.cognom2}}"/>
+			        	<input type="text" name="cognom2" value="{{post.cognom2}}" pattern=".{0}|([A-Za-z]{1,50})"/>
 			      	</label>
                         </td>
                 </tr>
                 <tr>
                         <td>
 			      	<label>Sexe
-				<select id="sexe" name="sexe" size="1">
-                			<option value="{{post.sexe}}" selected="selected">
-					{% if 1 == post.sexe|int() %}
-						Home
-					{% elif 0 == post.sexe|int() %}
-						Dona
-					{% endif %}
-					</option>
-                			<option value="1">Home</option>
-        		        	<option value="0">Dona</option>
-	        		</select>
-				</label>
-                        </td>
-                        <td>
-				<label>DNI
-                	                <input type="text" name="dni" value="{{post.dni}}"/>
-        	        	</label>
-                        </td>
-                        <td>
-				<label>PASSPORT
+        				<select id="sexe" name="sexe" size="1">
+                    			<option value="{{post.sexe}}" selected="selected">
+        					{% if 1 == post.sexe|int() %}
+        						Home
+        					{% elif 0 == post.sexe|int() %}
+        						Dona
+        					{% endif %}
+        					</option>
+                        		<option value="1">Home</option>
+            		        	<option value="0">Dona</option>
+        	        		</select>
+        				</label>
+                      </td>
+                      <td>
+        				<label>DNI
+                	                <input type="text" name="dni" value="{{post.dni}}" pattern=".{0}|([0-9]{8})+([a-z]{1})"/>
+                	        	</label>
+                      </td>
+                      <td>
+        				<label>PASSPORT
                 	                <input type="text" name="passport" value="{{post.passport}}"/>
-	                        </label>
+	                      </label>
+                      </td>
+                </tr>
+                <tr>
+                      <td>
+        				<label>Data Naixement
+                        	        <input type="date" name="data_naix" value="{{post.data_naix}}"/>
+                          	</label>
+                        </td>
+                        <td>
+            			<label>Telefon 1
+                                 	<input type="text" name="telefon1" value="{{post.telefon1}}" pattern="[0-9]{9}"/>
+                           	</label>
+                        </td>
+                        <td>
+                            <label>Telefon 2
+                                <input type="text" name="telefon2" value="{{post.telefon2}}" pattern="[0-9]{9}"/>
+                            </label>
                         </td>
                 </tr>
                 <tr>
                         <td>
-				<label>Data Naixement
-                        	        <input type="text" name="data_naix" value="{{post.data_naix}}"/>
-                              	</label>
+                            <label>Email 1
+                                <input type="email" name="email1" value="{{post.email1}}"/>
+                            </label>
                         </td>
                         <td>
-				<label>Telefon 1
-                                	<input type="text" name="telefon1" value="{{post.telefon1}}"/>
-                              	</label>
-                        </td>
-                        <td>
-                                <label>Telefon 2
-                                        <input type="text" name="telefon2" value="{{post.telefon2}}"/>
-                                </label>
-                        </td>
-                </tr>
-                <tr>
-                        <td>
-                                <label>Email 1
-                                        <input type="email" name="email1" value="{{post.email1}}"/>
-                                </label>
-                        </td>
-                        <td>
-                                <label>Email 2
-                                        <input type="email" name="email2" value="{{post.email2}}"/>
-                                </label>
+                            <label>Email 2
+                                    <input type="email" name="email2" value="{{post.email2}}"/>
+                            </label>
                         </td>
                         <td>
                             <label>Actiu

@@ -10,19 +10,19 @@
 </tr>
 <form action="" method="POST">		
 <tr>	<td>	Nom Permis
-		<input type="text" name="nom_permis"/> 
+		<input type="text" name="nom_permis" pattern="([A-Za-z]{1,40})"/> 
 	</td>
 	<td>
 		Actiu
 		<select id="actiu" name="actiu" size="1">
-                        <option value"" selected="selected">- Selecciona -</option>
-                        <option value=1>Si</option>
-                	<option value=0>No</option>
+                        <option value="" selected="selected">- Selecciona -</option>
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
 		</select>		
 	</td>
         <td>
             <select id="grup" name="grup" size="1">
-                        <option value"" selected="selected">- Selecciona -</option>
+                        <option value="" selected="selected">- Selecciona -</option>
                     {% for grups in grups %}                        
                         <option value={{grups.id_grup}}>{{ grups.nom_grup }}</option>
                     {% endfor %}		
