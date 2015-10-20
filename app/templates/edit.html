@@ -21,14 +21,18 @@
 			<td rowspan="4">
 				<label> Rols<br>
                     {% for rols in rols %}
-                        <input type="hidden" name="rol" value="">
-                        <input type="checkbox" name="rol" value={{rols.id_rol}} 
-                            {% if rols.id_rol == tip.id_rol %}
-                                checked="True"
-                            {% endif %}
-                        /> {{ rols.nom_rol }}<br>
-                            <input type="date" name="inici">
-                            <input type="date" name="fi">
+                                    <input type="hidden" name="rol" value="">
+                                    <input type="checkbox" name="rol" value={{rols.id_rol}}
+                                {% for tip in tip %}
+                                    {% if tip.id_rol == rols.id_rol %}
+                                        {% if tip.id_persona == post.id %}
+                                            checked="True"
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                                    /> {{ rols.nom_rol }}<br>
+                                    <input type="date" name="inici">
+                                    <input type="date" name="fi">  
                     {% endfor %}
                     </label>
 			</td>
