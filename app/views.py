@@ -81,13 +81,25 @@ def add():
         db.session.add(post)
         db.session.flush()
         lrol = request.form.getlist('rol')
-        i = len(lrol)
-        lista = []
-        a = 0
         lini = request.form.getlist('inici')
         lfi = request.form.getlist('fi')
+        i = len(lrol)
+        j = len(lini)
+        k = len(lfi)
+        lista = []
+        listaini = []
+        listafi = []
+        a = 0
+        li = 0
+        lf = 0
+        for le in range(j):
+            if lini[le]:
+                listaini.insert(le,lini[le])        
+        for lf in range(k):
+            if lfi[lf]:
+                listafi.insert(lf,lfi[lf])
         for a in range(i):
-            lista.insert(a, [lrol[a],lini[a],lfi[a]])
+            lista.insert(a, [lrol[a],listaini[a],listafi[a]])
         for li in lista:
             tip = GIC_ROL(post.id, li[0], li[1], li[2])
             db.session.add(tip)
@@ -194,7 +206,8 @@ def edit(id):
     tip = GIC_ROL.query.filter_by(id_persona=id)
     rols = GIC_CFG_ROL.query.filter_by(actiu="1")
     grups = GIC_CFG_GRUP.query.filter_by(actiu="1")
-    perm_grup = GIC_CFG_PERMIS.query.filter_by(grup=grups)
+    perm_grup = GIC_CFG_PERMIS.query.filter_by(grup=1)
+    #dates = GIC_ROL.query.filter_by(inici,fi)
     if request.method == 'POST':
         post.nom = request.form['nom']
         post.cognom1 = request.form['cognom1']

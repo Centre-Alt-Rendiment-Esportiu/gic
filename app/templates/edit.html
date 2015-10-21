@@ -22,24 +22,25 @@
 				<label> Rols<br>
                     {% for rols in rols %}
                                     <input type="hidden" name="rol" value="">
-                                    <input type="checkbox" name="rol" value={{rols.id_rol}}
+                                    
                                 {% for tip in tip %}
+                                
                                     {% if tip.id_rol == rols.id_rol %}
-                                        {% if tip.id_persona == post.id %}
+                                    <input type="checkbox" name="rol" value={{rols.id_rol}}     
                                             checked="True"
-                                        {% endif %}
+                                    /> {{ rols.nom_rol }}<br>
+                                    <input type="date" name="inici" value={{ tip.inici }}>
+                                    <input type="date" name="fi" value={{ tip.fi }}>
                                     {% endif %}
                                 {% endfor %}
-                                    /> {{ rols.nom_rol }}<br>
-                                    <input type="date" name="inici">
-                                    <input type="date" name="fi">  
+
                     {% endfor %}
                     </label>
 			</td>
-		</tr>
-                <tr>
-                        <td>
-			      	<label>Nom
+            </tr>
+            <tr>
+                    <td>
+                        <label>Nom
 					<input type="text" name="nom" value="{{post.nom}}" pattern="([A-Za-z]{1,50})"/>
 			      	</label>
                         </td>
@@ -53,8 +54,8 @@
 			        	<input type="text" name="cognom2" value="{{post.cognom2}}" pattern=".{0}|([A-Za-z]{1,50})"/>
 			      	</label>
                         </td>
-                </tr>
-                <tr>
+            </tr>
+            <tr>
                         <td>
 			      	<label>Sexe
         				<select id="sexe" name="sexe" size="1">
@@ -80,8 +81,8 @@
                 	                <input type="text" name="passport" value="{{post.passport}}"/>
 	                      </label>
                       </td>
-                </tr>
-                <tr>
+            </tr>
+            <tr>
                       <td>
         				<label>Data Naixement
                         	        <input type="date" name="data_naix" value="{{post.data_naix}}"/>
@@ -97,8 +98,8 @@
                                 <input type="text" name="telefon2" value="{{post.telefon2}}" pattern="[0-9]{9}"/>
                             </label>
                         </td>
-                </tr>
-                <tr>
+            </tr>
+            <tr>
                         <td>
                             <label>Email 1
                                 <input type="email" name="email1" value="{{post.email1}}"/>
@@ -126,17 +127,19 @@
                         </td>
                         <td rowspan="2">
                             Assignació de permisos<br>
-                            {% for grups in grups %}                        
+                        {% for grups in grups %}         
                                 <input type="checkbox" name="grup" value={{grups.id_grup}}
-                                {% if perm_grup.grup == grups.id_grup %}
+                            {% for perm_grup in perm_grup %}    
+                                {% if perm_per.id_permis == perm_grup.id_permis %}
                                     checked="True"
                                 {% endif %}
-                                >{{ grups.nom_grup }}<br>
                             {% endfor %}
-                        <input type="date" name="inici_permis"><input type="date" name="fi_permis">
+                        />{{ grups.nom_grup }}<br>
+                        {% endfor %}
+                            <input type="date" name="inici_permis"><input type="date" name="fi_permis">
                         </td>
-                </tr>
-		<tr>
+            </tr>
+            <tr>
 			<td>
 				<button class="button postfix" type="submit">Edit</button>
                 </td>
