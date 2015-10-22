@@ -20,20 +20,25 @@
                 </td>
 			<td rowspan="4">
 				<label> Rols<br>
-                    {% for rols in rols %}
-                                    <input type="hidden" name="rol" value="">
-                                    
-                                {% for tip in tip %}
-                                
-                                    {% if tip.id_rol == rols.id_rol %}
-                                    <input type="checkbox" name="rol" value={{rols.id_rol}}     
-                                            checked="True"
-                                    /> {{ rols.nom_rol }}<br>
-                                    <input type="date" name="inici" value={{ tip.inici }}>
-                                    <input type="date" name="fi" value={{ tip.fi }}>
+                    {% set var = {'v': True} %}
+                    {% for rol in rols %}
+                                {% for ti in tip %}
+                                    {% if ti.id_rol == rol.id_rol %}
+                                        <input type="hidden" name="rol" value="">
+                                        <input type="checkbox" name="rol" value={{rol.id_rol}} checked="True"/> 
+                                            {{ rol.nom_rol }}<br>
+                                        <input type="date" name="inici" value={{ ti.inici }}>
+                                        <input type="date" name="fi" value={{ ti.fi }}>
+                                        {% if var.update({'v': False}) %} {% endif %}
                                     {% endif %}
                                 {% endfor %}
-
+                            {% if var.v %}
+                                    <input type="hidden" name="rol" value="">
+                                    <input type="checkbox" name="rol" value={{rol.id_rol}}/> {{ rol.nom_rol }}<br>
+                                    <input type="date" name="inici">
+                                    <input type="date" name="fi">
+                            {% endif %}
+                            {% if var.update({'v': True}) %} {% endif %}
                     {% endfor %}
                     </label>
 			</td>

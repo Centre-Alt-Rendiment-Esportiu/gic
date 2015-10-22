@@ -11,6 +11,7 @@ GIC_CFG_GRUP, GIC_PERMIS
 from werkzeug import secure_filename
 import os
 
+
 auth = Blueprint('auth', __name__)
 
 @login_manager.user_loader
