@@ -22,21 +22,21 @@
 				<label> Rols<br>
                     {% set var = {'v': True} %}
                     {% for rol in rols %}
-                                {% for ti in tip %}
-                                    {% if ti.id_rol == rol.id_rol %}
-                                        <input type="hidden" name="rol" value="">
-                                        <input type="checkbox" name="rol" value={{rol.id_rol}} checked="True"/> 
-                                            {{ rol.nom_rol }}<br>
-                                        <input type="date" name="inici" value={{ ti.inici }}>
-                                        <input type="date" name="fi" value={{ ti.fi }}>
-                                        {% if var.update({'v': False}) %} {% endif %}
-                                    {% endif %}
-                                {% endfor %}
-                            {% if var.v %}
+                            {% for ti in tip %}
+                            {% if ti.id_rol == rol.id_rol %}
                                     <input type="hidden" name="rol" value="">
-                                    <input type="checkbox" name="rol" value={{rol.id_rol}}/> {{ rol.nom_rol }}<br>
-                                    <input type="date" name="inici">
-                                    <input type="date" name="fi">
+                                    <input type="checkbox" name="rol" value={{rol.id_rol}} checked="True"/> 
+                                        {{ rol.nom_rol }}<br>
+                                    <input type="date" name="inici" value={{ ti.inici }}>
+                                    <input type="date" name="fi" value={{ ti.fi }}>
+                                    {% if var.update({'v': False}) %} {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if var.v %}
+                                <input type="hidden" name="rol" value="">
+                                <input type="checkbox" name="rol" value={{rol.id_rol}}/> {{ rol.nom_rol }}<br>
+                                <input type="date" name="inici">
+                                <input type="date" name="fi">
                             {% endif %}
                             {% if var.update({'v': True}) %} {% endif %}
                     {% endfor %}
@@ -46,17 +46,17 @@
             <tr>
                     <td>
                         <label>Nom
-					<input type="text" name="nom" value="{{post.nom}}" pattern="([A-Za-z]{1,50})"/>
+					<input type="text" name="nom" value="{{post.nom}}" pattern="([A-Za-z ]{1,50})"/>
 			      	</label>
                         </td>
                         <td>
 			      	<label>Cognom 1
-			        	<input type="text" name="cognom1" value="{{post.cognom1}}" pattern=".{0}|([A-Za-z]{1,50})"/>
+			        	<input type="text" name="cognom1" value="{{post.cognom1}}" pattern=".{0}|([A-Za-z ]{1,50})"/>
 			      	</label>
                         </td>
                         <td>
 			      	<label>Cognom 2
-			        	<input type="text" name="cognom2" value="{{post.cognom2}}" pattern=".{0}|([A-Za-z]{1,50})"/>
+			        	<input type="text" name="cognom2" value="{{post.cognom2}}" pattern=".{0}|([A-Za-z ]{1,50})"/>
 			      	</label>
                         </td>
             </tr>
@@ -132,16 +132,30 @@
                         </td>
                         <td rowspan="2">
                             Assignació de permisos<br>
-                        {% for grups in grups %}         
-                                <input type="checkbox" name="grup" value={{grups.id_grup}}
-                            {% for perm_grup in perm_grup %}    
-                                {% if perm_per.id_permis == perm_grup.id_permis %}
-                                    checked="True"
-                                {% endif %}
+                    {% set var = {'c': True} %}
+                    {% for grup in grups %}
+                            {% for perm_asig in perm_asig %}
+                                {% for perm_grup in perm_grup %}
+                                    {% if var.c and perm_asig.id_permis == perm_grup.id_permis %}
+                                            <input type="hidden" name="grup" value="">
+                                            <input type="checkbox" name="grup" value={{grup.id_grup}} checked="True"/> 
+                                                {{ grup.nom_grup }}<br>
+                                            <input type="date" name="inici_permis" value={{ perm_asig.inici_permis }}>
+                                            <input type="date" name="fi_permis" value={{ perm_asig.fi_permis }}>
+                                            {% if var.update({'c': False}) %} {% endif %}
+                                        {% endif %}
+                                {% endfor %}
                             {% endfor %}
-                        />{{ grups.nom_grup }}<br>
-                        {% endfor %}
-                            <input type="date" name="inici_permis"><input type="date" name="fi_permis">
+                            {% if var.c %}
+                                vacio<br>    
+                                <input type="hidden" name="grup" value="">
+                                <input type="checkbox" name="grup" value={{grup.id_grup}}/> {{ grup.nom_grup }}<br>
+                                <input type="date" name="inici_permis">
+                                <input type="date" name="fi_permis">
+                            {% endif %}
+                            {% if var.update({'c': True}) %} {% endif %}
+                    {% endfor %}
+                            
                         </td>
             </tr>
             <tr>

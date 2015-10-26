@@ -9,13 +9,13 @@
 </tr>
 <form action="" method="POST">		
 <tr>	<td>	Nom
-		<input type="text" name="nom" minlenght="1" pattern="([A-Za-z]{1,50})"/> 
+		<input type="text" name="nom" minlenght="1" pattern="([A-Za-z ]{1,50})"/> 
 	</td>
 	<td>	Cognom 1
-		<input type="text" name="cognom1" pattern=".{0}|([A-Za-z]{1,50})"/>
+		<input type="text" name="cognom1" pattern=".{0}|([A-Za-z ]{1,50})"/>
 	</td>
 	<td>	Cognom 2
-		<input type="text" name="cognom2" pattern=".{0}|([A-Za-z]{1,50})"/>
+		<input type="text" name="cognom2" pattern=".{0}|([A-Za-z ]{1,50})"/>
 	</td>
 	<td rowspan="3">
 		Rol<br>
@@ -73,8 +73,8 @@
             Assignació de permisos<br><br>
             {% for grups in grups %}                        
                 <input type="checkbox" name="grup" value={{grups.id_grup}}>{{ grups.nom_grup }}<br>
+                <input type="date" name="inici_permis"><input type="date" name="fi_permis">
             {% endfor %}
-            <input type="date" name="inici_permis"><input type="date" name="fi_permis">
         </td>
 </tr>
 <tr>

@@ -6,6 +6,7 @@ from flask import render_template, request, flash, redirect, url_for, Blueprint,
 from flask.ext.login import current_user, login_user, logout_user, login_required
 from sqlalchemy import or_
 from app import app, db, login_manager
+from sqlalchemy.orm import load_only
 from app.models import User, LoginForm, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \
 GIC_CFG_GRUP, GIC_PERMIS
 from werkzeug import secure_filename
@@ -104,13 +105,32 @@ def add():
         for li in lista:
             tip = GIC_ROL(post.id, li[0], li[1], li[2])
             db.session.add(tip)
-            db.session.flush()       
-        grups = request.form.getlist('grup')
-        for gru in grups:
-            perm = GIC_CFG_PERMIS.query.filter_by(grup=grups)
+            db.session.flush()
+        lgrups = request.form.getlist('grup')
+        lini_g = request.form.getlist('inici_permis')
+        lfi_g = request.form.getlist('fi_permis')
+        h = len(lgrups)
+        l = len(lini_g)
+        u = len(lfi_g)
+        lista_grups = []
+        listaini_grups = []
+        listafi_grups = []
+        b = 0
+        lig = 0
+        lfg = 0
+        for le_g in range(l):
+            if lini_g[le_g]:
+                listaini_grups.insert(le_g,lini_g[le_g])    
+        for lf_g in range(u):
+            if lfi_g[lf_g]:
+                listafi_grups.insert(lf_g,lfi_g[lf_g])
+        for a in range(h):
+            lista_grups.insert(a, [lgrups[a],listaini_grups[a],listafi_grups[a]])
+        for gru in lista_grups:
+            perm = GIC_CFG_PERMIS.query.filter_by(grup=gru[0])
             for per in perm:
-                grups = GIC_PERMIS(post.id, per.id_permis, request.form['inici_permis'], request.form['fi_permis'])
-                db.session.add(grups)
+                insert_permis = GIC_PERMIS(post.id, per.id_permis, gru[1], gru[2])
+                db.session.add(insert_permis)
                 db.session.flush()
         db.session.commit()
         return redirect(url_for('upload'))
@@ -206,9 +226,12 @@ def edit(id):
     post = Post.query.get(id)
     tip = GIC_ROL.query.filter_by(id_persona=id)
     rols = GIC_CFG_ROL.query.filter_by(actiu="1")
-    grups = GIC_CFG_GRUP.query.filter_by(actiu="1")
-    perm_grup = GIC_CFG_PERMIS.query.filter_by(grup=1)
-    #dates = GIC_ROL.query.filter_by(inici,fi)
+    grups = GIC_CFG_GRUP.query.filter_by(actiu="1").options(load_only("id_grup"))
+    perm_grup = GIC_CFG_PERMIS.query.filter(GIC_CFG_PERMIS.grup.in_(grups))
+    perm_asig = GIC_PERMIS.query.filter_by(id_persona=id)
+    
+    
+    
     if request.method == 'POST':
         post.nom = request.form['nom']
         post.cognom1 = request.form['cognom1']
@@ -223,22 +246,22 @@ def edit(id):
         post.email2 = request.form['email2']
         post.actiu = request.form['actiu']
         post.foto = request.form['foto']
-        rols = request.form.getlist('rol')        
-        for rols in rols:
-            tip = GIC_ROL(id, rols, request.form['inici'], request.form['fi'])
-            #db.session.add(tip)
-            db.session.flush()
+        lrols = request.form.getlist('rol')        
+#        for lrol in lrols:
+#            treu_rol = GIC_ROL.query.filter_by(id_persona=id)
+#            db.session.delete(treu_rol)
+#            db.session.flush()
         grups = request.form.getlist('grup')
         for grups in grups:
             perm = GIC_CFG_PERMIS.query.filter_by(grup=grups)
             for perm in perm:
                 grups = GIC_PERMIS(post.id, perm.id_permis, request.form['inici_permis'], request.form['fi_permis'])
-                db.session.add(grups)
-                db.session.flush()
+#                db.session.add(grups)
+#                db.session.flush()
 #        post.password = request.form['password']
         db.session.commit()
         return  redirect(url_for('auth.index'))
-    return render_template('edit.html', post=post, tip=tip, rols=rols, grups=grups, perm_grup=perm_grup)
+    return render_template('edit.html', post=post, tip=tip, rols=rols, grups=grups, perm_grup=perm_grup, perm_asig=perm_asig)
 
 @app.route('/edit_rol/<id_rol>', methods=['POST', 'GET'])
 def edit_rol(id_rol):
