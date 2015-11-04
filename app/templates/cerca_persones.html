@@ -1,23 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
 <h3>Cerca de Persones</h3>
-<table width=20%>
-    <tr>
-        <td>
-            <a href="/" class="button postfix">Enrere</a>
-        </td>
-    </tr>
-</table>
+<hr>
 {% for post in post %}
 <div>
 	<article>
         <table>
                 <tr>
                       <td>
-                              <img src=/static/img/{{ post.foto }} width=100px height=30px >
+                              <img src="/static/img/{{ post.foto }}" width="100px" height="30px" >
                       </td>
         			<td>
-                                Rols <hr>
+                               <label> Rols</label> <hr>
                                 {% for rols in rols %}
                                     {% if rols.id_persona == post.id %}
                                         {% if 1 == rols.id_rol %}
@@ -33,50 +27,50 @@
                         </td>
                 </tr>
                 <tr>
-                        <td> 	Nom <hr>
+                        <td> <label>	Nom </label><hr>
                                 {{ post.nom }}
                         </td>
-                        <td> 	Cognom 1 <hr>
+                        <td> <label>	Cognom 1</label> <hr>
                                 {{ post.cognom1 }}
                         </td>
-                        <td> 	Cognom 2 <hr>
+                        <td> <label>	Cognom 2 </label><hr>
                                 {{ post.cognom2 }}
                         </td>
                 </tr>
                 <tr>
-                        <td> 	Sexe <hr>
+                        <td> <label>	Sexe </label><hr>
                                 {% if 1 == post.sexe|int() %}
                                            Home
                                 {% elif 0 == post.sexe|int() %}
                                         Dona
                                 {% endif %}
                         </td>
-                        <td>    DNI <hr>
+                        <td> <label>   DNI </label><hr>
                                 {{ post.dni }}
                         </td>
-                        <td>    PASSPORT <hr>
+                        <td> <label>   PASSPORT </label><hr>
                                 {{ post.passport }}
                         </td>
                 </tr>
                 <tr>
-                        <td>    Data Naixement <hr>
+                        <td> <label>   Data Naixement </label><hr>
                                 {{ post.data_naix }}
                         </td>
-                        <td>    Telefon 1 <hr>
+                        <td> <label>   Telefon 1 </label><hr>
                                 {{ post.telefon1 }}
                         </td>
-                        <td>    Telefon 2 <hr>
+                        <td> <label>   Telefon 2 </label><hr>
                                 {{ post.telefon2 }}
                         </td>
                 </tr>
                 <tr>
-                        <td>    Email 1 <hr>
+                        <td> <label>   Email 1 </label><hr>
                                 {{ post.email1 }}
                         </td>
-                        <td>    Email 2 <hr>
+                        <td> <label>   Email 2 </label><hr>
                                 {{ post.email2 }}
                         </td>
-                        <td>    Actiu   <hr>
+                        <td> <label>   Actiu   </label><hr>
                                 {% if 1 == post.actiu|int() %}
                                         Si
                                 {% elif 0 == post.actiu|int() %}
@@ -85,11 +79,11 @@
                         </td>
                 </tr>
                 <tr>
-                        <td>
-                                <a href="{{ url_for('edit', id=post.id) }}">Edita</a>
+                        <td><br><br>
+                                <a class="input" href="{{ url_for('edit', id=post.id) }}">Edita</a>
                         </td>
-                        <td>
-                                <a href="{{ url_for('delete', id=post.id) }}">Elimina</a>
+                        <td><br><br>
+                                <a class="input" href="{{ url_for('delete', id=post.id) }}">Elimina</a>
                         </td>
                 </tr>
         </table>

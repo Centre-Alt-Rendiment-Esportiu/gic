@@ -11,7 +11,7 @@
                 <td colspan="2">
                 </td>
 			<td rowspan="4">
-				<label> Rols<br>
+				<label> Rols<br></label>
                     {% set var = {'v': True} %}
                     {% for rol in rols %}
                             {% for ti in tip %}
@@ -19,42 +19,42 @@
                                     <input type="hidden" name="rol" value="">
                                     <input type="checkbox" name="rol" value={{rol.id_rol}} checked="True"/> 
                                         {{ rol.nom_rol }}<br>
-                                    <input type="date" name="inici" value={{ ti.inici }}>
-                                    <input type="date" name="fi" value={{ ti.fi }}>
+                                    <input type="date" name="inici" value={{ ti.inici }}><br>
+                                    <input type="date" name="fi" value={{ ti.fi }}><br><br>
                                     {% if var.update({'v': False}) %} {% endif %}
                                 {% endif %}
                             {% endfor %}
                             {% if var.v %}
                                 <input type="hidden" name="rol" value="">
                                 <input type="checkbox" name="rol" value={{rol.id_rol}}/> {{ rol.nom_rol }}<br>
-                                <input type="date" name="inici">
-                                <input type="date" name="fi">
+                                <input type="date" name="inici"><br>
+                                <input type="date" name="fi"><br><br>
                             {% endif %}
                             {% if var.update({'v': True}) %} {% endif %}
                     {% endfor %}
-                    </label>
+                    
 			</td>
             </tr>
             <tr>
                     <td>
-                        <label>Nom
+                        <label>Nom<br>
 					<input type="text" name="nom" value="{{post.nom}}" pattern="([A-Za-z ]{1,50})"/>
 			      	</label>
                         </td>
                         <td>
-			      	<label>Cognom 1
+			      	<label>Cognom 1<br>
 			        	<input type="text" name="cognom1" value="{{post.cognom1}}" pattern=".{0}|([A-Za-z ]{1,50})"/>
 			      	</label>
                         </td>
                         <td>
-			      	<label>Cognom 2
+			      	<label>Cognom 2<br>
 			        	<input type="text" name="cognom2" value="{{post.cognom2}}" pattern=".{0}|([A-Za-z ]{1,50})"/>
 			      	</label>
                         </td>
             </tr>
             <tr>
                         <td>
-			      	<label>Sexe
+			      	<label>Sexe<br>
         				<select id="sexe" name="sexe" size="1">
                     			<option value="{{post.sexe}}" selected="selected">
         					{% if 1 == post.sexe|int() %}
@@ -69,46 +69,46 @@
         				</label>
                       </td>
                       <td>
-        				<label>DNI
+        				<label>DNI<br>
                 	                <input type="text" name="dni" value="{{post.dni}}" pattern=".{0}|([0-9]{8})+([a-z]{1})"/>
                 	        	</label>
                       </td>
                       <td>
-        				<label>PASSPORT
+        				<label>PASSPORT<br>
                 	                <input type="text" name="passport" value="{{post.passport}}"/>
 	                      </label>
                       </td>
             </tr>
             <tr>
                       <td>
-        				<label>Data Naixement
+        				<label>Data Naixement<br>
                         	        <input type="date" name="data_naix" value="{{post.data_naix}}"/>
                           	</label>
                         </td>
                         <td>
-            			<label>Telefon 1
+            			<label>Telefon 1<br>
                                  	<input type="text" name="telefon1" value="{{post.telefon1}}" pattern="[0-9]{9}"/>
                            	</label>
                         </td>
                         <td>
-                            <label>Telefon 2
+                            <label>Telefon 2<br>
                                 <input type="text" name="telefon2" value="{{post.telefon2}}" pattern="[0-9]{9}"/>
                             </label>
                         </td>
             </tr>
             <tr>
                         <td>
-                            <label>Email 1
+                            <label>Email 1<br>
                                 <input type="email" name="email1" value="{{post.email1}}"/>
                             </label>
                         </td>
                         <td>
-                            <label>Email 2
+                            <label>Email 2<br>
                                     <input type="email" name="email2" value="{{post.email2}}"/>
                             </label>
                         </td>
                         <td>
-                            <label>Actiu
+                            <label>Actiu<br>
                                 <select id="actiu" name="actiu" size="1">
         				        <option value="{{post.actiu}}" selected="selected">
         						{% if post.actiu|int() == 1 %}
@@ -123,7 +123,7 @@
                             </label>
                         </td>
                         <td rowspan="2">
-                            Assignació de permisos<br>
+                            <label>Assignació de permisos<br></label>
                     {% set var = {'c': True} %}
                     {% for grup in grups %}
                             {% for perm_grup in perm_grup %}
@@ -139,11 +139,10 @@
                                 {% endfor %}
                             {% endfor %}
                             {% if var.c %}
-                                vacio<br>    
                                 <input type="hidden" name="grup" value="">
                                 <input type="checkbox" name="grup" value={{grup.id_grup}}/> {{ grup.nom_grup }}<br>
-                                <input type="date" name="inici_permis">
-                                <input type="date" name="fi_permis">
+                                <input type="date" name="inici_permis"><br>
+                                <input type="date" name="fi_permis"><br><br>
                             {% endif %}
                             {% if var.update({'c': True}) %} {% endif %}
                     {% endfor %}
@@ -152,15 +151,12 @@
             </tr>
             <tr>
 			<td>
-				<button class="button postfix" type="submit">Edit</button>
-                </td>
-        		<td>
-        			<a href="/" class="button postfix">Enrere</a>
+				<button class="input" type="submit">Edit</button>
                 </td>
 			<td>
 				Foto
-        			<input type="text" name="foto" value="{{post.foto}}"/>
-        			<a href="/upload" class="button postfix">Puja'n una</a>				
+        			<input type="text" name="foto" value="{{post.foto}}"/><br><br>
+        			<a href="/upload" class="input">Puja'n una</a>				
 </form>         </td>
 		</tr>
 </table>

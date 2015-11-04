@@ -1,17 +1,18 @@
 {% extends "layout.html" %}
 {% block content %}
-
-Fes Login per començar
-
+<h3>Home</h3>
+<hr>
 {% if 'email' in session %}
 <table>
-<tr>	<td><a href='add' class="button postfix">Afegir nou registre</a></td>
-        <td>
-                <a href='add_rol' class="button postfix">Afegir nou ROL</a>
-        </td>
+<tr>	
+    <td>
+        <a href="add" class="input">Afegir nou registre</a>
+    </td>
+    <td>
+        <a class="input" href="add_rol">Afegir nou ROL</a>
+    </td>
 </tr>
 </table>
-</div>
 <hr>
 <table>
 	<tr>
@@ -21,7 +22,7 @@ Fes Login per començar
 			<hr>
 			<input class="text_input" type="text" name="cerca"/>			
 		</td>
-		<td width=40%>
+		<td><br><br><br>
 			<button class="input" type="submit">Cerca</button>
 		</td>
 </form>
@@ -36,11 +37,15 @@ Fes Login per començar
                         <hr>
                         <input class="text_input" type="text" name="cerca"/>
                 </td>
-                <td width=40%>
+                <td><br><br><br>
                         <button class="input" type="submit">Cerca</button>
                 </td>
     </form>
         </tr>
 </table>
+{% else %}
+
+Fes Login per començar
+
 {% endif %}
 {% endblock %}

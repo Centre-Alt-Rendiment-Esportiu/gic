@@ -1,11 +1,5 @@
-<html>
-        <head>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-                <title>Nou Registre</title>
-                <link rel="stylesheet" href="../static/css/foundation.css" />
-                <script src="../static/js/vendor/modernizr.js"></script>
-	</head>
+{% extends "layout.html" %}
+{% block content %}
 <body>
 <table>
 <tr>
@@ -15,14 +9,15 @@
         		<input type=file name="foto"/>
         </td>
 	<td>
-	        	<input type="submit" value="Upload">
+	        	<input class="input" type="submit" value="Upload">
 	</td>        
 
 </tr>
 <tr>	</form>
-	<td colspan=2>
-	<a href="/" class="button postfix">Sense Foto</a>
+	<td>
+	<a href="/" class="input">Sense Foto</a>
 	</td>
 </tr>
 </table>
 </body>
+{% endblock %}

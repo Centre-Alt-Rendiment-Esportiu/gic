@@ -1,26 +1,34 @@
 {% extends "layout.html" %}
 {% block content %}
+<h3>Configuració</h3>
+<hr>
 <table>
     <tr>
         <td>
-            <a href="{{url_for('add_permis')}}">Afegir Permis</a>
+            <a class="input" href="{{url_for('add_permis')}}">Afegir Permis</a>
         </td>
         <td>
-            <a href="{{url_for('add_grup')}}">Afegir Grup</a>
+            <a class="input" href="{{url_for('add_grup')}}">Afegir Grup</a>
         </td>
     </tr>
 </table>
-<table><tr>
- <form action="cerca_permis" method="POST">
-                 <td>
-                    <label>Cerca Permisos</label>
-                        <input class="text_input" type="text" name="cerca"/>
-                
+<hr>
+<form action="cerca_permis" method="POST">
+<table>
+        <tr> 
+                <td>
+                    <label>Cerca Permisos:</label>
+                    <hr>
+                    <input class="text_input" type="text" name="cerca"/>
+                </td>
+                <td><br><br><br>
                 <button class="input" type="submit">Cerca</button>
                 </td>
-                <td>
-                    <a href="{{url_for('cerca_grup')}}">Grups</a>
+        <tr>
+                <td><br><br>
+                    <a class="input" href="{{url_for('cerca_grup')}}">Llistat de Grups</a>
                 </td>
-    </form></tr>
+        </tr>
 </table>
+</form>
 {% endblock %}

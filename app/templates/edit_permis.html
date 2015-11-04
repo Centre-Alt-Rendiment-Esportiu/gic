@@ -4,12 +4,12 @@
 <table>
         <tr>
                 <td>
-				<label>ID
+				<label>ID<br>
 				{{permisos.id_permis}}
 				</label>
 			</td>
 			<td>
-				<label>Actiu
+				<label>Actiu<br>
                 			<select id="actiu" name="actiu" size="1">
                         			<option value="" selected="selected">
 							{% if 1 == permisos.actiu|int() %}
@@ -26,17 +26,14 @@
         </tr>
         <tr>
                 <td>
-                    <label>Nom Permis
-					<input type="text" name="nom_permis" value="{{permisos.nom_permis}}" pattern="([A-Za-z]{1,40})"/>
+                    <label>Nom Permis<br>
+					<input class="text_input" type="text" name="nom_permis" value="{{permisos.nom_permis}}" pattern="([A-Za-z]{1,40})"/>
                     </label>
                 </td>	     
         </tr>
         <tr>
                 <td>
-				<button class="button postfix" type="submit">Edita</button>
-                </td>
-                <td>
-        			<a href="/conf" class="button postfix">Enrere</a>
+				<button class="input" type="submit">Edita</button>
                 </td>
         </tr>
 	</table>

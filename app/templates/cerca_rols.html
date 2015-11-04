@@ -1,43 +1,30 @@
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cerca</title>
-        <link rel="stylesheet" href="static/css/foundation.css" />
-        <script src="static/js/vendor/modernizr.js"></script>
-  </head>
-  <body>
+{% extends "layout.html" %}
+{% block content %}
 <h3>Cerca de Rols</h3>
-<table width=20%>
-<tr>
-	<td>
-		<a href="/" class="button postfix">Enrere</a>
-	</td>
-</tr>
-</table>
+<hr>
      {% for post in post %}
         <div>
 	<article>
                 <table>
                 <tr>
-                        <td> 	Nom Rol <hr>
+                        <td> <label>	Nom Rol <hr></label>
                                 {{ post.nom_rol }}
                         </td>
-                        <td> 	Template <hr>
+                        <td> <label>	Template <hr></label>
                                 {{ post.template }}
                         </td>
                 </tr>
                 <tr>
                         <td>
-				<a href="{{ url_for('edit_rol', id_rol=post.id_rol) }}">Edita</a>
+            				<a class="input" href="{{ url_for('edit_rol', id_rol=post.id_rol) }}">Edita</a>
                         </td>
                         <td>
-                                <a href="{{ url_for('delete_rol', id_rol=post.id_rol) }}">Elimina</a>
+                                <a class="input" href="{{ url_for('delete_rol', id_rol=post.id_rol) }}">Elimina</a>
                         </td>
                 </tr>
         </table>
 </article>
+</div>
 {% endfor %}
 {% endblock %}
 

@@ -3,8 +3,7 @@
 @author: dani.ruiz
 """
 
-import ldap
-from flask import render_template, request, flash, redirect, url_for, Blueprint, g
+from flask import render_template, request, flash, redirect, url_for
 from flask.ext.login import current_user, login_user, logout_user, login_required
 from sqlalchemy import or_
 from app import app, db, login_manager
@@ -91,7 +90,7 @@ def add_permis():
         request.form['grup'])
         db.session.add(post)
         db.session.commit()
-        return redirect(url_for('auth.conf'))
+        return redirect(url_for('conf'))
     return render_template('add_permis.html', grups=grups)
 
 @app.route('/add_rol', methods=['POST', 'GET'])
@@ -101,7 +100,7 @@ def add_rol():
         post = GIC_CFG_ROL(request.form['nom_rol'], request.form['template'], request.form['actiu'])
         db.session.add(post)
         db.session.commit()
-        return redirect(url_for('auth.index'))
+        return redirect(url_for('index'))
     return render_template('add_rol.html')
 
 @app.route('/add_grup', methods=['POST', 'GET'])
@@ -111,5 +110,5 @@ def add_grup():
         post = GIC_CFG_GRUP(request.form['nom_grup'], request.form['actiu'])
         db.session.add(post)
         db.session.commit()
-        return redirect(url_for('auth.conf'))
+        return redirect(url_for('conf'))
     return render_template('add_grup.html')

@@ -3,24 +3,21 @@
 <table>
 </tr>
 <form action="" method="POST">		
-<tr>	<td>	Nom Grup
-		<input type="text" name="nom_grup" pattern="([A-Za-z0-9]{1,40})"/> 
+<tr>	<td>	Nom Grup<br>
+		<input class="text_input" type="text" name="nom_grup" pattern="([A-Za-z0-9]{1,40})"/> 
 	</td>
 	<td>
-		Actiu
+		Actiu<br>
 		<select id="actiu" name="actiu" size="1">
                         <option value="" selected="selected">- Selecciona -</option>
-                        <option value=1>Si</option>
+                        <option value="1">Si</option>
                 	<option value="0">No</option>
 		</select>		
 	</td>
 </tr>
 <tr>
 	<td>
-	<button class="button postfix" type="submit">Afegeix</button>
-	</td>
-	<td>
-	<a href="/" class="button postfix">Enrere</a>
+	<button class="input" type="submit">Afegeix</button>
 	</td>
 </tr>
 </table>

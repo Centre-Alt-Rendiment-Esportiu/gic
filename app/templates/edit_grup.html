@@ -4,12 +4,12 @@
 <table>
     <tr>
         <td>
-		<label>ID
+		<label>ID<br></label>
 		{{grups.id_grup}}
-		</label>
+		
         </td>
         <td>
-            <label>Actiu
+            <label>Actiu<br></label>
                 <select id="actiu" name="actiu" size="1">
                     <option value="" selected="selected">
 				{% if 1 == grups.actiu|int() %}
@@ -20,22 +20,19 @@
                     <option value="0">No</option>
                     <option value="1">Si</option>
                 </select>
-		</label>
+		
         </td>	
     </tr>
     <tr>
         <td>
-            <label>Nom Grup
-                <input type="text" name="nom_grup" value="{{grups.nom_grup}}" pattern="([A-Za-z0-9]{1,40})"/>
-            </label>
+            <label>Nom Grup<br></label>
+                <input class="text_input" type="text" name="nom_grup" value="{{grups.nom_grup}}" pattern="([A-Za-z0-9]{1,40})"/>
+            
         </td>
     </tr>
     <tr>
         <td>
-            <button class="button postfix" type="submit">Edita</button>
-        </td>
-        <td>
-            <a href="/conf" class="button postfix">Enrere</a>
+            <button class="input" type="submit">Edita</button>
         </td>
     </tr>
 </form>

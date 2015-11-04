@@ -3,25 +3,25 @@
 <table>
 </tr>
 <form action="" method="POST">		
-<tr>	<td>	Nom
-		<input type="text" name="nom" minlenght="1" pattern="([A-Za-z ]{1,50})"/> 
+<tr>	<td><label>	Nom</label>
+		<input  class="input_text" type="text" name="nom" minlenght="1" pattern="([A-Za-z ]{1,50})"/> 
 	</td>
-	<td>	Cognom 1
-		<input type="text" name="cognom1" pattern=".{0}|([A-Za-z ]{1,50})"/>
+	<td>	<label>Cognom 1</label>
+		<input class="input_text" type="text" name="cognom1" pattern=".{0}|([A-Za-z ]{1,50})"/>
 	</td>
-	<td>	Cognom 2
-		<input type="text" name="cognom2" pattern=".{0}|([A-Za-z ]{1,50})"/>
+	<td>	<label>Cognom 2</label>
+		<input class="input_text" type="text" name="cognom2" pattern=".{0}|([A-Za-z ]{1,50})"/>
 	</td>
 	<td rowspan="3">
-		Rol<br>
+		<label>Rol</label>
             {% for rols in rols %}		
             <input type="checkbox" name="rol" value={{rols.id_rol}}> {{ rols.nom_rol }}<br>
-            <input type="date" name="inici"><input type="date" name="fi">            
+            <input type="date" name="inici"><input type="date" name="fi"><br><br>      
             {% endfor %}
 	</td>
 </tr>
 <tr>	<td>	
-	Sexe
+	<label>Sexe</label>
 	<select id="sexe" name="sexe" size="1">
 		<option value"" selected="selected">- selecciona -</option>
 		<option value="1">Home</option>
@@ -29,35 +29,35 @@
 	</select>
 	</td>
 	<td>
-		DNI
-		<input type="text" name="dni" pattern=".{0}|([0-9]{8})+([a-z]{1})"/>		
+		<label>DNI</label>
+		<input class="input_text" type="text" name="dni" pattern=".{0}|([0-9]{8})+([a-z]{1})"/>		
 	</td>
 	<td>
-		PASSPORT
-		<input type="text" name="passport"/>
+		<label>PASSPORT</label>
+		<input class="input_text" type="text" name="passport"/>
 	</td>
 </tr>
 <tr>
 	<td>
-		Data de naixement
+		<label>Data de naixement</label>
 		<input type="date" name="data_naix"/>
 	</td>
-        <td>    Telefon 1
-                <input type="text" name="telefon1" pattern="[0-9]{9}"/>
+        <td>    <label>Telefon 1</label>
+                <input class="input_text" type="text" name="telefon1" pattern="[0-9]{9}"/>
         </td>
-        <td>    Telefon 2
-                <input type="text" name="telefon2" pattern="[0-9]{9}"/>
+        <td>    <label>Telefon 2</label>
+                <input class="input_text" type="text" name="telefon2" pattern="[0-9]{9}"/>
         </td>
 </tr>
 <tr>
-        <td>    Email 1
-                <input type="email" name="email1"/>
+        <td>    <label>Email 1</label>
+                <input class="input_text" type="email" name="email1"/>
         </td>
-        <td>    Email 2
-                <input type="email" name="email2"/>
+        <td>    <label>Email 2</label>
+                <input class="input_text" type="email" name="email2"/>
         </td>
 	<td>
-		Actiu
+		<label>Actiu</label>
         <select id="actiu" name="actiu" size="1">
                 <option value"" selected="selected">- selecciona -</option>
                 <option value="1">Si</option>
@@ -65,22 +65,19 @@
         </select>
 	</td>
         <td rowspan="2">
-            Assignació de permisos<br><br>
+            <label>Assignació de permisos</label><br><br>
             {% for grups in grups %}                        
                 <input type="checkbox" name="grup" value={{grups.id_grup}}>{{ grups.nom_grup }}<br>
-                <input type="date" name="inici_permis"><input type="date" name="fi_permis">
+                <input type="date" name="inici_permis"><input type="date" name="fi_permis"><br><br>
             {% endfor %}
         </td>
 </tr>
 <tr>
 	<td>
-	<button class="button postfix" type="submit">Afegeix</button>
+	<button class="input" type="submit">Afegeix</button>
 	</td>
-	<td>
-	<a href="/" class="button postfix">Enrere</a>
-	</td>
-	<td>	Foto
-		<input type="text" name="foto"/>
+	<td><label>	Foto</label>
+		<input class="input_text" type="text" name="foto"/>
 	</td>
 </tr>
 </table>

@@ -53,7 +53,7 @@ def edit(id):
 #                db.session.flush()
 #        post.password = request.form['password']
         db.session.commit()
-        return  redirect(url_for('auth.index'))
+        return  redirect(url_for('index'))
     return render_template('edit.html', post=post, tip=tip, rols=rols, grups=grups, perm_grup=perm_grup, perm_asig=perm_asig)
 
 @app.route('/edit_rol/<id_rol>', methods=['POST', 'GET'])
@@ -65,7 +65,7 @@ def edit_rol(id_rol):
         rols.nom_rol = request.form['nom_rol']
         rols.template = request.form['template']
         db.session.commit()
-        return  redirect(url_for('auth.index'))
+        return  redirect(url_for('index'))
     return render_template('edit_rol.html', rols=rols)
 
 @app.route('/edit_permis/<id_permis>', methods=['POST', 'GET'])
@@ -76,7 +76,7 @@ def edit_permis(id_permis):
         permisos.actiu = request.form['actiu']
         permisos.nom_permis = request.form['nom_permis']
         db.session.commit()
-        return  redirect(url_for('auth.conf'))
+        return  redirect(url_for('conf'))
     return render_template('edit_permis.html', permisos=permisos)
 
 @app.route('/edit_grup/<id_grup>', methods=['POST', 'GET'])
@@ -87,5 +87,5 @@ def edit_grup(id_grup):
         grups.actiu = request.form['actiu']
         grups.nom_grup = request.form['nom_grup']
         db.session.commit()
-        return  redirect(url_for('auth.conf'))
+        return  redirect(url_for('conf'))
     return render_template('edit_grup.html', grups=grups)

@@ -3,16 +3,12 @@
 @author: dani.ruiz
 """
 
-import ldap
-from flask import render_template, request, flash, redirect, url_for, Blueprint, g
+from flask import render_template, request, flash, redirect, url_for
 from flask.ext.login import current_user, login_user, logout_user, login_required
 from sqlalchemy import or_
 from app import app, db, login_manager
-from sqlalchemy.orm import load_only
 from app.models import User, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \
 GIC_CFG_GRUP, GIC_PERMIS
-from werkzeug import secure_filename
-import os
 
 @app.route('/delete/<id>', methods=['POST', 'GET'])
 def delete(id):
@@ -28,7 +24,7 @@ def delete(id):
         db.session.flush()
     db.session.delete(post)
     db.session.commit()
-    return redirect(url_for('auth.index'))
+    return redirect(url_for('index'))
 
 @app.route('/delete_rol/<id_rol>', methods=['POST', 'GET'])
 def delete_rol(id_rol):
@@ -36,7 +32,7 @@ def delete_rol(id_rol):
     rols = GIC_CFG_ROL.query.get(id_rol)
     db.session.delete(rols)
     db.session.commit()
-    return redirect(url_for('auth.index'))
+    return redirect(url_for('index'))
 
 @app.route('/delete_grup/<id_grup>', methods=['POST', 'GET'])
 def delete_grup(id_grup):
@@ -44,7 +40,7 @@ def delete_grup(id_grup):
     grup = GIC_CFG_GRUP.query.get(id_grup)
     db.session.delete(grup)
     db.session.commit()
-    return redirect(url_for('auth.conf'))
+    return redirect(url_for('conf'))
 
 @app.route('/delete_permis/<id_permis>', methods=['POST', 'GET'])
 def delete_permis(id_permis):
@@ -52,4 +48,4 @@ def delete_permis(id_permis):
     permisos = GIC_CFG_PERMIS.query.get(id_permis)
     db.session.delete(permisos)
     db.session.commit()
-    return redirect(url_for('auth.index'))
+    return redirect(url_for('index'))

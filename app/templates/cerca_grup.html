@@ -1,20 +1,22 @@
 {% extends "layout.html" %}
 {% block content %}
+<h3>Llistat de Grups</h3>
+<hr>
 </table>
      {% for post in post %}
     <article>
         <table>
             <tr>
-                <td> 	Nom Grup <hr>
+                <td> <label>Nom Grup</label> <hr>
                     {{ post.nom_grup }}
                 </td>
             </tr>
             <tr>
                 <td>
-				<a href="{{ url_for('edit_grup', id_grup=post.id_grup) }}">Edita</a>
+				<a class="input" href="{{ url_for('edit_grup', id_grup=post.id_grup) }}">Edita</a>
                 </td>
                 <td>
-                      <a href="{{ url_for('delete_grup', id_grup=post.id_grup) }}">Elimina</a>
+                      <a class="input" href="{{ url_for('delete_grup', id_grup=post.id_grup) }}">Elimina</a>
                 </td>
             </tr>
         </table>
