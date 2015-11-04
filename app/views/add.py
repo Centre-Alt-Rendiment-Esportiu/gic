@@ -3,8 +3,17 @@
 @author: dani.ruiz
 """
 
-from app import app
-from app.views.login import auth
+import ldap
+from flask import render_template, request, flash, redirect, url_for, Blueprint, g
+from flask.ext.login import current_user, login_user, logout_user, login_required
+from sqlalchemy import or_
+from app import app, db, login_manager
+from sqlalchemy.orm import load_only
+from app.models import User, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \
+GIC_CFG_GRUP, GIC_PERMIS
+from werkzeug import secure_filename
+import os
+
 
 @app.route('/add', methods=['POST', 'GET'])
 def add():
@@ -73,7 +82,7 @@ def add():
         return redirect(url_for('upload'))
     return render_template('add.html', rols=rols, grups=grups)
     
-@auth.route('/add_permis', methods=['POST', 'GET'])
+@app.route('/add_permis', methods=['POST', 'GET'])
 def add_permis():
     """afegir permisos"""
     grups = GIC_CFG_GRUP.query.filter_by(actiu="1")
@@ -95,7 +104,7 @@ def add_rol():
         return redirect(url_for('auth.index'))
     return render_template('add_rol.html')
 
-@auth.route('/add_grup', methods=['POST', 'GET'])
+@app.route('/add_grup', methods=['POST', 'GET'])
 def add_grup():
     """afegir grups"""
     if request.method == 'POST':

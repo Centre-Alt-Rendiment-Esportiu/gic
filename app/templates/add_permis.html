@@ -1,11 +1,5 @@
-<html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Nou Permis</title>
-		<link rel="stylesheet" href="static/css/foundation.css" />
-		<script src="static/js/vendor/modernizr.js"></script>
-		</head>
-<body>
+{% extends "layout.html" %}
+{% block content %}
 <table>
 </tr>
 <form action="" method="POST">		
@@ -35,9 +29,8 @@
 	<button class="button postfix" type="submit">Afegeix</button>
 	</td>
 	<td>
-	<a href="{{url_for('auth.conf')}}" class="button postfix">Enrere</a>
+	<a href="{{url_for('app.conf')}}" class="button postfix">Enrere</a>
 	</td>
 </tr>
 </table>
-</body>
-</html>
+{% endblock %}

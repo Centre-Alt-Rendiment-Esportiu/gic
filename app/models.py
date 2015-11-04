@@ -1,10 +1,10 @@
 """
 @dani.ruiz
 """
-import ldap
 from flask_wtf import Form
 from wtforms import TextField, PasswordField
 from wtforms.validators import InputRequired
+from werkzeug import generate_password_hash, check_password_hash
 from app import db, app
 
 class GIC_CFG_ROL(db.Model):
@@ -106,38 +106,20 @@ class GIC_ROL(db.Model):
         self.id_rol = id_rol
         self.inici = inici
         self.fi = fi
-
-def get_ldap_connection():
-    """crear la conexio ldap"""
-    conn = ldap.initialize(app.config['LDAP_PROVIDER_URL'])
-    print conn
-    return conn
-
+  
 class User(db.Model):
-    """taula de logins"""
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100))
-    def __init__(self, username):
-        self.username = username
-    @staticmethod
-    def try_login(username, password):
-        """proba el login"""
-        conn = get_ldap_connection()
-        conn.simple_bind_s('cn=%s, dc=dc1, dc=carsc, dc=loc' %username, password)
-    def is_authenticated(self):
-        """esta autenticat?"""
-        return True
-    def is_active(self):
-        """esta actiu?"""
-        return True
-    def is_anonymous(self):
-        """es anonim?"""
-        return False
-    def get_id(self):
-        """agafa el id"""
-        return unicode(self.id)
-
-class LoginForm(Form):
-    """formulari per fer login"""
-    username = TextField('Username', [InputRequired()])
-    password = PasswordField('Password', [InputRequired()])
+    __tablename__ = 'users'
+    uid = db.Column(db.Integer, primary_key = True)
+    nom = db.Column(db.String(100))
+    cognom = db.Column(db.String(100))
+    email = db.Column(db.String(120), unique=True)
+    pwdhash = db.Column(db.String(200)) 
+    def __init__(self, nom, cognom, email, password):
+        self.nom = nom.title()
+        self.cognom = cognom.title()
+        self.email = email.lower()
+        self.set_password(password) 
+    def set_password(self, password):
+        self.pwdhash = generate_password_hash(password)
+    def check_password(self, password):
+        return check_password_hash(self.pwdhash, password)

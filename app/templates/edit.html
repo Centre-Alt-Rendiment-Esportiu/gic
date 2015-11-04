@@ -1,13 +1,5 @@
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> Modificar Dades</title>
-    <link rel="stylesheet" href="../static/css/foundation.css" />
-    <script src="../static/js/vendor/modernizr.js"></script>
-  </head>
-  <body>
+{% extends "layout.html" %}
+{% block content %}
 <form action="" method="post">
 <table>
 		<tr>
@@ -134,8 +126,8 @@
                             Assignació de permisos<br>
                     {% set var = {'c': True} %}
                     {% for grup in grups %}
-                            {% for perm_asig in perm_asig %}
-                                {% for perm_grup in perm_grup %}
+                            {% for perm_grup in perm_grup %}
+                                {% for perm_asig in perm_asig %}
                                     {% if var.c and perm_asig.id_permis == perm_grup.id_permis %}
                                             <input type="hidden" name="grup" value="">
                                             <input type="checkbox" name="grup" value={{grup.id_grup}} checked="True"/> 
@@ -171,11 +163,5 @@
         			<a href="/upload" class="button postfix">Puja'n una</a>				
 </form>         </td>
 		</tr>
-	</table>
-<script src="../static/js/vendor/jquery.js"></script>
-    <script src="../static/js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
-  </body>
-</html>
+</table>
+{% endblock %}

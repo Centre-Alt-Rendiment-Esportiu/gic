@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GIC</title>
+    <strong><link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"></strong>
+  </head>
+  <body>
+   
+    <header>
+      <div class="container">
+        <h1 class="logo">Gestió d'Identitats del CAR</h1>
+         <strong><nav>
+              <ul class="menu">
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    {% if 'email' in session %}
+                        <li><a href="{{url_for('conf')}}">Configuració</a></li>
+                        <li><a href="{{ url_for('profile') }}">Perfil</a></li>
+                        <li><a href="{{ url_for('signout') }}">Surt</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('signup') }}">Registra't</a></li>
+                        <li><a href="{{ url_for('signin') }}">Login</a></li>
+                    {% endif %}
+              </ul>
+        </nav></strong>
+      </div>
+    </header> 
+     
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+     
+  </body>
+</html>

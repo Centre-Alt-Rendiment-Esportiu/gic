@@ -8,12 +8,10 @@ from flask.ext.login import current_user, login_user, logout_user, login_require
 from sqlalchemy import or_
 from app import app, db, login_manager
 from sqlalchemy.orm import load_only
-from app.models import User, LoginForm, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \
+from app.models import User, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \
 GIC_CFG_GRUP, GIC_PERMIS
 from werkzeug import secure_filename
 import os
-from app.views.login import auth
-
 
 @app.route('/cerca_per', methods=['POST', 'GET'])
 def cerca_per():
@@ -25,7 +23,7 @@ def cerca_per():
         rols = GIC_ROL.query.all()
     return render_template('cerca_persones.html', post=post, rols=rols)
 
-@auth.route('/cerca_grup', methods=['POST', 'GET'])
+@app.route('/cerca_grup', methods=['POST', 'GET'])
 def cerca_grup():
     """buscar grups"""
     post = GIC_CFG_GRUP.query.all()
@@ -40,7 +38,7 @@ def cerca_rol():
         post = GIC_CFG_ROL.query.filter(GIC_CFG_ROL.nom_rol.like(conc))
     return render_template('cerca_rols.html', post=post)
 
-@auth.route('/cerca_permis', methods=['POST', 'GET'])
+@app.route('/cerca_permis', methods=['POST', 'GET'])
 def cerca_permis():
     """buscar permisos"""
     if request.method == 'POST':

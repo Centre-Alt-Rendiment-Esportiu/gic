@@ -1,47 +1,28 @@
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GIC</title>
-	<link rel="stylesheet" href="static/css/foundation.css" />
-	<script src="static/js/vendor/modernizr.js"></script>
-  </head>
-  <body>
-<h2>Gestió d'Identitats del CAR</h2>
-	<ul class="nav">
-		<li><a href="{{url_for('auth.index')}}">Inici</a></li>
-		<li><a href="{{url_for('auth.conf')}}">Configuració</a></li>
-	</ul>
-<br><br>
+{% extends "layout.html" %}
+{% block content %}
+
+Fes Login per començar
+
+{% if 'email' in session %}
 <table>
 <tr>	<td><a href='add' class="button postfix">Afegir nou registre</a></td>
         <td>
                 <a href='add_rol' class="button postfix">Afegir nou ROL</a>
         </td>
-	<td>
-{% block container %}
-  {% if current_user.is_authenticated() %}
-    <h3>Hey {{ current_user.username }}!!</h3>
-    <a href="{{ url_for('auth.logout') }}">Click here to logout</a>
-  {% else %}
-  Click aqui per <a href="{{ url_for('auth.login') }}">login amb LDAP</a>
-  {% endif %}
-{% endblock %}
-	</td>
 </tr>
 </table>
+</div>
 <hr>
 <table>
 	<tr>
 		<td>
 <form action="cerca_per" method="POST">
-			Cerca Persones:
+			<label>Cerca Persones:</label>
 			<hr>
-			<input type="text" name="cerca"/>			
+			<input class="text_input" type="text" name="cerca"/>			
 		</td>
 		<td width=40%>
-			<button class="button postfix" type="submit">Cerca</button>
+			<button class="input" type="submit">Cerca</button>
 		</td>
 </form>
 	</tr>
@@ -49,22 +30,17 @@
 <table>
         <tr>
                 <td>
-                        Cerca Rols:
+                       
     <form action="cerca_rol" method="POST">
+                <label>Cerca Rols:</label>
                         <hr>
-                        <input type="text" name="cerca"/>
+                        <input class="text_input" type="text" name="cerca"/>
                 </td>
                 <td width=40%>
-                        <button class="button postfix" type="submit">Cerca</button>
+                        <button class="input" type="submit">Cerca</button>
                 </td>
     </form>
         </tr>
 </table>
-
-<script src="static/js/vendor/jquery.js"></script>
-    <script src="static/js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
-	</body>
-</html>
+{% endif %}
+{% endblock %}

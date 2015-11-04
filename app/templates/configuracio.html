@@ -1,48 +1,26 @@
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Config permisos</title>
-        <link rel="stylesheet" href="static/css/foundation.css" />
-        <script src="static/js/vendor/modernizr.js"></script>
-  </head>
-  <body>
-<h2>Gestió d'Identitats del CAR</h2>
-        <ul class="nav">
-                <li><a href="{{url_for('auth.index')}}">Inici</a></li>
-                <li><a href="">Configuració</a></li>
-        </ul>
-<br><br>
-
+{% extends "layout.html" %}
+{% block content %}
 <table>
     <tr>
         <td>
-            <a href="{{url_for('auth.add_permis')}}">Afegir Permis</a>
+            <a href="{{url_for('add_permis')}}">Afegir Permis</a>
         </td>
         <td>
-            <a href="{{url_for('auth.add_grup')}}">Afegir Grup</a>
+            <a href="{{url_for('add_grup')}}">Afegir Grup</a>
         </td>
     </tr>
 </table>
 <table><tr>
  <form action="cerca_permis" method="POST">
                  <td>
-                    Cerca Permisos
-                        <input type="text" name="cerca"/>
+                    <label>Cerca Permisos</label>
+                        <input class="text_input" type="text" name="cerca"/>
                 
-                <button class="button postfix" type="submit">Cerca</button>
+                <button class="input" type="submit">Cerca</button>
                 </td>
                 <td>
-                    <a href="{{url_for('auth.cerca_grup')}}">Grups</a>
+                    <a href="{{url_for('cerca_grup')}}">Grups</a>
                 </td>
     </form></tr>
 </table>
-
-<script src="static/js/vendor/jquery.js"></script>
-    <script src="static/js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
-	</body>
-</html>
+{% endblock %}
