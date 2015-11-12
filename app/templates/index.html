@@ -17,7 +17,7 @@
 <table>
 	<tr>
 		<td>
-<form action="cerca_per" method="POST">
+<form action="llista_per" method="POST">
 			<label>Cerca Persones:</label>
 			<hr>
 			<input class="text_input" type="text" name="cerca"/>			
@@ -46,6 +46,29 @@
 {% else %}
 
 Fes Login per començar
+
+  {% for message in form.email.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+   
+  {% for message in form.password.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+   
+  <form action="{{ url_for('signin') }}" method=post>
+    {{ form.hidden_tag() }}
+    
+    {{ form.email.label }}
+    {{ form.email }}
+     
+    {{ form.password.label }}
+    {{ form.password }}
+     
+    {{ form.submit }}
+  </form>
+<br>
+
+<a href="{{ url_for('f_password')}}">Has oblidat el password?</a> 
 
 {% endif %}
 {% endblock %}

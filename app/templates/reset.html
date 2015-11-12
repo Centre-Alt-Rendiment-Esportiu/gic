@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<form action="confirm_email" method="POST">
+    <input type="hidden" name="email" value="{{email}}"/>
+    <label>Nou Password per {{ user.nom }}</label>
+    <input class="text_input" type="password" name="password"/><br><br>
+    <input class="text_input" type="password" name="cpassword"/><br><br>
+    <button type="submit">Enviar</button>
+</form>
+
+
+{% endblock %}

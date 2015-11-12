@@ -24,7 +24,7 @@ def add():
         request.form['cognom2'], request.form['sexe'], request.form['dni'], \
         request.form['passport'], request.form['data_naix'], request.form['telefon1'], \
         request.form['telefon2'], request.form['email1'], request.form['email2'], \
-        request.form['actiu'], request.form['foto'])#,request.form['password'])
+        request.form['actiu'], request.form['foto'],request.form['dni'])#,request.form['password'])
         db.session.add(post)
         db.session.flush()
         lrol = request.form.getlist('rol')

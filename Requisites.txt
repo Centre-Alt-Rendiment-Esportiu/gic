@@ -12,6 +12,10 @@ pip install:
 - Flask-Script
 - Flask-SQLAlchemy
 - Flask-WTF
+- Flask-mail
+- flask-script
+- flask-migrate
+- flask-security
 
 Iniciar base de dades:
 - python db.py db init

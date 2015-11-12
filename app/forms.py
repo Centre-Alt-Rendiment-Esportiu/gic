@@ -52,3 +52,4 @@ class ContactForm(Form):
     subject = StringField("Subject",  [validators.Required("Please enter a subject.")])
     message = TextAreaField("Message",  [validators.Required("Please enter a message.")])
     submit = SubmitField("Send")
+    

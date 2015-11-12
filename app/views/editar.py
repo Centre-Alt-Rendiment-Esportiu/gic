@@ -22,9 +22,6 @@ def edit(id):
     grups = GIC_CFG_GRUP.query.filter_by(actiu="1").options(load_only("id_grup"))
     perm_grup = GIC_CFG_PERMIS.query.filter(GIC_CFG_PERMIS.grup.in_(grups))
     perm_asig = GIC_PERMIS.query.filter_by(id_persona=id)
-    
-    
-    
     if request.method == 'POST':
         post.nom = request.form['nom']
         post.cognom1 = request.form['cognom1']

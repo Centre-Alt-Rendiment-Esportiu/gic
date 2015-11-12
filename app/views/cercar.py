@@ -2,16 +2,22 @@
 """
 @author: dani.ruiz
 """
-import ldap
-from flask import render_template, request, flash, redirect, url_for, Blueprint, g
-from flask.ext.login import current_user, login_user, logout_user, login_required
+from flask import render_template, request, flash, redirect, url_for
 from sqlalchemy import or_
-from app import app, db, login_manager
+from app import app, db
 from sqlalchemy.orm import load_only
 from app.models import User, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \
 GIC_CFG_GRUP, GIC_PERMIS
-from werkzeug import secure_filename
-import os
+
+@app.route('/llista_per', methods=['POST', 'GET'])
+def llista_per():
+    """buscar persones"""
+    if request.method == 'POST':
+        nom = request.form['cerca']
+        conc = "%" + nom + "%"
+        post = Post.query.filter(or_(Post.nom.like(conc), Post.cognom1.like(conc)))
+        rols = GIC_ROL.query.all()
+    return render_template('llista_persones.html', post=post, rols=rols)
 
 @app.route('/cerca_per', methods=['POST', 'GET'])
 def cerca_per():

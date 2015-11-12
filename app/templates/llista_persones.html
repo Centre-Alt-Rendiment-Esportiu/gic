@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>Llistat de Persones</h3>
+<hr>
+<table>
+    <tr>
+        <td><label>Nom</label></td>
+        <td><label>Cognom 1</label></td>
+        <td><label>Email 1</label></td>
+        <td></td>
+    </tr>
+{% for post in post %}
+    <tr>
+        <td> {{ post.nom }}</td>
+        <td> {{ post.cognom1 }}</td>
+        <td> {{ post.email1 }}</td>
+        <td><a class="input" href="{{ url_for('edit', id=post.id) }}">Edita</a></td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

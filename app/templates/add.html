@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+{% if 'email' in session %}
 <table>
 </tr>
 <form action="" method="POST">		
@@ -81,4 +82,9 @@
 	</td>
 </tr>
 </table>
+{% else %}
+
+Fes Login per començar
+
+{% endif %}
 {% endblock %}

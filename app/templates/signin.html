@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-  <h2>Login</h2>
- 
+  <h3>Login</h3>
+ <hr>
   {% for message in form.email.errors %}
     <div class="flash">{{ message }}</div>
   {% endfor %}
@@ -10,7 +10,7 @@
     <div class="flash">{{ message }}</div>
   {% endfor %}
    
-  <form action="{{ url_for('signin') }}" method=post>
+  <form action="{{ url_for('signin') }}" method="post">
     {{ form.hidden_tag() }}
     
     {{ form.email.label }}

@@ -1,7 +1,7 @@
 {% extends "layout.html" %} 
 {% block content %}
-  <h2>Registre</h2>
- 
+  <h3>Registre</h3>
+<hr> 
   {% for message in form.nom.errors %}
     <div class="flash">{{ message }}</div>
   {% endfor %}

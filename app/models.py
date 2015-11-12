@@ -4,6 +4,7 @@
 from flask_wtf import Form
 from wtforms import TextField, PasswordField
 from wtforms.validators import InputRequired
+from flask.ext.login import UserMixin
 from werkzeug import generate_password_hash, check_password_hash
 from app import db, app
 
@@ -61,9 +62,9 @@ class Post(db.Model):
     email2 = db.Column(db.String(50))
     actiu = db.Column(db.String(1))
     foto = db.Column(db.String(50))
-#    password = db.Column(db.String(50))
+    pwdhash = db.Column(db.String(200))
     def __init__(self, nom, cognom1, cognom2, sexe, dni, passport, data_naix, \
-    telefon1, telefon2, email1, email2, actiu, foto):#,password):
+    telefon1, telefon2, email1, email2, actiu, foto, password):
         self.nom = nom
         self.cognom1 = cognom1
         self.cognom2 = cognom2
@@ -77,7 +78,9 @@ class Post(db.Model):
         self.email2 = email2
         self.actiu = actiu
         self.foto = foto
-#        self.password = password
+        self.set_password(password)
+    def set_password(self, password):
+        self.pwdhash = generate_password_hash(password)
 
 class GIC_PERMIS(db.Model):
     """taula que relaciona permisos amb persones"""
@@ -113,7 +116,7 @@ class User(db.Model):
     nom = db.Column(db.String(100))
     cognom = db.Column(db.String(100))
     email = db.Column(db.String(120), unique=True)
-    pwdhash = db.Column(db.String(200)) 
+    pwdhash = db.Column(db.String(200))
     def __init__(self, nom, cognom, email, password):
         self.nom = nom.title()
         self.cognom = cognom.title()
