@@ -176,6 +176,7 @@ form input#submit:hover{
 
 /* inputs general */
 .input {
+	width:200px;
 	display: block;
 	-webkit-border-radius: 3px; 
 	   -moz-border-radius: 3px;

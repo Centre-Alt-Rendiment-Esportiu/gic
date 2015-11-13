@@ -42,9 +42,17 @@ def confirm_email(token):
         return redirect(url_for('index'))
     else:
         try:
-            email = confirm_token(token)   
+            email = confirm_token(token)
         except:
             flash('The confirmation link is invalid or has expired.', 'danger')
-        user = Post.query.filter_by(email1=email).first()
-        return render_template('reset.html', user=user, email=email)
+            return redirect(url_for('error'))
+        if email:
+            user = Post.query.filter_by(email1=email).first()
+            return render_template('reset.html', user=user, email=email)
+        else:
+            return redirect(url_for('error'))
+        
+@app.route('/error', methods=['GET', 'POST'])
+def error():
+    return render_template('error.html')
         

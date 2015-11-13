@@ -8,12 +8,15 @@
    
     <header>
       <div class="container">
-        <h1 class="logo">Gestió d'Identitats del CAR</h1>
+        <h1 class="logo">GIC</h1>
          <strong><nav>
               <ul class="menu">
                     <li><a href="{{ url_for('index') }}">Home</a></li>
                     {% if 'email' in session %}
                         <li><a href="{{url_for('conf')}}">Configuració</a></li>
+                        <li><a href="{{ url_for('profile') }}">Perfil</a></li>
+                        <li><a href="{{ url_for('signout') }}">Surt</a></li>
+                    {% elif 'email_usu' in session %}
                         <li><a href="{{ url_for('profile') }}">Perfil</a></li>
                         <li><a href="{{ url_for('signout') }}">Surt</a></li>
                     {% else %}

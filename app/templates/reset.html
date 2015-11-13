@@ -1,14 +1,31 @@
 {% extends "layout.html" %}
 {% block content %}
 
+{% if session['email'] %}
+    <form action="" onsubmit="return myFunction()" method="POST">
+        <label>Nou Password per {{ user.nom }}</label>
+        <input id="pass1" class="text_input" type="password" name="password"/><br><br>
+        <input id="pass2" class="text_input" type="password" name="cpassword"/><br><br>
+        <input type="submit" value="Submit">
+    </form>
+{% elif session['email_usu'] %}
+    <form action="" onsubmit="return myFunction()" method="POST">
+        <label>Nou Password per {{ post.nom }}</label>
+        <input id="pass1" class="text_input" type="password" name="password"/><br><br>
+        <input id="pass2" class="text_input" type="password" name="cpassword"/><br><br>
+        <input type="submit" value="Submit">
+    </form>
 
-<form action="confirm_email" onsubmit="return myFunction()" method="POST">
-    <input type="hidden" name="email" value="{{email}}"/>
-    <label>Nou Password per {{ user.nom }}</label>
-    <input id="pass1" class="text_input" type="password" name="password"/><br><br>
-    <input id="pass2" class="text_input" type="password" name="cpassword"/><br><br>
-    <input type="submit" value="Submit">
-</form>
+{% else %}
+    <form action="confirm_email" onsubmit="return myFunction()" method="POST">
+        <input type="hidden" name="email" value="{{email}}"/>
+        <label>Nou Password per {{ user.nom }}</label>
+        <input id="pass1" class="text_input" type="password" name="password"/><br><br>
+        <input id="pass2" class="text_input" type="password" name="cpassword"/><br><br>
+        <input type="submit" value="Submit">
+    </form>
+{% endif %}
+
 <script>
     function myFunction() {
         var pass1 = document.getElementById("pass1").value;

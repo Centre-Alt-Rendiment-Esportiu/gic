@@ -23,7 +23,6 @@ app.config["MAIL_PASSWORD"] = None
 app.secret_key = "1234"
 app.config["SECURITY_PASSWORD_SALT"] = '1234'
 
-
 #Create an instance of SQLAclhemy
 db = SQLAlchemy(app)
 

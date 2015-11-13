@@ -5,7 +5,7 @@
 </tr>
 <form action="" method="POST">		
 <tr>	<td><label>	Nom</label>
-		<input  class="input_text" type="text" name="nom" minlenght="1" pattern="([A-Za-z ]{1,50})"/> 
+		<input  class="input_text" type="text" name="nom" minlenght="1" pattern="([A-Za-z ]{1,50})" required/> 
 	</td>
 	<td>	<label>Cognom 1</label>
 		<input class="input_text" type="text" name="cognom1" pattern=".{0}|([A-Za-z ]{1,50})"/>
@@ -31,7 +31,7 @@
 	</td>
 	<td>
 		<label>DNI</label>
-		<input class="input_text" type="text" name="dni" pattern=".{0}|([0-9]{8})+([a-z]{1})"/>		
+		<input class="input_text" type="text" name="dni" pattern=".{0}|([0-9]{8})+([a-z]{1})" required/>		
 	</td>
 	<td>
 		<label>PASSPORT</label>

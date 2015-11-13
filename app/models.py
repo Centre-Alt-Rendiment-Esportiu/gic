@@ -81,6 +81,25 @@ class Post(db.Model):
         self.set_password(password)
     def set_password(self, password):
         self.pwdhash = generate_password_hash(password)
+    def check_password(self, password):
+        return check_password_hash(self.pwdhash, password)
+
+class User(db.Model):
+    __tablename__ = 'users'
+    uid = db.Column(db.Integer, primary_key = True)
+    nom = db.Column(db.String(100))
+    cognom = db.Column(db.String(100))
+    email = db.Column(db.String(120), unique=True)
+    pwdhash = db.Column(db.String(200))
+    def __init__(self, nom, cognom, email, password):
+        self.nom = nom.title()
+        self.cognom = cognom.title()
+        self.email = email.lower()
+        self.set_password(password) 
+    def set_password(self, password):
+        self.pwdhash = generate_password_hash(password)
+    def check_password(self, password):
+        return check_password_hash(self.pwdhash, password)
 
 class GIC_PERMIS(db.Model):
     """taula que relaciona permisos amb persones"""
@@ -109,20 +128,3 @@ class GIC_ROL(db.Model):
         self.id_rol = id_rol
         self.inici = inici
         self.fi = fi
-  
-class User(db.Model):
-    __tablename__ = 'users'
-    uid = db.Column(db.Integer, primary_key = True)
-    nom = db.Column(db.String(100))
-    cognom = db.Column(db.String(100))
-    email = db.Column(db.String(120), unique=True)
-    pwdhash = db.Column(db.String(200))
-    def __init__(self, nom, cognom, email, password):
-        self.nom = nom.title()
-        self.cognom = cognom.title()
-        self.email = email.lower()
-        self.set_password(password) 
-    def set_password(self, password):
-        self.pwdhash = generate_password_hash(password)
-    def check_password(self, password):
-        return check_password_hash(self.pwdhash, password)
