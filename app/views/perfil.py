@@ -14,11 +14,6 @@ def profile():
         post_user = Post.query.filter_by(email1 = session['email_usu']).first()
         return render_template('profile.html', post_user=post_user)
 
-#    if user and post_user is None:
-#       return redirect(url_for('signin'))
-#    else:
-#       return render_template('profile.html', user=user, post_user=post_user)
-
 @app.route('/canvi_password/<id>', methods=['GET', 'POST'])
 def canvi_password(id):
     post = Post.query.get(id)
@@ -38,7 +33,6 @@ def canvi_password_admin(uid):
         db.session.commit()
         return redirect(url_for('correcte'))
     return render_template('reset.html',user=user)
-
 
 @app.route('/correcte', methods=['GET', 'POST'])
 def correcte():

@@ -67,7 +67,37 @@ class Inici_Clients_Form(Form):
         else:
             self.email.errors.append("Invalid e-mail or password")
             return False
-            
+
+class emailForm(Form):
+    email = StringField("Correu", [validators.Required("Entra una adreça de correu."), validators.Email("Entra una adreça de correu.")])
+    submit = SubmitField("Envia")
+    def __init__(self, *args, **kwargs):
+        Form.__init__(self, *args, **kwargs)
+    def validate(self):
+        if not Form.validate(self):
+            return False
+        user = Post.query.filter_by(email1 = self.email.data.lower()).first()
+        if user:
+            return True
+        elif not user:
+            self.email.errors.append("Invalid e-mail")
+            return False
+
+class email_adminForm(Form):
+    email = StringField("Correu", [validators.Required("Entra una adreça de correu."), validators.Email("Entra una adreça de correu.")])
+    submit = SubmitField("Envia")
+    def __init__(self, *args, **kwargs):
+        Form.__init__(self, *args, **kwargs)
+    def validate(self):
+        if not Form.validate(self):
+            return False
+        user = User.query.filter_by(email = self.email.data.lower()).first()
+        if user:
+            return True
+        elif not user:
+            self.email.errors.append("Invalid e-mail")
+            return False
+
 class ContactForm(Form):
     name = StringField("Name",  [validators.Required("Please enter your name.")])
     email = StringField("Email",  [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
