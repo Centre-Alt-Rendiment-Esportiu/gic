@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
+{% if session['email'] %}
+
 <h3>Cerca de Permisos</h3>
 <table width=20%>
 <tr>
@@ -28,5 +30,11 @@
         </table>
 </article>
 {% endfor %}
+
+{% else %}
+
+No tens permis per accedir aqui.
+
+{% endif %}
 {% endblock %}
 

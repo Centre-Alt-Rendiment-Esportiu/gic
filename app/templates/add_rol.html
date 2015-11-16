@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
+{% if session['email'] %}
+
 <table>
 </tr>
 <form action="" method="POST">		
@@ -24,4 +26,9 @@
 	</td>
 </tr>
 </table>
+{% else %}
+
+No tens permis per accedir aqui.
+
+{% endif %}
 {% endblock %}

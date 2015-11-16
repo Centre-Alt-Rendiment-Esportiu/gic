@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
+{% if session['email'] %}
+
 <h3>Llistat de Grups</h3>
 <hr>
 </table>
@@ -22,4 +24,10 @@
         </table>
     </article>
 {% endfor %}
+
+{% else %}
+
+No tens permis per accedir aqui.
+
+{% endif %}
 {% endblock %}

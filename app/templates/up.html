@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-<body>
+
+{% if session['email'] %}
 <table>
 <tr>
 	<td>
@@ -19,5 +20,8 @@
 	</td>
 </tr>
 </table>
-</body>
+{% else %}
+No tens permis per estar aqui.
+
+{% endif %}
 {% endblock %}
