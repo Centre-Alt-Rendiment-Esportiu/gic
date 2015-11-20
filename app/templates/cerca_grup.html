@@ -4,16 +4,13 @@
 
 <h3>Llistat de Grups</h3>
 <hr>
-</table>
-     {% for post in post %}
-    <article>
         <table>
             <tr>
-                <td> <label>Nom Grup</label> <hr>
-                    {{ post.nom_grup }}
-                </td>
+                <td> <label>Nom Grup</label> <hr></td>
             </tr>
+{% for post in post %}
             <tr>
+                <td>{{ post.nom_grup }}</td>
                 <td>
 				<a class="input" href="{{ url_for('edit_grup', id_grup=post.id_grup) }}">Edita</a>
                 </td>
@@ -21,10 +18,8 @@
                       <a class="input" href="{{ url_for('delete_grup', id_grup=post.id_grup) }}">Elimina</a>
                 </td>
             </tr>
-        </table>
-    </article>
 {% endfor %}
-
+        </table>
 {% else %}
 
 No tens permis per accedir aqui.

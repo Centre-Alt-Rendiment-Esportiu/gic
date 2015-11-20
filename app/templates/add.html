@@ -1,17 +1,19 @@
 {% extends "layout.html" %}
 {% block content %}
 {% if 'email' in session %}
+<h3>Afegir Registre</h3>
+<hr>
 <table>
 </tr>
 <form action="" method="POST">		
 <tr>	<td><label>	Nom</label>
-		<input  class="input_text" type="text" name="nom" minlenght="1" pattern="([A-Za-z ]{1,50})" required/> 
+		<input  class="text_input" type="text" name="nom" minlenght="1" pattern="([A-Za-z ]{1,50})" required/> 
 	</td>
 	<td>	<label>Cognom 1</label>
-		<input class="input_text" type="text" name="cognom1" pattern=".{0}|([A-Za-z ]{1,50})"/>
+		<input class="text_input" type="text" name="cognom1" pattern=".{0}|([A-Za-z ]{1,50})"/>
 	</td>
 	<td>	<label>Cognom 2</label>
-		<input class="input_text" type="text" name="cognom2" pattern=".{0}|([A-Za-z ]{1,50})"/>
+		<input class="text_input" type="text" name="cognom2" pattern=".{0}|([A-Za-z ]{1,50})"/>
 	</td>
 	<td rowspan="3">
 		<label>Rol</label>
@@ -31,11 +33,11 @@
 	</td>
 	<td>
 		<label>DNI</label>
-		<input class="input_text" type="text" name="dni" pattern=".{0}|([0-9]{8})+([a-z]{1})" required/>		
+		<input class="text_input" type="text" name="dni" pattern=".{0}|([0-9]{8})+([a-z]{1})" required/>		
 	</td>
 	<td>
 		<label>PASSPORT</label>
-		<input class="input_text" type="text" name="passport"/>
+		<input class="text_input" type="text" name="passport"/>
 	</td>
 </tr>
 <tr>
@@ -44,18 +46,18 @@
 		<input type="date" name="data_naix"/>
 	</td>
         <td>    <label>Telefon 1</label>
-                <input class="input_text" type="text" name="telefon1" pattern="[0-9]{9}"/>
+                <input class="text_input" type="text" name="telefon1" pattern="[0-9]{9}"/>
         </td>
         <td>    <label>Telefon 2</label>
-                <input class="input_text" type="text" name="telefon2" pattern="[0-9]{9}"/>
+                <input class="text_input" type="text" name="telefon2" pattern="[0-9]{9}"/>
         </td>
 </tr>
 <tr>
         <td>    <label>Email 1</label>
-                <input class="input_text" type="email" name="email1"/>
+                <input class="text_input" type="email" name="email1"/>
         </td>
         <td>    <label>Email 2</label>
-                <input class="input_text" type="email" name="email2"/>
+                <input class="text_input" type="email" name="email2"/>
         </td>
 	<td>
 		<label>Actiu</label>
@@ -78,7 +80,7 @@
 	<button class="input" type="submit">Afegeix</button>
 	</td>
 	<td><label>	Foto</label>
-		<input class="input_text" type="text" name="foto"/>
+		<input class="text_input" type="text" name="foto"/>
 	</td>
 </tr>
 </table>

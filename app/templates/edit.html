@@ -1,17 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
+{% if session['email'] %}
 <form action="" method="post">
 <table>
 		<tr>
 			<td>
-				<label>ID
+				<label>ID</label>
 				{{ post.id }}
-				</label>
 			</td>
                 <td colspan="2">
                 </td>
 			<td rowspan="4">
-				<label> Rols<br></label>
+				<label> Rols</label>
                     {% set var = {'v': True} %}
                     {% for rol in rols %}
                             {% for ti in tip %}
@@ -37,24 +37,21 @@
             </tr>
             <tr>
                     <td>
-                        <label>Nom<br>
-					<input type="text" name="nom" value="{{post.nom}}" pattern="([A-Za-z ]{1,50})"/>
-			      	</label>
+                        <label>Nom</label>
+					<input class="text_input" type="text" name="nom" value="{{post.nom}}" pattern="([A-Za-z ]{1,50})"/>
                         </td>
                         <td>
-			      	<label>Cognom 1<br>
-			        	<input type="text" name="cognom1" value="{{post.cognom1}}" pattern=".{0}|([A-Za-z ]{1,50})"/>
-			      	</label>
+			      	<label>Cognom 1</label>
+			        	<input class="text_input" type="text" name="cognom1" value="{{post.cognom1}}" pattern=".{0}|([A-Za-z ]{1,50})"/>
                         </td>
                         <td>
-			      	<label>Cognom 2<br>
-			        	<input type="text" name="cognom2" value="{{post.cognom2}}" pattern=".{0}|([A-Za-z ]{1,50})"/>
-			      	</label>
+			      	<label>Cognom 2</label>
+			        	<input class="text_input" type="text" name="cognom2" value="{{post.cognom2}}" pattern=".{0}|([A-Za-z ]{1,50})"/>
                         </td>
             </tr>
             <tr>
-                        <td>
-			      	<label>Sexe<br>
+                        <td>			      	
+			      	<label>Sexe</label>
         				<select id="sexe" name="sexe" size="1">
                     			<option value="{{post.sexe}}" selected="selected">
         					{% if 1 == post.sexe|int() %}
@@ -66,49 +63,41 @@
                         		<option value="1">Home</option>
             		        	<option value="0">Dona</option>
         	        		</select>
-        				</label>
                       </td>
                       <td>
-        				<label>DNI<br>
-                	                <input type="text" name="dni" value="{{post.dni}}" pattern=".{0}|([0-9]{8})+([a-z]{1})"/>
-                	        	</label>
+        				<label>DNI</label>
+                	                <input class="text_input" type="text" name="dni" value="{{post.dni}}" pattern=".{0}|([0-9]{8})+([a-z]{1})"/> 
                       </td>
                       <td>
-        				<label>PASSPORT<br>
-                	                <input type="text" name="passport" value="{{post.passport}}"/>
-	                      </label>
+        				<label>PASSPORT</label>
+                	                <input class="text_input" type="text" name="passport" value="{{post.passport}}"/>
                       </td>
             </tr>
             <tr>
                       <td>
-        				<label>Data Naixement<br>
-                        	        <input type="date" name="data_naix" value="{{post.data_naix}}"/>
-                          	</label>
+        				<label>Data Naixement</label>
+                        	        <input type="date" name="data_naix" value="{{post.data_naix}}"/>                 	
                         </td>
                         <td>
-            			<label>Telefon 1<br>
-                                 	<input type="text" name="telefon1" value="{{post.telefon1}}" pattern="[0-9]{9}"/>
-                           	</label>
+            			<label>Telefon 1</label>
+                                 	<input class="text_input" type="text" name="telefon1" value="{{post.telefon1}}" pattern="[0-9]{9}"/>
                         </td>
                         <td>
-                            <label>Telefon 2<br>
-                                <input type="text" name="telefon2" value="{{post.telefon2}}" pattern="[0-9]{9}"/>
-                            </label>
+                            <label>Telefon 2</label>
+                                <input class="text_input" type="text" name="telefon2" value="{{post.telefon2}}" pattern="[0-9]{9}"/>
                         </td>
             </tr>
             <tr>
                         <td>
-                            <label>Email 1<br>
-                                <input type="email" name="email1" value="{{post.email1}}"/>
-                            </label>
+                            <label>Email 1</label>
+                                <input class="text_input" type="email" name="email1" value="{{post.email1}}"/>
                         </td>
                         <td>
-                            <label>Email 2<br>
-                                    <input type="email" name="email2" value="{{post.email2}}"/>
-                            </label>
+                            <label>Email 2</label>
+                                    <input class="text_input" type="email" name="email2" value="{{post.email2}}"/>
                         </td>
                         <td>
-                            <label>Actiu<br>
+                            <label>Actiu</label>
                                 <select id="actiu" name="actiu" size="1">
         				        <option value="{{post.actiu}}" selected="selected">
         						{% if post.actiu|int() == 1 %}
@@ -120,10 +109,9 @@
                                     <option value="1">Si</option>
                                     <option value="0">No</option>	
                                 </select>
-                            </label>
                         </td>
                         <td rowspan="2">
-                            <label>Assignació de permisos<br></label>
+                            <label>Assignació de permisos</label>
                     {% set var = {'c': True} %}
                     {% for grup in grups %}
                             {% for perm_grup in perm_grup %}
@@ -154,10 +142,16 @@
 				<button class="input" type="submit">Edit</button>
                 </td>
 			<td>
-				Foto
-        			<input type="text" name="foto" value="{{post.foto}}"/><br><br>
+				<label>Foto</label>
+        			<input class="text_input" type="text" name="foto" value="{{post.foto}}"/><br><br>
         			<a href="/upload" class="input">Puja'n una</a>				
 </form>         </td>
 		</tr>
 </table>
+{% else %}
+
+No tens permis per accedir aqui.
+
+{% endif %}
+
 {% endblock %}

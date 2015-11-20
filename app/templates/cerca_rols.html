@@ -2,19 +2,15 @@
 {% block content %}
 <h3>Cerca de Rols</h3>
 <hr>
-     {% for post in post %}
-        <div>
-	<article>
-                <table>
+        <table>
                 <tr>
-                        <td> <label>	Nom Rol <hr></label>
-                                {{ post.nom_rol }}
-                        </td>
-                        <td> <label>	Template <hr></label>
-                                {{ post.template }}
-                        </td>
+                        <td> <label>	Nom Rol <hr></label></td>
+                        <td> <label>	Template <hr></label></td>
                 </tr>
+{% for post in post %}
                 <tr>
+                        <td>{{ post.nom_rol }}</td>
+                        <td>{{ post.template }}</td>
                         <td>
             				<a class="input" href="{{ url_for('edit_rol', id_rol=post.id_rol) }}">Edita</a>
                         </td>
@@ -22,9 +18,7 @@
                                 <a class="input" href="{{ url_for('delete_rol', id_rol=post.id_rol) }}">Elimina</a>
                         </td>
                 </tr>
-        </table>
-</article>
-</div>
 {% endfor %}
+        </table>
 {% endblock %}
 

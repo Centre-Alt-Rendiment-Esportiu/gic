@@ -36,7 +36,7 @@ def edit(id):
         post.email2 = request.form['email2']
         post.actiu = request.form['actiu']
         post.foto = request.form['foto']
-        lrols = request.form.getlist('rol')        
+        lrols = request.form.getlist('rol')  
 #        for lrol in lrols:
 #            treu_rol = GIC_ROL.query.filter_by(id_persona=id)
 #            db.session.delete(treu_rol)

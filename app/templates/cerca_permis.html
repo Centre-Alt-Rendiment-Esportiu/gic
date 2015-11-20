@@ -3,23 +3,14 @@
 {% if session['email'] %}
 
 <h3>Cerca de Permisos</h3>
-<table width=20%>
-<tr>
-	<td>
-		<a href="/" class="button postfix">Enrere</a>
-	</td>
-</tr>
-</table>
-     {% for post in post %}
-        <div>
-	<article>
+<hr>
                 <table>
                 <tr>
-                        <td colspan="2"> 	Nom Permis <hr>
-                                {{ post.nom_permis }}
-                        </td>
+                        <td><label> Nom Permis</label> <hr></td>
                 </tr>
+{% for post in post %}
                 <tr>
+                        <td>{{ post.nom_permis }}</td>
                         <td>
                             <a href="{{ url_for('edit_permis', id_permis=post.id_permis) }}">Edita</a>
                         </td>
@@ -27,9 +18,8 @@
                             <a href="{{ url_for('delete_permis', id_permis=post.id_permis) }}">Elimina</a>
                         </td>
                 </tr>
-        </table>
-</article>
 {% endfor %}
+        </table>
 
 {% else %}
 

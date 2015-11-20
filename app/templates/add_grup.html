@@ -2,15 +2,15 @@
 {% block content %}
 
 {% if session['email'] %}
-
+<h3>Afegir Grup</h3>
+<hr>
 <table>
 </tr>
 <form action="" method="POST">		
-<tr>	<td>	Nom Grup<br>
+<tr>	<td><label>	Nom Grup</label>
 		<input class="text_input" type="text" name="nom_grup" pattern="([A-Za-z0-9]{1,40})"/> 
 	</td>
-	<td>
-		Actiu<br>
+	<td><label>Actiu</label>
 		<select id="actiu" name="actiu" size="1">
                         <option value="" selected="selected">- Selecciona -</option>
                         <option value="1">Si</option>
@@ -19,7 +19,7 @@
 	</td>
 </tr>
 <tr>
-	<td>
+	<td><br>
 	<button class="input" type="submit">Afegeix</button>
 	</td>
 </tr>
