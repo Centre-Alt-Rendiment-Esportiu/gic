@@ -2,16 +2,11 @@
 """
 @author: dani.ruiz
 """
-import ldap
-from flask import render_template, request, flash, redirect, url_for, Blueprint, g
-from flask.ext.login import current_user, login_user, logout_user, login_required
-from sqlalchemy import or_
-from app import app, db, login_manager
+from flask import render_template, request, redirect, url_for
+from app import app, db
 from sqlalchemy.orm import load_only
 from app.models import User, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \
 GIC_CFG_GRUP, GIC_PERMIS
-from werkzeug import secure_filename
-import os
 
 @app.route('/edit/<id>', methods=['POST', 'GET'])
 def edit(id):
@@ -38,7 +33,6 @@ def edit(id):
         post.foto = request.form['foto']
         lrols = request.form.getlist('rol')  
 #        for lrol in lrols:
-#            treu_rol = GIC_ROL.query.filter_by(id_persona=id)
 #            db.session.delete(treu_rol)
 #            db.session.flush()
         grups = request.form.getlist('grup')
@@ -48,7 +42,6 @@ def edit(id):
                 grups = GIC_PERMIS(post.id, perm.id_permis, request.form['inici_permis'], request.form['fi_permis'])
 #                db.session.add(grups)
 #                db.session.flush()
-#        post.password = request.form['password']
         db.session.commit()
         return  redirect(url_for('index'))
     return render_template('edit.html', post=post, tip=tip, rols=rols, grups=grups, perm_grup=perm_grup, perm_asig=perm_asig)

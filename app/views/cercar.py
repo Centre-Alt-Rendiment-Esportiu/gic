@@ -2,32 +2,28 @@
 """
 @author: dani.ruiz
 """
-from flask import render_template, request, flash, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from sqlalchemy import or_
 from app import app, db
-from sqlalchemy.orm import load_only
 from app.models import User, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \
 GIC_CFG_GRUP, GIC_PERMIS
 
 @app.route('/llista_per', methods=['POST', 'GET'])
-def llista_per():
+@app.route('/llista_per/<int:page>', methods=['POST', 'GET'])
+def llista_per(page=1):
     """buscar persones"""
-    if request.method == 'POST':
-        nom = request.form['cerca']
-        conc = "%" + nom + "%"
-        post = Post.query.filter(or_(Post.nom.like(conc), Post.cognom1.like(conc)))
-        rols = GIC_ROL.query.all()
-    return render_template('llista_persones.html', post=post, rols=rols)
+    nom = session['cerca']
+    conc = "%" + nom + "%"
+    post = Post.query.filter(or_(Post.nom.like(conc), Post.cognom1.like(conc))).paginate(page, 5, False)
+    return render_template('llista_persones.html', post=post)
 
 @app.route('/cerca_per', methods=['POST', 'GET'])
 def cerca_per():
     """buscar persones"""
     if request.method == 'POST':
-        nom = request.form['cerca']
-        conc = "%" + nom + "%"
-        post = Post.query.filter(or_(Post.nom.like(conc), Post.cognom1.like(conc)))
-        rols = GIC_ROL.query.all()
-    return render_template('cerca_persones.html', post=post, rols=rols)
+#        nom = request.form['cerca']
+        session['cerca'] = request.form['cerca']
+        return redirect(url_for('llista_per'))
 
 @app.route('/cerca_grup', methods=['POST', 'GET'])
 def cerca_grup():

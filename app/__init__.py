@@ -1,10 +1,8 @@
 import os
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
-from sqlalchemy import or_
 from flask.ext.login import LoginManager
-from werkzeug import secure_filename
-from flask.ext.mail import Message, Mail
+from flask.ext.mail import Mail
 from itsdangerous import URLSafeTimedSerializer
 
 #Create an Instance of Flask
@@ -22,6 +20,7 @@ app.config["MAIL_USERNAME"] = None
 app.config["MAIL_PASSWORD"] = None
 app.secret_key = "1234"
 app.config["SECURITY_PASSWORD_SALT"] = '1234'
+app.config["POSTS_PER_PAGE"] = 10
 
 #Create an instance of SQLAclhemy
 db = SQLAlchemy(app)
@@ -34,4 +33,4 @@ login_manager.login_view = 'login'
 
 from app import models, forms, token
 
-from app.views import add, editar, index, signup, cercar, esborrar, upload, contact, perfil, signin, signout, f_password
+from app.views import add, editar, index, signup, cercar, esborrar, upload, perfil, signin, signout, f_password

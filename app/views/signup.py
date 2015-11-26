@@ -2,11 +2,10 @@
 """
 @author: dani.ruiz
 """
-from flask import render_template, request, flash, redirect, url_for, session
+from flask import render_template, request, redirect, url_for, session
 from app import app, db
 from app.models import User
-from flask.ext.mail import Message, Mail
-from app.forms import SignupForm, ContactForm
+from app.forms import SignupForm
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():

@@ -1,10 +1,6 @@
 """
 @dani.ruiz
 """
-from flask_wtf import Form
-from wtforms import TextField, PasswordField
-from wtforms.validators import InputRequired
-from flask.ext.login import UserMixin
 from werkzeug import generate_password_hash, check_password_hash
 from app import db, app
 
@@ -85,8 +81,9 @@ class Post(db.Model):
         return check_password_hash(self.pwdhash, password)
 
 class User(db.Model):
+    """taula d'usuaris administradors"""
     __tablename__ = 'users'
-    uid = db.Column(db.Integer, primary_key = True)
+    uid = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String(100))
     cognom = db.Column(db.String(100))
     email = db.Column(db.String(120), unique=True)
@@ -95,7 +92,7 @@ class User(db.Model):
         self.nom = nom.title()
         self.cognom = cognom.title()
         self.email = email.lower()
-        self.set_password(password) 
+        self.set_password(password)
     def set_password(self, password):
         self.pwdhash = generate_password_hash(password)
     def check_password(self, password):

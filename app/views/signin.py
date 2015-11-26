@@ -1,6 +1,6 @@
-from app.forms import ContactForm, SignupForm, SigninForm
+from app.forms import SigninForm
 from app import app
-from flask import render_template, request, flash, session, url_for, redirect
+from flask import render_template, request, session, url_for, redirect
 
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():
@@ -13,3 +13,4 @@ def signin():
             return redirect(url_for('profile'))               
     elif request.method == 'GET':
         return render_template('signin.html', form=form)
+

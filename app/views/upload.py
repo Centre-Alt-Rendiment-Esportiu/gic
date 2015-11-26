@@ -2,14 +2,8 @@
 """
 @author: dani.ruiz
 """
-import ldap
-from flask import render_template, request, flash, redirect, url_for, Blueprint, g
-from flask.ext.login import current_user, login_user, logout_user, login_required
-from sqlalchemy import or_
-from app import app, db, login_manager
-from sqlalchemy.orm import load_only
-from app.models import User, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \
-GIC_CFG_GRUP, GIC_PERMIS
+from flask import render_template, request, redirect, url_for
+from app import app
 from werkzeug import secure_filename
 import os
 
