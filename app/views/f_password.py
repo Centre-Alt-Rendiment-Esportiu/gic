@@ -43,7 +43,7 @@ def enviat_admin():
             correu = request.form['email']
             user = User.query.filter_by(email=correu).first()
             token = generate_confirmation_token(correu)
-            confirm_url = url_for('confirm_email', token=token, _external=True)
+            confirm_url = url_for('confirm_email_admin', token=token, _external=True)
             html = render_template('canvi_pass.html', confirm_url=confirm_url)
             sender = ['no-reply@sau.car.edu', user.email]
             msg = Message('Restablir Password', sender=sender[0], recipients=sender)
