@@ -2,7 +2,7 @@
 """
 @author: dani.ruiz
 """
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, jsonify
 from app import app
 from werkzeug import secure_filename
 import os
@@ -22,3 +22,13 @@ def upload():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('index'))
     return render_template('up.html')
+
+@app.route('/upload_csv', methods=['POST', 'GET'])
+def upload_csv():
+    """pujar arxius csv"""
+    if request.method == 'POST':
+ #       csv_file = jsonify({"result": request.get_array(field_name='csv')})
+ #       print (csv_file)
+ #       return redirect(url_for('upload_csv'))
+        return jsonify({"result": request.get_array(field_name='csv')})
+    return render_template('up_csv.html')

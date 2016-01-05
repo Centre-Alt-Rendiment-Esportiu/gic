@@ -21,13 +21,14 @@ def add():
         request.form['actiu'], request.form['foto'], request.form['dni'])
         db.session.add(post)
         db.session.flush()
-        v = 10000
-        for b in range(v):
-            bucle = Post(b, b, b, 1, (str(b)+'A'), \
-            b, '2015/11/15', b, b, (str(b)+'@mail.com'),(str(b)+'@mail.com'),1, b, (str(b)+'@mail.com'))
-            db.session.add(bucle)
-            db.session.flush
-            
+######### Bucle 10000 registres ########
+#        v = 10000
+#        for b in range(v):
+#            bucle = Post(b, b, b, 1, (str(b)+'A'), \
+#            b, '2015/11/15', b, b, (str(b)+'@mail.com'),(str(b)+'@mail.com'),1, b, (str(b)+'@mail.com'))
+#            db.session.add(bucle)
+#            db.session.flush
+########################################         
         lrol = request.form.getlist('rol')
         lini = request.form.getlist('inici')
         lfi = request.form.getlist('fi')

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+
+{% if session['email'] %}
+<h3>Importar CSV</h3>
+<hr>
+<table>
+<tr>
+	<td>
+        <form action="" method="post" enctype="multipart/form-data">
+        <input type="file" name="csv"/>
+    </td>
+    <td>
+        <input class="input" type="submit" value="Upload">
+        </form>
+    </td>
+</tr>
+</table>
+{% else %}
+No tens permis per estar aqui.
+
+{% endif %}
+{% endblock %}

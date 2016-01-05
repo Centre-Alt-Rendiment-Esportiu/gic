@@ -3,9 +3,11 @@
 """
 from werkzeug import generate_password_hash, check_password_hash
 from app import db, app
+import hashlib
 
 class GIC_CFG_ROL(db.Model):
     """taula de rols"""
+    __tablename__ = 'GIC_CFG_ROL'
     id_rol = db.Column(db.Integer, primary_key=True)
     nom_rol = db.Column(db.String(30))
     template = db.Column(db.String(50))
@@ -19,6 +21,7 @@ class GIC_CFG_ROL(db.Model):
 
 class GIC_CFG_GRUP(db.Model):
     """taula de grups de permisos"""
+    __tablename__ = 'GIC_CFG_GRUP'
     id_grup = db.Column(db.Integer, primary_key=True)
     nom_grup = db.Column(db.String(40))
     actiu = db.Column(db.String(1))
@@ -30,6 +33,7 @@ class GIC_CFG_GRUP(db.Model):
 
 class GIC_CFG_PERMIS(db.Model):
     """taula de permisos"""
+    __tablename__ = 'GIC_CFG_PERMIS'
     id_permis = db.Column(db.Integer, primary_key=True)
     nom_permis = db.Column(db.String(40))
     actiu = db.Column(db.String(1))
@@ -44,6 +48,7 @@ class GIC_CFG_PERMIS(db.Model):
 
 class Post(db.Model):
     """taula de persones"""
+    __tablename__ = 'GIC_PERSONA'
     id = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String(50))
     cognom1 = db.Column(db.String(50))
@@ -76,13 +81,15 @@ class Post(db.Model):
         self.foto = foto
         self.set_password(password)
     def set_password(self, password):
-        self.pwdhash = generate_password_hash(password)
+#        self.pwdhash = generate_password_hash(password)
+        self.pwdhash = hashlib.sha256('[B@3f13a310' + password).hexdigest()
     def check_password(self, password):
         return check_password_hash(self.pwdhash, password)
 
 class User(db.Model):
     """taula d'usuaris administradors"""
-    __tablename__ = 'users'
+#    __tablename__ = 'users'
+    __tablename__ = 'GIC_ADMIN'
     uid = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String(100))
     cognom = db.Column(db.String(100))
@@ -100,6 +107,7 @@ class User(db.Model):
 
 class GIC_PERMIS(db.Model):
     """taula que relaciona permisos amb persones"""
+    __tablename__ = 'GIC_PERMIS'
     id_persona = db.Column(db.Integer, db.ForeignKey(Post.id), primary_key=True)
     id_permis = db.Column(db.Integer, db.ForeignKey(GIC_CFG_PERMIS.id_permis), primary_key=True)
     inici = db.Column(db.Date)
@@ -114,6 +122,7 @@ class GIC_PERMIS(db.Model):
 
 class GIC_ROL(db.Model):
     """taula que relaciona rols amb persones"""
+    __tablename__ = 'GIC_ROL'
     id_persona = db.Column(db.Integer, db.ForeignKey(Post.id), primary_key=True)
     id_rol = db.Column(db.Integer, db.ForeignKey(GIC_CFG_ROL.id_rol), primary_key=True)
     inici = db.Column(db.Date)

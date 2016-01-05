@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 app.config.from_object('config')
 app.config['UPLOAD_FOLDER'] = 'app/static/img/'
-app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg', 'jpeg'])
+app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg', 'jpeg', 'csv'])
 app.config['WTF_CSRF_SECRET_KEY'] = '1234'
 app.config["MAIL_SERVER"] = "mail.car.loc"
 app.config["MAIL_PORT"] = 25
