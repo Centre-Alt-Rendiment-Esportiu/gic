@@ -84,7 +84,11 @@ class Post(db.Model):
 #        self.pwdhash = generate_password_hash(password)
         self.pwdhash = hashlib.sha256('[B@3f13a310' + password).hexdigest()
     def check_password(self, password):
-        return check_password_hash(self.pwdhash, password)
+#        return check_password_hash(self.pwdhash, password)
+        if self.pwdhash = hashlib.sha256('[B@3f13a310' + password).hexdigest():
+            return True
+        else:
+            return False
 
 class User(db.Model):
     """taula d'usuaris administradors"""
@@ -101,9 +105,14 @@ class User(db.Model):
         self.email = email.lower()
         self.set_password(password)
     def set_password(self, password):
-        self.pwdhash = generate_password_hash(password)
+#        self.pwdhash = generate_password_hash(password)
+        self.pwdhash = hashlib.sha256('[B@3f13a310' + password).hexdigest()
     def check_password(self, password):
-        return check_password_hash(self.pwdhash, password)
+#        return check_password_hash(self.pwdhash, password)
+        if self.pwdhash = hashlib.sha256('[B@3f13a310' + password).hexdigest():
+            return True
+        else:
+            return False
 
 class GIC_PERMIS(db.Model):
     """taula que relaciona permisos amb persones"""
