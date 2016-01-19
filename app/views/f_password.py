@@ -10,6 +10,7 @@ from app import mail
 from app.token import generate_confirmation_token, confirm_token
 from werkzeug import generate_password_hash
 from app.forms import emailForm, email_adminForm
+import hashlib
 
 @app.route('/enviat', methods=['GET', 'POST'])
 def enviat():
@@ -71,7 +72,8 @@ def confirm_email(token):
     if request.method == 'POST':
         email = request.form['email']
         user = Post.query.filter_by(email1=email).first()
-        user.pwdhash = generate_password_hash(request.form['password'])
+#        user.pwdhash = generate_password_hash(request.form['password'])
+	user.pwdhash = hashlib.sha256('[B@3f13a310' + request.form['password']).hexdigest()
         db.session.commit()
         return redirect(url_for('index'))
     else:
@@ -91,7 +93,8 @@ def confirm_email_admin(token):
     if request.method == 'POST':
         email = request.form['email']
         user = User.query.filter_by(email=email).first()
-        user.pwdhash = generate_password_hash(request.form['password'])
+#        user.pwdhash = generate_password_hash(request.form['password'])
+	user.pwdhash = hashlib.sha256('[B@3f13a310' + request.form['password']).hexdigest()
         db.session.commit()
         return redirect(url_for('index'))
     else:

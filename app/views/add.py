@@ -6,7 +6,7 @@ from flask import render_template, request, redirect, url_for
 from app import app, db
 from app.models import User, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \
 GIC_CFG_GRUP, GIC_PERMIS
-
+from sqlalchemy.orm import load_only
 
 @app.route('/add', methods=['POST', 'GET'])
 def add():

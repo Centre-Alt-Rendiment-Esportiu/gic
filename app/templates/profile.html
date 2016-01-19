@@ -9,7 +9,7 @@
     Nom: {{ user.nom }}<br>
     Cognom: {{ user.cognom }}
     <br><br>
-    <a class="input" href="{{ url_for('canvi_password_admin', uid=user.uid) }}">Canvia password</a>
+    <a class="input" href="{{ url_for('canvi_password_admin', id=user.id) }}">Canvia password</a>
 
 {% elif session['email_usu'] %}
     Perfil de: {{ session['email_usu'] }}
