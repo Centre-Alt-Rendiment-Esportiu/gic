@@ -106,7 +106,7 @@ class User(db.Model):
         self.set_password(password)
     def set_password(self, password):
 #        self.pwdhash = generate_password_hash(password)
-	self.pwdhash = hashlib.sha256('[B@3f13a310' + password).hexdigest()
+        self.pwdhash = hashlib.sha256('[B@3f13a310' + password).hexdigest()
     def check_password(self, password):
 #        return check_password_hash(self.pwdhash, password)
         if self.pwdhash == hashlib.sha256('[B@3f13a310' + password).hexdigest():
