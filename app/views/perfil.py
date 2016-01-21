@@ -21,18 +21,20 @@ def canvi_password(id):
     post = Post.query.get(id)
     if request.method == 'POST':
         post = Post.query.get(id)
-        post.pwdhash = generate_password_hash(request.form['password'])
+#        post.pwdhash = generate_password_hash(request.form['password'])
+        post.pwdhash = hashlib.sha256('[B@3f13a310' + request.form['password']).hexdigest()
         db.session.commit()
         return redirect(url_for('correcte'))
     return render_template('reset.html', post=post)
 
-@app.route('/canvi_password_admin/<uid>', methods=['GET', 'POST'])
-def canvi_password_admin(uid):
+@app.route('/canvi_password_admin/<id>', methods=['GET', 'POST'])
+def canvi_password_admin(id):
     """canvi de password per admins"""
-    user = User.query.get(uid)
+    user = User.query.get(id)
     if request.method == 'POST':
-        user = User.query.get(uid)
-        user.pwdhash = generate_password_hash(request.form['password'])
+        user = User.query.get(id)
+#        user.pwdhash = generate_password_hash(request.form['password'])
+        user.pwdhash = hashlib.sha256('[B@3f13a310' + request.form['password']).hexdigest()
         db.session.commit()
         return redirect(url_for('correcte'))
     return render_template('reset.html', user=user)

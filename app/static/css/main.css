@@ -4,7 +4,12 @@ body {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #444;
 }
- 
+html {
+	background-image: url("/static/img/car2.png");
+	background-repeat: no-repeat;
+	background-position: 10% 18%;
+} 
+
 /*
  * Create dark grey header with a white logo
  */
@@ -62,6 +67,11 @@ h3 {
 	letter-spacing: -1px;
 	color: #999;
 }
+img {
+	width:200px;
+	height:100px;
+}
+
 /*
  * Display navigation links inline
  */

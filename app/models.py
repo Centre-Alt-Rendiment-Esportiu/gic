@@ -85,7 +85,7 @@ class Post(db.Model):
         self.pwdhash = hashlib.sha256('[B@3f13a310' + password).hexdigest()
     def check_password(self, password):
 #        return check_password_hash(self.pwdhash, password)
-        if self.pwdhash = hashlib.sha256('[B@3f13a310' + password).hexdigest():
+        if self.pwdhash == hashlib.sha256('[B@3f13a310' + password).hexdigest():
             return True
         else:
             return False
@@ -94,7 +94,7 @@ class User(db.Model):
     """taula d'usuaris administradors"""
 #    __tablename__ = 'users'
     __tablename__ = 'GIC_ADMIN'
-    uid = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String(100))
     cognom = db.Column(db.String(100))
     email = db.Column(db.String(120), unique=True)
@@ -109,7 +109,7 @@ class User(db.Model):
         self.pwdhash = hashlib.sha256('[B@3f13a310' + password).hexdigest()
     def check_password(self, password):
 #        return check_password_hash(self.pwdhash, password)
-        if self.pwdhash = hashlib.sha256('[B@3f13a310' + password).hexdigest():
+        if self.pwdhash == hashlib.sha256('[B@3f13a310' + password).hexdigest():
             return True
         else:
             return False
