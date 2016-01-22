@@ -33,4 +33,4 @@ login_manager.login_view = 'login'
 
 from app import models, forms, token
 
-from app.views import add, editar, index, signup, cercar, esborrar, upload, perfil, signin, signout, f_password
+from app.views import add, editar, index, signup, cercar, esborrar, upload, perfil, signin, signout, f_password, add_ge_car

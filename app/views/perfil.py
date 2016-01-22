@@ -24,7 +24,6 @@ def canvi_password(id):
         post = Post.query.get(id)
 #        post.pwdhash = generate_password_hash(request.form['password'])
 	post.pwdhash = hashlib.sha256('[B@3f13a310' + request.form['password']).hexdigest()
-
         db.session.commit()
         return redirect(url_for('correcte'))
     return render_template('reset.html', post=post)

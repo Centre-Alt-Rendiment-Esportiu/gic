@@ -98,6 +98,10 @@ class User(db.Model):
     nom = db.Column(db.String(20))
     cognom = db.Column(db.String(20))
     email = db.Column(db.String(40), unique=True)
+    id = db.Column(db.Integer, primary_key=True)
+    nom = db.Column(db.String(100))
+    cognom = db.Column(db.String(100))
+    email = db.Column(db.String(120), unique=True)
     pwdhash = db.Column(db.String(200))
     def __init__(self, nom, cognom, email, password):
         self.nom = nom.title()
@@ -113,7 +117,6 @@ class User(db.Model):
             return True
         else:
             return False
-
 
 class GIC_PERMIS(db.Model):
     """taula que relaciona permisos amb persones"""
@@ -145,7 +148,7 @@ class GIC_ROL(db.Model):
         self.inici = inici
         self.fi = fi
 
-class GE_CAR_PERSONA(db.Model):
+class A_GE_CAR_PERSONA(db.Model):
     """taula ge car"""
     __tablename__ = 'A_GE_CAR_PERSONA'
     identificador = db.Column(db.String(20), primary_key=True)
@@ -260,11 +263,11 @@ class GE_CAR_PERSONA(db.Model):
         self.e_mail2 = e_mail2
         self.password = set_password(password)
         self.salt = salt
-        def set_password(self, password):
-            self.password = hashlib.sha256('[B@3f13a310' + password).hexdigest()
-        def check_password(self, password):
-            if self.password == hashlib.sha256('[B@3f13a310' + password).hexdigest():
-                return True
-            else:
-                return False
+    def set_password(self, password):
+        self.password = hashlib.sha256('[B@3f13a310' + password).hexdigest()
+    def check_password(self, password):
+        if self.password == hashlib.sha256('[B@3f13a310' + password).hexdigest():
+            return True
+        else:
+            return False
 

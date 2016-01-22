@@ -73,7 +73,7 @@ def confirm_email(token):
         email = request.form['email']
         user = Post.query.filter_by(email1=email).first()
 #        user.pwdhash = generate_password_hash(request.form['password'])
-	user.pwdhash = hashlib.sha256('[B@3f13a310' + request.form['password']).hexdigest()
+        user.pwdhash = hashlib.sha256('[B@3f13a310' + request.form['password']).hexdigest()
         db.session.commit()
         return redirect(url_for('index'))
     else:
@@ -94,7 +94,7 @@ def confirm_email_admin(token):
         email = request.form['email']
         user = User.query.filter_by(email=email).first()
 #        user.pwdhash = generate_password_hash(request.form['password'])
-	user.pwdhash = hashlib.sha256('[B@3f13a310' + request.form['password']).hexdigest()
+        user.pwdhash = hashlib.sha256('[B@3f13a310' + request.form['password']).hexdigest()
         db.session.commit()
         return redirect(url_for('index'))
     else:
