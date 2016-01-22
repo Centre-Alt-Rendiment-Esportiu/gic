@@ -147,75 +147,16 @@ class GIC_ROL(db.Model):
         self.id_rol = id_rol
         self.inici = inici
         self.fi = fi
-
-<<<<<<< HEAD
+    
 class A_GE_CAR_PERSONA(db.Model):
     """taula ge car"""
-=======
-class GE_CAR_PERSONA(db.Model):
->>>>>>> 74c2aff2c2effad1ab0109131070906d46e55fe6
     __tablename__ = 'A_GE_CAR_PERSONA'
     identificador = db.Column(db.String(20), primary_key=True)
     foto = db.Column(db.String(30))
     def __init__(self, foto):
         self.foto = foto
-<<<<<<< HEAD
-        self.passaport = passaport
-        self.nom = nom
-        self.cognom1 = cognom1
-        self.cognom2 = cognom2
-        self.sexe = sexe
-        self.ss = ss
-        self.tipus = tipus
-        self.data_neix = data_neix
-        self.lloc_neix = lloc_neix
-        self.provincia_neix = provincia_neix
-        self.comarca_neix = comarca_neix
-        self.auto_neix = auto_neix
-        self.pais_neix = pais_neix
-        self.direccio = direccio
-        self.poblacio = poblacio
-        self.provincia = provincia
-        self.cp = cp
-        self.comarca = comarca
-        self.autonomia = autonomia
-        self.pais = pais
-        self.telefon1 = telefon1
-        self.telefon2 = telefon2
-        self.e_mail = e_mail
-        self.estudis_act = estudis_act
-        self.nivel_academic = nivel_academic
-        self.tipus_centre = tipus_centre
-        self.nom_centre = nom_centre
-        self.aceptacio = aceptacio
-        self.revisiom = revisiom
-        self.revisiops = revisiops
-        self.fitxacomplerta = fitxacomplerta
-        self.vehicle = vehicle
-        self.matricula = matricula
-        self.tutor1 = tutor1
-        self.contacto1 = contacto1
-        self.tutor2 = tutor2
-        self.contacto2 = contacto2
-        self.actiu = actiu
-        self.identificador_ant = identificador_ant
-        self.id_med = id_med
-        self.id_fis = id_fis
-        self.id_psi = id_psi
-        self.cip = cip
-        self.consentiment_proinf = consentiment_proinf
-        self.pro_sal_es = pro_sal_es
-        self.e_mail2 = e_mail2
-        self.password = set_password(password)
-        self.salt = salt
-    def set_password(self, password):
-        self.password = hashlib.sha256('[B@3f13a310' + password).hexdigest()
-    def check_password(self, password):
-        if self.password == hashlib.sha256('[B@3f13a310' + password).hexdigest():
-            return True
-        else:
-            return False
-=======
+
+
 #class GE_CAR_PERSONA(db.Model):
 #    """taula ge car"""
 #    __tablename__ = 'A_GE_CAR_PERSONA'
@@ -338,5 +279,5 @@ class GE_CAR_PERSONA(db.Model):
 #                return True
 #            else:
 #                return False
->>>>>>> 74c2aff2c2effad1ab0109131070906d46e55fe6
+
 

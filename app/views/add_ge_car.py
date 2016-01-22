@@ -14,25 +14,26 @@ def add_ge_car():
     rols = GIC_CFG_ROL.query.filter_by(actiu="1")
     grups = GIC_CFG_GRUP.query.filter_by(actiu="1")
     if request.method == 'POST':                
-        post = A_GE_CAR_PERSONA(request.form['foto'], request.form['dni'], \
-        request.form['passport'], request.form['nom'], request.form['cognom1'], \
-        request.form['cognom2'], request.form['sexe'], request.form['ss'], \
-        request.form['tipus'], request.form['data_neix'], request.form['lloc_neix'], \
-        request.form['provincia_neix'], request.form['comarca_neix'], request.form['auto_neix'], \
-        request.form['pais_neix'],request.form['direccio'],request.form['poblacio'], \
-        request.form['provincia'],request.form['cp'],request.form['comarca'], \
-        request.form['autonomia'],request.form['pais'],request.form['telefon1'], \
-        request.form['telefon2'],request.form['e_mail'],request.form['estudis_act'], \
-        request.form['nivell_academic'],request.form['tipus_centre'],request.form['nom_centre'], \
-        request.form['aceptacio'],request.form['revisiom'],request.form['revisiops'], \
-        request.form['fitxacomplerta'],request.form['vehicle'],request.form['matricula'], \
-        request.form['tutor1'],request.form['contacto1'],request.form['tutor2'], \
-        request.form['contacto2'],request.form['actiu'],request.form['identificador_ant'], \
-        request.form['id_med'],request.form['id_fis'],request.form['id_psi'], \
-        request.form['cip'],request.form['consentiment'],request.form['data_consentiment'], \
-        request.form['data_revisiom'],request.form['consentiment_dad'],request.form['consentiment_proinf'], \
-        request.form['pro_sal_es'],request.form['e_mail2'],'randompassword', \
-        'randomsalt')
+        post = A_GE_CAR_PERSONA(request.form['foto'])
+#        , request.form['dni'], \
+#        request.form['passport'], request.form['nom'], request.form['cognom1'], \
+#        request.form['cognom2'], request.form['sexe'], request.form['ss'], \
+#        request.form['tipus'], request.form['data_neix'], request.form['lloc_neix'], \
+#        request.form['provincia_neix'], request.form['comarca_neix'], request.form['auto_neix'], \
+#        request.form['pais_neix'],request.form['direccio'],request.form['poblacio'], \
+#        request.form['provincia'],request.form['cp'],request.form['comarca'], \
+#        request.form['autonomia'],request.form['pais'],request.form['telefon1'], \
+#        request.form['telefon2'],request.form['e_mail'],request.form['estudis_act'], \
+#        request.form['nivell_academic'],request.form['tipus_centre'],request.form['nom_centre'], \
+#        request.form['aceptacio'],request.form['revisiom'],request.form['revisiops'], \
+#        request.form['fitxacomplerta'],request.form['vehicle'],request.form['matricula'], \
+#        request.form['tutor1'],request.form['contacto1'],request.form['tutor2'], \
+#        request.form['contacto2'],request.form['actiu'],request.form['identificador_ant'], \
+#        request.form['id_med'],request.form['id_fis'],request.form['id_psi'], \
+#        request.form['cip'],request.form['consentiment'],request.form['data_consentiment'], \
+#        request.form['data_revisiom'],request.form['consentiment_dad'],request.form['consentiment_proinf'], \
+#        request.form['pro_sal_es'],request.form['e_mail2'],'randompassword', \
+#        'randomsalt')
         db.session.add(post)
         db.session.flush()
 ######### Bucle 10000 registres ########
