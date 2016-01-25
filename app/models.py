@@ -200,11 +200,18 @@ class A_GE_CAR_PERSONA(db.Model):
     consentiment = db.Column(db.Integer)
     data_consentiment = db.Column(db.Date)
     data_revisiom = db.Column(db.Date)
+    consentiment_dad = db.Column(db.Integer)
+    consentiment_proinf = db.Column(db.Integer)
+    pro_sal_es = db.Column(db.Integer)
+    e_mail2 = db.Column(db.String(52))
+    password = db.Column(db.String(128))
+    salt = db.Column(db.String(20))
     def __init__(self, foto, dni, passaport, nom, cognom1, cognom2, sexe, ss, tipus, data_neix, lloc_neix \
     , provincia_neix, comarca_neix, auto_neix, pais_neix, direccio, poblacio, provincia, cp, comarca \
     , autonomia, pais, telefon1, telefon2, e_mail, estudis_act, nivel_academic, tipus_centre, nom_centre, aceptacio \
     , revisiom, revisiops, fitxacomplerta, vehicle, matricula, tutor1, contacto1, tutor2, contacto2, actiu \
-    , identificador_ant, id_med, id_fis, id_psi, cip, consentiment, data_consentiment, data_revisiom):
+    , identificador_ant, id_med, id_fis, id_psi, cip, consentiment, data_consentiment, data_revisiom \
+    , consentiment_dad, consentiment_proinf, pro_sal_es, e_mail2, password, salt):
         self.foto = foto
         self.dni = dni
         self.passaport = passaport
@@ -253,24 +260,15 @@ class A_GE_CAR_PERSONA(db.Model):
         self.consentiment = consentiment
         self.data_consentiment = data_consentiment
         self.data_revisiom = data_revisiom
-
-#    consentiment_dad = db.Column(db.Integer)
-#    consentiment_proinf = db.Column(db.Integer)
-#    pro_sal_es = db.Column(db.Integer)
-#    e_mail2 = db.Column(db.String(52))
-#    password = db.Column(db.String(128))
-#    salt = db.Column(db.String(20))		
-#    def __init__(self, consentiment_dad, consentiment_proinf, pro_sal_es, e_mail2, password, salt):
-
-#        self.consentiment_proinf = consentiment_proinf
-#        self.pro_sal_es = pro_sal_es
-#        self.e_mail2 = e_mail2
-#        self.password = set_password(password)
-#        self.salt = salt
-#        def set_password(self, password):
-#            self.password = hashlib.sha256('[B@3f13a310' + password).hexdigest()
-#        def check_password(self, password):
-#            if self.password == hashlib.sha256('[B@3f13a310' + password).hexdigest():
-#                return True
-#            else:
-#                return False
+        self.consentiment_proinf = consentiment_proinf
+        self.pro_sal_es = pro_sal_es
+        self.e_mail2 = e_mail2
+        self.password = set_password(password)
+        self.salt = salt
+        def set_password(self, password):
+            self.password = hashlib.sha256('[B@3f13a310' + password).hexdigest()
+        def check_password(self, password):
+            if self.password == hashlib.sha256('[B@3f13a310' + password).hexdigest():
+                return True
+            else:
+                return False
