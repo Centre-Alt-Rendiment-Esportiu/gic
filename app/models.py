@@ -179,23 +179,23 @@ class A_GE_CAR_PERSONA(db.Model):
     e_mail = db.Column(db.String(52))
     estudis_act = db.Column(db.String(30))
     nivel_academic = db.Column(db.Integer)
-    tipus_centre = db.Column(db.Integer)
-    nom_centre = db.Column(db.String(50))
-    aceptacio = db.Column(db.Integer)
-    revisiom = db.Column(db.Integer)
-    revisiops = db.Column(db.Integer)
-    fitxacomplerta = db.Column(db.Integer)
-    vehicle = db.Column(db.String(30))
-    matricula = db.Column(db.String(10))
-    tutor1 = db.Column(db.String(30))
-    contacto1 = db.Column(db.String(30))
-    tutor2 = db.Column(db.String(30))
-    contacto2 = db.Column(db.String(30))
+#    tipus_centre = db.Column(db.Integer)
+#    nom_centre = db.Column(db.String(50))
+#    aceptacio = db.Column(db.Integer)
+#    revisiom = db.Column(db.Integer)
+#    revisiops = db.Column(db.Integer)
+#    fitxacomplerta = db.Column(db.Integer)
+#    vehicle = db.Column(db.String(30))
+#    matricula = db.Column(db.String(10))
+#    tutor1 = db.Column(db.String(30))
+#    contacto1 = db.Column(db.String(30))
+#    tutor2 = db.Column(db.String(30))
+#    contacto2 = db.Column(db.String(30))
     def __init__(self, foto, dni, passaport, nom, cognom1, cognom2, sexe, ss, tipus, data_neix, lloc_neix \
     , provincia_neix, comarca_neix, auto_neix, pais_neix, direccio, poblacio, provincia, cp, comarca \
-    , autonomia, pais, telefon1, telefon2, e_mail, estudis_act, nivel_academic, tipus_centre, nom_centre, aceptacio \
-    , revisiom, revisiops, fitxacomplerta, vehicle, matricula, tutor1, contacto1 \
-    , tutor2, contacto2):
+    , autonomia, pais, telefon1, telefon2, e_mail, estudis_act, nivel_academic):#, tipus_centre, nom_centre, aceptacio \
+#    , revisiom, revisiops, fitxacomplerta, vehicle, matricula, tutor1, contacto1 \
+#    , tutor2, contacto2):
         self.foto = foto
         self.dni = dni
         self.passaport = passaport
@@ -223,18 +223,18 @@ class A_GE_CAR_PERSONA(db.Model):
         self.e_mail = e_mail
         self.estudis_act = estudis_act
         self.nivel_academic = nivel_academic
-        self.tipus_centre = tipus_centre
-        self.nom_centre = nom_centre
-        self.aceptacio = aceptacio
-        self.revisiom = revisiom
-        self.revisiops = revisiops
-        self.fitxacomplerta = fitxacomplerta
-        self.vehicle = vehicle
-        self.matricula = matricula
-        self.tutor1 = tutor1
-        self.contacto1 = contacto1
-        self.tutor2 = tutor2
-        self.contacto2 = contacto2
+#        self.tipus_centre = tipus_centre
+#        self.nom_centre = nom_centre
+#        self.aceptacio = aceptacio
+#        self.revisiom = revisiom
+#        self.revisiops = revisiops
+#        self.fitxacomplerta = fitxacomplerta
+#        self.vehicle = vehicle
+#        self.matricula = matricula
+#        self.tutor1 = tutor1
+#        self.contacto1 = contacto1
+#        self.tutor2 = tutor2
+#        self.contacto2 = contacto2
 
 
 #    actiu = db.Column(db.Integer)
