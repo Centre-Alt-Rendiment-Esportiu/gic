@@ -160,7 +160,10 @@ class A_GE_CAR_PERSONA(db.Model):
     cognom2 = db.Column(db.String(20))
     sexe = db.Column(db.Integer)
     ss = db.Column(db.String(20))
-    def __init__(self, foto, dni, passaport, nom, cognom1, cognom2, sexe, ss):
+    tipus = db.Column(db.Integer)
+    data_neix = db.Column(db.Date)
+    lloc_neix = db.Column(db.String(30))
+    def __init__(self, foto, dni, passaport, nom, cognom1, cognom2, sexe, ss, tipus, data_neix, lloc_neix):
         self.foto = foto
         self.dni = dni
         self.passaport = passaport
@@ -169,10 +172,10 @@ class A_GE_CAR_PERSONA(db.Model):
         self.cognom2 = cognom2
         self.sexe = sexe
         self.ss = ss
+        self.tipus = tipus
+        self.data_neix = data_neix
+        self.lloc_neix = lloc_neix
 
-#    tipus = db.Column(db.Integer)
-#    data_neix = db.Column(db.Date)
-#    lloc_neix = db.Column(db.String(30))
 #    provincia_neix = db.Column(db.Integer)
 #    comarca_neix = db.Column(db.Integer)
 #    auto_neix = db.Column(db.Integer)
@@ -216,8 +219,7 @@ class A_GE_CAR_PERSONA(db.Model):
 #    e_mail2 = db.Column(db.String(52))
 #    password = db.Column(db.String(128))
 #    salt = db.Column(db.String(20))		
-#    def __init__(self, nom, cognom1, cognom2, sexe, ss \
-#    , tipus, data_neix, lloc_neix, provincia_neix, comarca_neix, auto_neix, pais_neix \
+#    def __init__(self, provincia_neix, comarca_neix, auto_neix, pais_neix \
 #    , direccio, poblacio, provincia, cp, comarca, autonomia, pais, telefon1, telefon2 \
 #    , e_mail, estudis_act, nivel_academic, tipus_centre, nom_centre, aceptacio \
 #    , revisiom, revisiops, fitxacomplerta, vehicle, matricula, tutor1, contacto1 \
@@ -225,9 +227,7 @@ class A_GE_CAR_PERSONA(db.Model):
 #    , consentiment, data_consentiment, data_revisiom, consentiment_dad \
 #    , consentiment_proinf, pro_sal_es, e_mail2, password, salt):
 
-#        self.tipus = tipus
-#        self.data_neix = data_neix
-#        self.lloc_neix = lloc_neix
+
 #        self.provincia_neix = provincia_neix
 #        self.comarca_neix = comarca_neix
 #        self.auto_neix = auto_neix
