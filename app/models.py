@@ -186,7 +186,7 @@ class A_GE_CAR_PERSONA(db.Model):
     revisiops = db.Column(db.Integer)
     fitxacomplerta = db.Column(db.Integer)
     vehicle = db.Column(db.String(30))
-    atricula = db.Column(db.String(10))
+    matricula = db.Column(db.String(10))
     tutor1 = db.Column(db.String(30))
     contacto1 = db.Column(db.String(30))
     tutor2 = db.Column(db.String(30))
