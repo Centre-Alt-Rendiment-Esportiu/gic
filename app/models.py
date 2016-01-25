@@ -10,6 +10,46 @@ from marshmallow import validate
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import SQLAlchemyError
 
+################## API JSON #############################
+
+class CRUD():   
+    def add(self, resource):
+        db.session.add(resource)
+        return db.session.commit()
+    def update(self):
+        return db.session.commit()
+    def delete(self, resource):
+        db.session.delete(resource)
+        return db.session.commit()
+        
+class UsersSchema(Schema):
+    not_blank = validate.Length(min=1, error='Field cannot be blank')
+    id = fields.Integer(dump_only=True)  
+    name = fields.String(validate=not_blank)
+    cognom1 = fields.String(validate=not_blank)
+    cognom2 = fields.String(validate=not_blank)
+    sexe = fields.String(validate=not_blank)
+    dni = fields.String(validate=not_blank)
+    passport = fields.String(validate=not_blank)
+    data_naix = fields.String(validate=not_blank)
+    telefon1 = fields.String(validate=not_blank)
+    telefon2 = fields.String(validate=not_blank)
+    email1 = fields.String(validate=not_blank)
+    email2 = fields.String(validate=not_blank)
+    actiu = fields.String(validate=not_blank)
+    foto = fields.String(validate=not_blank)
+
+     #self links
+    def get_top_level_links(self, data, many):
+        if many:
+            self_link = "/users/"
+        else:
+            self_link = "/users/{}".format(data['id'])
+        return {'self': self_link}
+    class Meta:
+        type_ = 'users'
+####################################################################
+
 class GIC_CFG_ROL(db.Model):
     """taula de rols"""
     __tablename__ = 'A_GIC_CFG_ROL'
@@ -273,42 +313,3 @@ class A_GE_CAR_PERSONA(db.Model):
             return True
         else:
             return False
-
-################## API JSON #############################
-
-class CRUD():   
-    def add(self, resource):
-        db.session.add(resource)
-        return db.session.commit()
-    def update(self):
-        return db.session.commit()
-    def delete(self, resource):
-        db.session.delete(resource)
-        return db.session.commit()
-        
-class UsersSchema(Schema):
-    not_blank = validate.Length(min=1, error='Field cannot be blank')
-    id = fields.Integer(dump_only=True)  
-    name = fields.String(validate=not_blank)
-    cognom1 = fields.String(validate=not_blank)
-    cognom2 = fields.String(validate=not_blank)
-    sexe = fields.String(validate=not_blank)
-    dni = fields.String(validate=not_blank)
-    passport = fields.String(validate=not_blank)
-    data_naix = fields.String(validate=not_blank)
-    telefon1 = fields.String(validate=not_blank)
-    telefon2 = fields.String(validate=not_blank)
-    email1 = fields.String(validate=not_blank)
-    email2 = fields.String(validate=not_blank)
-    actiu = fields.String(validate=not_blank)
-    foto = fields.String(validate=not_blank)
-
-     #self links
-    def get_top_level_links(self, data, many):
-        if many:
-            self_link = "/users/"
-        else:
-            self_link = "/users/{}".format(data['id'])
-        return {'self': self_link}
-    class Meta:
-        type_ = 'users'
