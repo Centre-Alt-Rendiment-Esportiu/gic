@@ -153,17 +153,13 @@ class A_GE_CAR_PERSONA(db.Model):
     __tablename__ = 'A_GE_CAR_PERSONA'
     identificador = db.Column(db.String(20), primary_key=True)
     foto = db.Column(db.String(30))
-    def __init__(self, foto):
+    dni = db.Column(db.String(9))
+    passaport = db.Column(db.String(20))
+    def __init__(self, foto, dni, passaport):
         self.foto = foto
+        self.dni = dni
+        self.passaport = passaport
 
-
-#class GE_CAR_PERSONA(db.Model):
-#    """taula ge car"""
-#    __tablename__ = 'A_GE_CAR_PERSONA'
-#    identificador = db.Column(db.String(20), primary_key=True)
-#    foto = db.Column(db.String(30))
-#    dni = db.Column(db.String(9))
-#    passaport = db.Column(db.String(20))
 #    nom = db.Column(db.String(20))
 #    cognom1 = db.Column(db.String(20))
 #    cognom2 = db.Column(db.String(20))
@@ -215,7 +211,7 @@ class A_GE_CAR_PERSONA(db.Model):
 #    e_mail2 = db.Column(db.String(52))
 #    password = db.Column(db.String(128))
 #    salt = db.Column(db.String(20))		
-#    def __init__(self, foto, dni, passaport, nom, cognom1, cognom2, sexe, ss \
+#    def __init__(self, nom, cognom1, cognom2, sexe, ss \
 #    , tipus, data_neix, lloc_neix, provincia_neix, comarca_neix, auto_neix, pais_neix \
 #    , direccio, poblacio, provincia, cp, comarca, autonomia, pais, telefon1, telefon2 \
 #    , e_mail, estudis_act, nivel_academic, tipus_centre, nom_centre, aceptacio \
@@ -223,8 +219,7 @@ class A_GE_CAR_PERSONA(db.Model):
 #    , tutor2, contacto2, actiu, identificador_ant, id_med, id_fis, id_psi, cip \
 #    , consentiment, data_consentiment, data_revisiom, consentiment_dad \
 #    , consentiment_proinf, pro_sal_es, e_mail2, password, salt):
-#        self.foto = foto
-#        self.passaport = passaport
+
 #        self.nom = nom
 #        self.cognom1 = cognom1
 #        self.cognom2 = cognom2
