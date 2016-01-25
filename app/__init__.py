@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, Response
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
 from flask.ext.mail import Mail
