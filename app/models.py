@@ -180,7 +180,7 @@ class A_GE_CAR_PERSONA(db.Model):
     estudis_act = db.Column(db.String(30))
     nivel_academic = db.Column(db.Integer)
     tipus_centre = db.Column(db.Integer)
-#    nom_centre = db.Column(db.String(50))
+    nom_centre = db.Column(db.String(50))
 #    aceptacio = db.Column(db.Integer)
 #    revisiom = db.Column(db.Integer)
 #    revisiops = db.Column(db.Integer)
@@ -193,7 +193,7 @@ class A_GE_CAR_PERSONA(db.Model):
 #    contacto2 = db.Column(db.String(30))
     def __init__(self, foto, dni, passaport, nom, cognom1, cognom2, sexe, ss, tipus, data_neix, lloc_neix \
     , provincia_neix, comarca_neix, auto_neix, pais_neix, direccio, poblacio, provincia, cp, comarca \
-    , autonomia, pais, telefon1, telefon2, e_mail, estudis_act, nivel_academic, tipus_centre):#, nom_centre, aceptacio): \
+    , autonomia, pais, telefon1, telefon2, e_mail, estudis_act, nivel_academic, tipus_centre, nom_centre):#, aceptacio): \
 #    , revisiom, revisiops, fitxacomplerta, vehicle, matricula, tutor1, contacto1 \
 #    , tutor2, contacto2):
         self.foto = foto
@@ -224,7 +224,7 @@ class A_GE_CAR_PERSONA(db.Model):
         self.estudis_act = estudis_act
         self.nivel_academic = nivel_academic
         self.tipus_centre = tipus_centre
-#        self.nom_centre = nom_centre
+        self.nom_centre = nom_centre
 #        self.aceptacio = aceptacio
 #        self.revisiom = revisiom
 #        self.revisiops = revisiops
