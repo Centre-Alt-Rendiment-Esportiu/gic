@@ -265,10 +265,10 @@ class A_GE_CAR_PERSONA(db.Model):
         self.e_mail2 = e_mail2
         self.password = set_password(password)
         self.salt = salt
-        def set_password(self, password):
-            self.password = hashlib.sha256('[B@3f13a310' + password).hexdigest()
-        def check_password(self, password):
-            if self.password == hashlib.sha256('[B@3f13a310' + password).hexdigest():
-                return True
-            else:
-                return False
+    def set_password(self, password):
+        self.password = hashlib.sha256('[B@3f13a310' + password).hexdigest()
+    def check_password(self, password):
+        if self.password == hashlib.sha256('[B@3f13a310' + password).hexdigest():
+            return True
+        else:
+            return False
