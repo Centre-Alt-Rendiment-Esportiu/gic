@@ -28,9 +28,9 @@ def add_ge_car():
         request.form['fitxacomplerta'],request.form['vehicle'],request.form['matricula'], \
         request.form['tutor1'],request.form['contacto1'],request.form['tutor2'], \
         request.form['contacto2'],request.form['actiu'],request.form['identificador_ant'], \
-        request.form['id_med'],request.form['id_fis'],request.form['id_psi'])#, \
-#        request.form['cip'],request.form['consentiment'],request.form['data_consentiment'], \
-#        request.form['data_revisiom'],request.form['consentiment_dad'],request.form['consentiment_proinf'], \
+        request.form['id_med'],request.form['id_fis'],request.form['id_psi'], \
+        request.form['cip'],request.form['consentiment'],request.form['data_consentiment'], \
+        request.form['data_revisiom'])#,request.form['consentiment_dad'],request.form['consentiment_proinf'], \
 #        request.form['pro_sal_es'],request.form['e_mail2'],'randompassword', \
 #        'randomsalt')
         db.session.add(post)

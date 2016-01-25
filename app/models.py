@@ -196,11 +196,15 @@ class A_GE_CAR_PERSONA(db.Model):
     id_med = db.Column(db.Integer)
     id_fis = db.Column(db.Integer)
     id_psi = db.Column(db.Integer)
+    cip = db.Column(db.String(25))
+    consentiment = db.Column(db.Integer)
+    data_consentiment = db.Column(db.Date)
+    data_revisiom = db.Column(db.Date)
     def __init__(self, foto, dni, passaport, nom, cognom1, cognom2, sexe, ss, tipus, data_neix, lloc_neix \
     , provincia_neix, comarca_neix, auto_neix, pais_neix, direccio, poblacio, provincia, cp, comarca \
     , autonomia, pais, telefon1, telefon2, e_mail, estudis_act, nivel_academic, tipus_centre, nom_centre, aceptacio \
     , revisiom, revisiops, fitxacomplerta, vehicle, matricula, tutor1, contacto1, tutor2, contacto2, actiu \
-    , identificador_ant, id_med, id_fis, id_psi):#, cip):
+    , identificador_ant, id_med, id_fis, id_psi, cip, consentiment, data_consentiment, data_revisiom):
         self.foto = foto
         self.dni = dni
         self.passaport = passaport
@@ -245,22 +249,19 @@ class A_GE_CAR_PERSONA(db.Model):
         self.id_med = id_med
         self.id_fis = id_fis
         self.id_psi = id_psi
+        self.cip = cip
+        self.consentiment = consentiment
+        self.data_consentiment = data_consentiment
+        self.data_revisiom = data_revisiom
 
-#    cip = db.Column(db.String(25))
-#    consentiment = db.Column(db.Integer)
-#    data_consentiment = db.Column(db.Date)
-#    data_revisiom = db.Column(db.Date)
 #    consentiment_dad = db.Column(db.Integer)
 #    consentiment_proinf = db.Column(db.Integer)
 #    pro_sal_es = db.Column(db.Integer)
 #    e_mail2 = db.Column(db.String(52))
 #    password = db.Column(db.String(128))
 #    salt = db.Column(db.String(20))		
-#    def __init__(self \
-#    , consentiment, data_consentiment, data_revisiom, consentiment_dad \
-#    , consentiment_proinf, pro_sal_es, e_mail2, password, salt):
+#    def __init__(self, consentiment_dad, consentiment_proinf, pro_sal_es, e_mail2, password, salt):
 
-#        self.cip = cip
 #        self.consentiment_proinf = consentiment_proinf
 #        self.pro_sal_es = pro_sal_es
 #        self.e_mail2 = e_mail2
