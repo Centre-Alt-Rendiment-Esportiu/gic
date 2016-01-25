@@ -161,7 +161,7 @@ class A_GE_CAR_PERSONA(db.Model):
     sexe = db.Column(db.Integer)
     ss = db.Column(db.String(20))
     tipus = db.Column(db.Integer)
-    data_neix = db.Column(db.Date)
+    data_neix = db.Column(db.String(8))
     lloc_neix = db.Column(db.String(30))
     provincia_neix = db.Column(db.Integer)
     comarca_neix = db.Column(db.Integer)
