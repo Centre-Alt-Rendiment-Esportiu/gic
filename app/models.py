@@ -191,10 +191,16 @@ class A_GE_CAR_PERSONA(db.Model):
     contacto1 = db.Column(db.String(30))
     tutor2 = db.Column(db.String(30))
     contacto2 = db.Column(db.String(30))
+    actiu = db.Column(db.Integer)
+    identificador_ant = db.Column(db.String(15))
+    id_med = db.Column(db.Integer)
+    id_fis = db.Column(db.Integer)
+    id_psi = db.Column(db.Integer)
     def __init__(self, foto, dni, passaport, nom, cognom1, cognom2, sexe, ss, tipus, data_neix, lloc_neix \
     , provincia_neix, comarca_neix, auto_neix, pais_neix, direccio, poblacio, provincia, cp, comarca \
     , autonomia, pais, telefon1, telefon2, e_mail, estudis_act, nivel_academic, tipus_centre, nom_centre, aceptacio \
-    , revisiom, revisiops, fitxacomplerta, vehicle, matricula, tutor1, contacto1, tutor2, contacto2):
+    , revisiom, revisiops, fitxacomplerta, vehicle, matricula, tutor1, contacto1, tutor2, contacto2, actiu \
+    , identificador_ant, id_med, id_fis, id_psi):#, cip):
         self.foto = foto
         self.dni = dni
         self.passaport = passaport
@@ -234,13 +240,12 @@ class A_GE_CAR_PERSONA(db.Model):
         self.contacto1 = contacto1
         self.tutor2 = tutor2
         self.contacto2 = contacto2
+        self.actiu = actiu
+        self.identificador_ant = identificador_ant
+        self.id_med = id_med
+        self.id_fis = id_fis
+        self.id_psi = id_psi
 
-
-#    actiu = db.Column(db.Integer)
-#    identificador_ant = db.Column(db.String(15))
-#    id_med = db.Column(db.Integer)
-#    id_fis = db.Column(db.Integer)
-#    id_psi = db.Column(db.Integer)
 #    cip = db.Column(db.String(25))
 #    consentiment = db.Column(db.Integer)
 #    data_consentiment = db.Column(db.Date)
@@ -251,15 +256,10 @@ class A_GE_CAR_PERSONA(db.Model):
 #    e_mail2 = db.Column(db.String(52))
 #    password = db.Column(db.String(128))
 #    salt = db.Column(db.String(20))		
-#    def __init__(self, actiu, identificador_ant, id_med, id_fis, id_psi, cip \
+#    def __init__(self \
 #    , consentiment, data_consentiment, data_revisiom, consentiment_dad \
 #    , consentiment_proinf, pro_sal_es, e_mail2, password, salt):
 
-#        self.actiu = actiu
-#        self.identificador_ant = identificador_ant
-#        self.id_med = id_med
-#        self.id_fis = id_fis
-#        self.id_psi = id_psi
 #        self.cip = cip
 #        self.consentiment_proinf = consentiment_proinf
 #        self.pro_sal_es = pro_sal_es
