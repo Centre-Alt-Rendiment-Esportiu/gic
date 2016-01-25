@@ -90,34 +90,6 @@ class Post(db.Model):
         else:
             return False
 
-class User(db.Model):
-    """taula d'usuaris administradors"""
-#    __tablename__ = 'users'
-    __tablename__ = 'A_GIC_ADMIN'
-    id = db.Column(db.Integer, primary_key=True)
-    nom = db.Column(db.String(20))
-    cognom = db.Column(db.String(20))
-    email = db.Column(db.String(40), unique=True)
-    id = db.Column(db.Integer, primary_key=True)
-    nom = db.Column(db.String(100))
-    cognom = db.Column(db.String(100))
-    email = db.Column(db.String(120), unique=True)
-    pwdhash = db.Column(db.String(200))
-    def __init__(self, nom, cognom, email, password):
-        self.nom = nom.title()
-        self.cognom = cognom.title()
-        self.email = email.lower()
-        self.set_password(password)
-    def set_password(self, password):
-#        self.pwdhash = generate_password_hash(password)
-        self.pwdhash = hashlib.sha256('[B@3f13a310' + password).hexdigest()
-    def check_password(self, password):
-#        return check_password_hash(self.pwdhash, password)
-        if self.pwdhash == hashlib.sha256('[B@3f13a310' + password).hexdigest():
-            return True
-        else:
-            return False
-
 class GIC_PERMIS(db.Model):
     """taula que relaciona permisos amb persones"""
     __tablename__ = 'A_GIC_PERMIS'
@@ -263,7 +235,7 @@ class A_GE_CAR_PERSONA(db.Model):
         self.consentiment_proinf = consentiment_proinf
         self.pro_sal_es = pro_sal_es
         self.e_mail2 = e_mail2
-        self.password = set_password(password)
+        self.set_password(password)
         self.salt = salt
     def set_password(self, password):
         self.password = hashlib.sha256('[B@3f13a310' + password).hexdigest()
