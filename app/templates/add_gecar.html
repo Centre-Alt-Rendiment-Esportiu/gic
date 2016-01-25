@@ -7,24 +7,24 @@
 <form action="" method="POST">
 <tr>
     <td><label>	Foto</label>
-        <input class="text_input" type="text" name="foto"/>
+        <input class="text_input" type="text_input" name="foto"/>
     </td>
     <td><label>	DNI</label>
-        <input class="text_input" type="text" name="dni" pattern=".{0}|([0-9]{8})+([a-z]{1})"/>
+        <input class="text_input" type="text_input" name="dni" pattern=".{0}|([0-9]{8})+([a-z]{1})"/>
     </td>
     
     <td><label>	Passaport</label>
-        <input class="text_input" type="text" name="passaport"/>
+        <input class="text_input" type="text_input" name="passaport"/>
     </td>
 </tr>
 <tr>	<td><label>	Nom</label>
-		<input  class="text_input" type="text" name="nom" minlenght="1" pattern="([A-Za-z ]{1,20})" required/> 
+		<input  class="text_input" type="text_input" name="nom" minlenght="1" pattern="([A-Za-z ]{1,20})" required/> 
 	</td>
 	<td>	<label>Cognom 1</label>
-		<input class="text_input" type="text" name="cognom1" pattern=".{0}|([A-Za-z ]{1,20})"/>
+		<input class="text_input" type="text_input" name="cognom1" pattern=".{0}|([A-Za-z ]{1,20})"/>
 	</td>
 	<td>	<label>Cognom 2</label>
-		<input class="text_input" type="text" name="cognom2" pattern=".{0}|([A-Za-z ]{1,20})"/>
+		<input class="text_input" type="text_input" name="cognom2" pattern=".{0}|([A-Za-z ]{1,20})"/>
 	</td>
     <td>	
 	<label>Sexe</label>
@@ -37,20 +37,20 @@
 </tr>
 <tr>
     <td><label>	SS</label>
-        <input class="text_input" type="text" name="ss"/>
+        <input class="text_input" type="text_input" name="ss"/>
     </td>
     <td><label>	Tipus</label>
-        <input class="text_input" type="text" name="tipus" pattern=".{0}|([0-9]{1})"/>
+        <input class="text_input" type="text_input" name="tipus" pattern=".{0}|([0-9]{1})"/>
     </td>
 	<td>
 		<label>Data de naixement</label>
-		<input type="date" name="data_neix"/>
+		<input type="text_input" name="data_neix"/>
 	</td>
 	<td>
 		<label>Lloc de naixement</label>
 		<input class="text_input" type="text_input" name="lloc_neix"/>
 	</td>
-</tr><!--
+</tr>
 <tr>
 	<td>
 		<label>Provincia de naixement</label>
@@ -100,7 +100,7 @@
         <td>    <label>Telefon 1</label>
                 <input class="text_input" type="text_input" name="telefon1" pattern="[0-9]{9}"/>
         </td>
-</tr>
+</tr><!--
 <tr>
         <td>    <label>Telefon 2</label>
                 <input class="text_input" type="text_input" name="telefon2" pattern="[0-9]{9}"/>

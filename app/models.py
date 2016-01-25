@@ -163,7 +163,21 @@ class A_GE_CAR_PERSONA(db.Model):
     tipus = db.Column(db.Integer)
     data_neix = db.Column(db.Date)
     lloc_neix = db.Column(db.String(30))
-    def __init__(self, foto, dni, passaport, nom, cognom1, cognom2, sexe, ss, tipus, data_neix, lloc_neix):
+    provincia_neix = db.Column(db.Integer)
+    comarca_neix = db.Column(db.Integer)
+    auto_neix = db.Column(db.Integer)
+    pais_neix = db.Column(db.Integer)
+    direccio = db.Column(db.String(40))
+    poblacio = db.Column(db.String(30))
+    provincia = db.Column(db.Integer)
+    cp = db.Column(db.String(15))
+    comarca = db.Column(db.Integer)
+    autonomia = db.Column(db.Integer)
+    pais = db.Column(db.Integer)
+    telefon1 = db.Column(db.String(20))
+    def __init__(self, foto, dni, passaport, nom, cognom1, cognom2, sexe, ss, tipus, data_neix, lloc_neix \
+    , provincia_neix, comarca_neix, auto_neix, pais_neix, direccio, poblacio, provincia, cp, comarca \
+    , autonomia, pais, telefon1):
         self.foto = foto
         self.dni = dni
         self.passaport = passaport
@@ -175,19 +189,19 @@ class A_GE_CAR_PERSONA(db.Model):
         self.tipus = tipus
         self.data_neix = data_neix
         self.lloc_neix = lloc_neix
+        self.provincia_neix = provincia_neix
+        self.comarca_neix = comarca_neix
+        self.auto_neix = auto_neix
+        self.pais_neix = pais_neix
+        self.direccio = direccio
+        self.poblacio = poblacio
+        self.provincia = provincia
+        self.cp = cp
+        self.comarca = comarca
+        self.autonomia = autonomia
+        self.pais = pais
+        self.telefon1 = telefon1
 
-#    provincia_neix = db.Column(db.Integer)
-#    comarca_neix = db.Column(db.Integer)
-#    auto_neix = db.Column(db.Integer)
-#    pais_neix = db.Column(db.Integer)
-#    direccio = db.Column(db.String(40))
-#    poblacio = db.Column(db.String(30))
-#    provincia = db.Column(db.Integer)
-#    cp = db.Column(db.String(15))
-#    comarca = db.Column(db.Integer)
-#    autonomia = db.Column(db.Integer)
-#    pais = db.Column(db.Integer)
-#    telefon1 = db.Column(db.String(20))
 #    telefon2 = db.Column(db.String(20))
 #    e_mail = db.Column(db.String(52))
 #    estudis_act = db.Column(db.String(30))
@@ -219,27 +233,13 @@ class A_GE_CAR_PERSONA(db.Model):
 #    e_mail2 = db.Column(db.String(52))
 #    password = db.Column(db.String(128))
 #    salt = db.Column(db.String(20))		
-#    def __init__(self, provincia_neix, comarca_neix, auto_neix, pais_neix \
-#    , direccio, poblacio, provincia, cp, comarca, autonomia, pais, telefon1, telefon2 \
+#    def __init__(self, direccio, poblacio, provincia, cp, comarca, autonomia, pais, telefon1, telefon2 \
 #    , e_mail, estudis_act, nivel_academic, tipus_centre, nom_centre, aceptacio \
 #    , revisiom, revisiops, fitxacomplerta, vehicle, matricula, tutor1, contacto1 \
 #    , tutor2, contacto2, actiu, identificador_ant, id_med, id_fis, id_psi, cip \
 #    , consentiment, data_consentiment, data_revisiom, consentiment_dad \
 #    , consentiment_proinf, pro_sal_es, e_mail2, password, salt):
 
-
-#        self.provincia_neix = provincia_neix
-#        self.comarca_neix = comarca_neix
-#        self.auto_neix = auto_neix
-#        self.pais_neix = pais_neix
-#        self.direccio = direccio
-#        self.poblacio = poblacio
-#        self.provincia = provincia
-#        self.cp = cp
-#        self.comarca = comarca
-#        self.autonomia = autonomia
-#        self.pais = pais
-#        self.telefon1 = telefon1
 #        self.telefon2 = telefon2
 #        self.e_mail = e_mail
 #        self.estudis_act = estudis_act
