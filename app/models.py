@@ -194,8 +194,8 @@ class A_GE_CAR_PERSONA(db.Model):
     def __init__(self, foto, dni, passaport, nom, cognom1, cognom2, sexe, ss, tipus, data_neix, lloc_neix \
     , provincia_neix, comarca_neix, auto_neix, pais_neix, direccio, poblacio, provincia, cp, comarca \
     , autonomia, pais, telefon1, telefon2, e_mail, estudis_act, nivel_academic, tipus_centre, nom_centre, aceptacio):# \
-#    , revisiom, revisiops, fitxacomplerta, vehicle, matricula, tutor1, contacto1 \
-#    , tutor2, contacto2):
+    , revisiom, revisiops, fitxacomplerta, vehicle, matricula, tutor1, contacto1 \
+    , tutor2, contacto2):
         self.foto = foto
         self.dni = dni
         self.passaport = passaport
@@ -226,15 +226,15 @@ class A_GE_CAR_PERSONA(db.Model):
         self.tipus_centre = tipus_centre
         self.nom_centre = nom_centre
         self.aceptacio = aceptacio
-#        self.revisiom = revisiom
-#        self.revisiops = revisiops
-#        self.fitxacomplerta = fitxacomplerta
-#        self.vehicle = vehicle
-#        self.matricula = matricula
-#        self.tutor1 = tutor1
-#        self.contacto1 = contacto1
-#        self.tutor2 = tutor2
-#        self.contacto2 = contacto2
+        self.revisiom = revisiom
+        self.revisiops = revisiops
+        self.fitxacomplerta = fitxacomplerta
+        self.vehicle = vehicle
+        self.matricula = matricula
+        self.tutor1 = tutor1
+        self.contacto1 = contacto1
+        self.tutor2 = tutor2
+        self.contacto2 = contacto2
 
 
 #    actiu = db.Column(db.Integer)
