@@ -155,16 +155,21 @@ class A_GE_CAR_PERSONA(db.Model):
     foto = db.Column(db.String(30))
     dni = db.Column(db.String(9))
     passaport = db.Column(db.String(20))
-    def __init__(self, foto, dni, passaport):
+    nom = db.Column(db.String(20))
+    cognom1 = db.Column(db.String(20))
+    cognom2 = db.Column(db.String(20))
+    sexe = db.Column(db.Integer)
+    ss = db.Column(db.String(20))
+    def __init__(self, foto, dni, passaport, nom, cognom1, cognom2, sexe, ss):
         self.foto = foto
         self.dni = dni
         self.passaport = passaport
+        self.nom = nom
+        self.cognom1 = cognom1
+        self.cognom2 = cognom2
+        self.sexe = sexe
+        self.ss = ss
 
-#    nom = db.Column(db.String(20))
-#    cognom1 = db.Column(db.String(20))
-#    cognom2 = db.Column(db.String(20))
-#    sexe = db.Column(db.Integer)
-#    ss = db.Column(db.String(20))
 #    tipus = db.Column(db.Integer)
 #    data_neix = db.Column(db.Date)
 #    lloc_neix = db.Column(db.String(30))
@@ -220,11 +225,6 @@ class A_GE_CAR_PERSONA(db.Model):
 #    , consentiment, data_consentiment, data_revisiom, consentiment_dad \
 #    , consentiment_proinf, pro_sal_es, e_mail2, password, salt):
 
-#        self.nom = nom
-#        self.cognom1 = cognom1
-#        self.cognom2 = cognom2
-#        self.sexe = sexe
-#        self.ss = ss
 #        self.tipus = tipus
 #        self.data_neix = data_neix
 #        self.lloc_neix = lloc_neix
