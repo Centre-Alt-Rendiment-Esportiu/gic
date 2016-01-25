@@ -5,6 +5,11 @@ from werkzeug import generate_password_hash, check_password_hash
 from app import db, app
 import hashlib
 
+from marshmallow_jsonapi import Schema, fields
+from marshmallow import validate
+from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import SQLAlchemyError
+
 class GIC_CFG_ROL(db.Model):
     """taula de rols"""
     __tablename__ = 'A_GIC_CFG_ROL'
@@ -46,7 +51,7 @@ class GIC_CFG_PERMIS(db.Model):
         self.actiu = actiu
         self.grup = grup
 
-class Post(db.Model):
+class Post(db.Model, CRUD):
     """taula de persones"""
     __tablename__ = 'A_GIC_PERSONA'
     id = db.Column(db.Integer, primary_key=True)
@@ -98,10 +103,6 @@ class User(db.Model):
     nom = db.Column(db.String(20))
     cognom = db.Column(db.String(20))
     email = db.Column(db.String(40), unique=True)
-    id = db.Column(db.Integer, primary_key=True)
-    nom = db.Column(db.String(100))
-    cognom = db.Column(db.String(100))
-    email = db.Column(db.String(120), unique=True)
     pwdhash = db.Column(db.String(200))
     def __init__(self, nom, cognom, email, password):
         self.nom = nom.title()
@@ -272,3 +273,42 @@ class A_GE_CAR_PERSONA(db.Model):
             return True
         else:
             return False
+
+################## API JSON #############################
+
+class CRUD():   
+    def add(self, resource):
+        db.session.add(resource)
+        return db.session.commit()
+    def update(self):
+        return db.session.commit()
+    def delete(self, resource):
+        db.session.delete(resource)
+        return db.session.commit()
+        
+class UsersSchema(Schema):
+    not_blank = validate.Length(min=1, error='Field cannot be blank')
+    id = fields.Integer(dump_only=True)  
+    name = fields.String(validate=not_blank)
+    cognom1 = fields.String(validate=not_blank)
+    cognom2 = fields.String(validate=not_blank)
+    sexe = fields.String(validate=not_blank)
+    dni = fields.String(validate=not_blank)
+    passport = fields.String(validate=not_blank)
+    data_naix = fields.String(validate=not_blank)
+    telefon1 = fields.String(validate=not_blank)
+    telefon2 = fields.String(validate=not_blank)
+    email1 = fields.String(validate=not_blank)
+    email2 = fields.String(validate=not_blank)
+    actiu = fields.String(validate=not_blank)
+    foto = fields.String(validate=not_blank)
+
+     #self links
+    def get_top_level_links(self, data, many):
+        if many:
+            self_link = "/users/"
+        else:
+            self_link = "/users/{}".format(data['id'])
+        return {'self': self_link}
+    class Meta:
+        type_ = 'users'
