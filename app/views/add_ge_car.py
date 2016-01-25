@@ -15,7 +15,7 @@ def add_ge_car():
     grups = GIC_CFG_GRUP.query.filter_by(actiu="1")
     if request.method == 'POST':                
         post = A_GE_CAR_PERSONA(request.form['foto'], request.form['dni'], \
-        request.form['passport'])
+        request.form['passaport'])
 #, request.form['nom'], request.form['cognom1'], \
 #        request.form['cognom2'], request.form['sexe'], request.form['ss'], \
 #        request.form['tipus'], request.form['data_neix'], request.form['lloc_neix'], \
