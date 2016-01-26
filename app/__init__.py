@@ -39,4 +39,4 @@ from app.views import add, editar, index, signup, cercar, esborrar, upload, perf
 
 # Blueprints   
 from app.views.json import users
-app.register_blueprint(users, url_prefix='/api/v1/users')
+app.register_blueprint(users, url_prefix='/persones')

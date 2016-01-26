@@ -33,18 +33,18 @@ class UsersSchema(Schema):
     passport = fields.String()
     data_naix = fields.String(validate=not_blank)
     telefon1 = fields.String(validate=not_blank)
-    telefon2 = fields.String(validate=not_blank)
+    telefon2 = fields.String()
     email1 = fields.String(validate=not_blank)
     email2 = fields.String()
     actiu = fields.String(validate=not_blank)
-    foto = fields.String(validate=not_blank)
+    foto = fields.String()
 
      #self links
     def get_top_level_links(self, data, many):
         if many:
-            self_link = "/persones/"
+            self_link = "/users/"
         else:
-            self_link = "/persones/{}".format(data['id'])
+            self_link = "/users/{}".format(data['id'])
         return {'self': self_link}
     class Meta:
         type_ = 'users'
