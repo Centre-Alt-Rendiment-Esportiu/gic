@@ -27,24 +27,24 @@ class UsersSchema(Schema):
     id = fields.Integer(dump_only=True)  
     name = fields.String(validate=not_blank)
     cognom1 = fields.String(validate=not_blank)
-    cognom2 = fields.String(validate=not_blank)
+    cognom2 = fields.String()
     sexe = fields.String(validate=not_blank)
     dni = fields.String(validate=not_blank)
-    passport = fields.String(validate=not_blank)
+    passport = fields.String()
     data_naix = fields.String(validate=not_blank)
     telefon1 = fields.String(validate=not_blank)
     telefon2 = fields.String(validate=not_blank)
     email1 = fields.String(validate=not_blank)
-    email2 = fields.String(validate=not_blank)
+    email2 = fields.String()
     actiu = fields.String(validate=not_blank)
     foto = fields.String(validate=not_blank)
 
      #self links
     def get_top_level_links(self, data, many):
         if many:
-            self_link = "/users/"
+            self_link = "/persones/"
         else:
-            self_link = "/users/{}".format(data['id'])
+            self_link = "/persones/{}".format(data['id'])
         return {'self': self_link}
     class Meta:
         type_ = 'users'
