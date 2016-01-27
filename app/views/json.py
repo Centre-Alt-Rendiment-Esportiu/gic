@@ -27,7 +27,7 @@ class UsersList(Resource):
                 user_dict = raw_dict['data']['attributes']
                 user = Post(user_dict['nom'], user_dict['cognom1'], user_dict['cognom2'], user_dict['sexe'], user_dict['dni'] \
                 , user_dict['passport'], user_dict['data_naix'], user_dict['telefon1'], user_dict['telefon2'] \
-                , user_dict['email1'], user_dict['email2'], user_dict['actiu'], user_dict['foto'], user_dict['dni'])
+                , user_dict['email1'], user_dict['email2'], user_dict['actiu'], user_dict['foto'])
                 user.add(user)            
                 query = Users.query.get(user.id)
                 results = schema.dump(query).data                
