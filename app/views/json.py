@@ -29,7 +29,7 @@ class UsersList(Resource):
                 , user_dict['passport'], user_dict['data_naix'], user_dict['telefon1'], user_dict['telefon2'] \
                 , user_dict['email1'], user_dict['email2'], user_dict['actiu'], user_dict['foto'], '1234')
                 user.add(user)            
-                query = Users.query.get(user.id)
+                query = Post.query.get(user.id)
                 results = schema.dump(query).data                
                 return results, 201
             
@@ -46,12 +46,12 @@ class UsersList(Resource):
 
 class UsersUpdate(Resource):    
     def get(self, id):
-        user_query = Users.query.get_or_404(id)
+        user_query = Post.query.get_or_404(id)
         result = schema.dump(user_query).data
         return result
 
     def patch(self, id):
-        user = Users.query.get_or_404(id)
+        user = Post.query.get_or_404(id)
         raw_dict = request.get_json(force=True)
         try:
             schema.validate(raw_dict)
@@ -71,7 +71,7 @@ class UsersUpdate(Resource):
                 return resp 
 
     def delete(self, id):
-        user = Users.query.get_or_404(id)
+        user = Post.query.get_or_404(id)
         try:
             delete = user.delete(user)
             response = make_response()
