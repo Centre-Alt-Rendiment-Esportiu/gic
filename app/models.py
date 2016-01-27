@@ -38,6 +38,7 @@ class UsersSchema(Schema):
     email2 = fields.String()
     actiu = fields.String(validate=not_blank)
     foto = fields.String()
+    pwdhash = fields.String()
 
      #self links
     def get_top_level_links(self, data, many):
