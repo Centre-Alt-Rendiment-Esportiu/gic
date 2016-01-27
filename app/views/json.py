@@ -13,7 +13,7 @@ users = Blueprint('users', __name__)
 
 schema = UsersSchema()
 api = Api(users)
-# Users
+
 class UsersList(Resource):
     def get(self):
         users_query = Post.query.all()

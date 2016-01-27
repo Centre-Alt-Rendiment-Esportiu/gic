@@ -8,9 +8,8 @@ from itsdangerous import URLSafeTimedSerializer
 #Create an Instance of Flask
 app = Flask(__name__)
 #Include config from config.py
-class MyResponse(Response):
-     default_mimetype = 'application/xml'
-     
+
+
 app.config.from_object('config')
 app.config['UPLOAD_FOLDER'] = 'app/static/img/'
 app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg', 'jpeg', 'csv'])
@@ -23,7 +22,7 @@ app.config["MAIL_PASSWORD"] = None
 app.secret_key = "1234"
 app.config["SECURITY_PASSWORD_SALT"] = '1234'
 app.config["POSTS_PER_PAGE"] = 10
-app.response_class = MyResponse
+
 #Create an instance of SQLAclhemy
 db = SQLAlchemy(app)
 
@@ -32,6 +31,11 @@ mail = Mail(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+
+#class MyResponse(Response):
+#     default_mimetype = 'application/xml'
+
+#app.response_class = MyResponse
 
 from app import models, forms, token
 
