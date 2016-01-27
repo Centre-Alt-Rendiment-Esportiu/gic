@@ -3,11 +3,15 @@
 @author: dani.ruiz
 """
 from flask import Blueprint, request, jsonify, make_response
-from app.models import Post, UsersSchema
+from app.models import Post, UsersSchema, A_GE_CAR_PERSONA
 from flask_restful import Api, Resource
 from sqlalchemy.exc import SQLAlchemyError
 from marshmallow import ValidationError
 from app import app, db
+from sqlalchemy import func
+from sqlalchemy.orm import load_only
+import json
+
 
 users = Blueprint('users', __name__)
 
@@ -16,9 +20,16 @@ api = Api(users)
 
 class UsersList(Resource):
     def get(self):
-        users_query = Post.query.all()
-        results = schema.dump(users_query, many=True).data
-        return results
+#        users_query = Post.query.all()
+#        results = schema.dump(users_query, many=True).data
+#        result = Post.query.filter_by(sexe="1").count()
+        list = [
+            {'Homes': A_GE_CAR_PERSONA.query.filter_by(sexe="1").count(),
+             'Dones': A_GE_CAR_PERSONA.query.filter_by(sexe="0").count()
+            }
+            ]
+        return jsonify(results = list)
+#        return results
   
     def post(self):
         raw_dict = request.get_json(force=True)
