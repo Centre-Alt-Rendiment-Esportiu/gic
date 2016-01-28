@@ -19,7 +19,7 @@ class UsersList(Resource):
     def get(self):
 #        users_query = Post.query.all()
 #        results = schema.dump(users_query, many=True).data
-        sql = text('select extract(year from DATA_NEIX),COUNT(*) from A_GE_CAR_PERSONA group by extract(year from DATA_NEIX) order by extract(year from DATA_NEIX) DESC;')
+        sql = text("select extract(year from DATA_NEIX),COUNT(*) from A_GE_CAR_PERSONA group by extract(year from DATA_NEIX) order by extract(year from DATA_NEIX) DESC;")
         result = db.engine.execute(sql)
 #        list = [
 #            {
