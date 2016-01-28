@@ -27,8 +27,5 @@ def upload():
 def upload_csv():
     """pujar arxius csv"""
     if request.method == 'POST':
- #       csv_file = jsonify({"result": request.get_array(field_name='csv')})
- #       print (csv_file)
- #       return redirect(url_for('upload_csv'))
-        return jsonify({"result": request.get_array(field_name='csv')})
+        return jsonify({"result": request.get_array(field_name='Nom')})
     return render_template('up_csv.html')

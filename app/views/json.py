@@ -8,10 +8,7 @@ from flask_restful import Api, Resource
 from sqlalchemy.exc import SQLAlchemyError
 from marshmallow import ValidationError
 from app import app, db
-from sqlalchemy import func
-from sqlalchemy.orm import load_only
-import json
-
+from sqlalchemy import text
 
 users = Blueprint('users', __name__)
 
@@ -22,15 +19,23 @@ class UsersList(Resource):
     def get(self):
 #        users_query = Post.query.all()
 #        results = schema.dump(users_query, many=True).data
-#        result = Post.query.filter_by(sexe="1").count()
-        list = [
-            {'Homes': A_GE_CAR_PERSONA.query.filter_by(sexe="1").count(),
-             'Dones': A_GE_CAR_PERSONA.query.filter_by(sexe="0").count()
-            }
-            ]
-        return jsonify(results = list)
+        sql = text('select extract(year from DATA_NEIX),COUNT(*) from A_GE_CAR_PERSONA group by extract(year from DATA_NEIX) order by extract(year from DATA_NEIX) DESC;')
+        result = db.engine.execute(sql)
+#        list = [
+#            {
+#                'Homes': Post.query.filter_by(sexe="1").count(),
+#                 'Dones': Post.query.filter_by(sexe="0").count(),
+#            }
+#            ]
+        return jsonify(result)#ats = list)
 #        return results
-  
+
+#names = []
+#for row in result:
+#    names.append(row[0])
+#
+#print names
+
     def post(self):
         raw_dict = request.get_json(force=True)
         try:
