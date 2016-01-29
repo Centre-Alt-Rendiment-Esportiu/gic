@@ -15,7 +15,7 @@ users = Blueprint('users', __name__)
 schema = UsersSchema()
 api = Api(users)
 
-engine = create_engine('mysql://root:1234@localhost/gic')
+engine = create_engine('oracle://CAR_PCF_TEST:isocar@ora.isoco.car.loc:1521/PCAR')
 
 class UsersList(Resource):
     def get(self):
@@ -23,7 +23,7 @@ class UsersList(Resource):
 #        results = schema.dump(users_query, many=True).data
 #        sql = text("select extract(year from DATA_NEIX),COUNT(*) from A_GE_CAR_PERSONA group by extract(year from DATA_NEIX) order by extract(year from DATA_NEIX) DESC;")
         connection = engine.connect()
-        result = connection.execute("select * from A_GIC_ADMIN")
+        result = connection.execute("select extract(year from DATA_NEIX),COUNT(*) from A_GE_CAR_PERSONA group by extract(year from DATA_NEIX) order by extract(year from DATA_NEIX) DESC")
         results = schema.dump(result, many=True).data
         connection.close()
 #        list = [
