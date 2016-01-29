@@ -8,31 +8,35 @@ from flask_restful import Api, Resource
 from sqlalchemy.exc import SQLAlchemyError
 from marshmallow import ValidationError
 from app import app, db
-from sqlalchemy import text
+from sqlalchemy import text, create_engine
 
 users = Blueprint('users', __name__)
 
 schema = UsersSchema()
 api = Api(users)
 
+engine = create_engine('mysql://root:1234@localhost/gic')
+
 class UsersList(Resource):
     def get(self):
 #        users_query = Post.query.all()
 #        results = schema.dump(users_query, many=True).data
-        sql = text("select extract(year from DATA_NEIX),COUNT(*) from A_GE_CAR_PERSONA group by extract(year from DATA_NEIX) order by extract(year from DATA_NEIX) DESC")
-        result = db.engine.execute(sql)
+#        sql = text("select extract(year from DATA_NEIX),COUNT(*) from A_GE_CAR_PERSONA group by extract(year from DATA_NEIX) order by extract(year from DATA_NEIX) DESC;")
+        connection = engine.connect()
+        result = connection.execute("select * from A_GIC_ADMIN")
+        results = schema.dump(result, many=True).data
+        connection.close()
 #        list = [
 #            {
 #                'Homes': Post.query.filter_by(sexe="1").count(),
 #                 'Dones': Post.query.filter_by(sexe="0").count(),
 #            }
 #            ]
-        return jsonify(result)#ats = list)
+#        return jsonify(resultats = list)
+        return jsonify(results)
 #        return results
 
-#names = []
-#for row in result:
-#    names.append(row[0])
+
 #
 #print names
 
