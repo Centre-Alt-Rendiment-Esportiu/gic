@@ -22,4 +22,7 @@ def index():
 @app.route('/conf', methods=['GET', 'POST'])
 def conf():
     """pagina de configuracio"""
-    return render_template('configuracio.html')
+    if 'email' not in session:
+        return render_template('no_permis.html')
+    else:
+        return render_template('configuracio.html')

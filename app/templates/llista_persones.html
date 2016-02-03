@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+
 <h3>Llistat de Persones</h3>
 <hr>
 <table>
@@ -11,7 +12,7 @@
     </tr>
 {% for post in post.items %}
     <tr>
-        <td> {{ post.nom }}</td>
+        <td><a href="{{ url_for('perfil', id=post.id) }}"> {{ post.nom }}</a></td>
         <td> {{ post.cognom1 }}</td>
         <td> {{ post.email1 }}</td>
         <td><a class="input" href="{{ url_for('edit', id=post.id) }}">Edita</a></td>

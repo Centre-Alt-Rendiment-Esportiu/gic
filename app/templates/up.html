@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
 
-{% if session['email'] %}
 <h3>Pujar foto/template</h3>
 <hr>
 <table>
@@ -21,8 +20,5 @@
 	</td>
 </tr>
 </table>
-{% else %}
-No tens permis per estar aqui.
 
-{% endif %}
 {% endblock %}

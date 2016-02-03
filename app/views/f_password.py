@@ -2,7 +2,7 @@
 """
 @author: dani.ruiz
 """
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from app import app, db
 from app.models import User, Post
 from flask.ext.mail import Message
@@ -72,7 +72,6 @@ def confirm_email(token):
     if request.method == 'POST':
         email = request.form['email']
         user = Post.query.filter_by(email1=email).first()
-#        user.pwdhash = generate_password_hash(request.form['password'])
         user.pwdhash = hashlib.sha256('[B@3f13a310' + request.form['password']).hexdigest()
         db.session.commit()
         return redirect(url_for('index'))
@@ -93,7 +92,6 @@ def confirm_email_admin(token):
     if request.method == 'POST':
         email = request.form['email']
         user = User.query.filter_by(email=email).first()
-#        user.pwdhash = generate_password_hash(request.form['password'])
         user.pwdhash = hashlib.sha256('[B@3f13a310' + request.form['password']).hexdigest()
         db.session.commit()
         return redirect(url_for('index'))

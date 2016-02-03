@@ -2,7 +2,7 @@
 {% block content %}
   <h3>Registre</h3>
 <hr>
-{% if session['email'] %}
+
   {% for message in form.nom.errors %}
     <div class="flash">{{ message }}</div>
   {% endfor %}
@@ -36,10 +36,5 @@
      
     {{ form.submit }}
   </form>
-{% else %}
-
-No tens permis per accedir aqui.
-
-{% endif %}
      
 {% endblock %}

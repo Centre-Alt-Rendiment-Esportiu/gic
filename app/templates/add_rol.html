@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-{% if session['email'] %}
+
 <h3>Afegir Rol</h3>
 <hr>
 <table>
@@ -27,9 +27,5 @@
 	</td>
 </tr>
 </table>
-{% else %}
 
-No tens permis per accedir aqui.
-
-{% endif %}
 {% endblock %}

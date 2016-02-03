@@ -1,8 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-<h3>Editar Registre</h3>
+<h3>Dades</h3>
 <hr>
-<form action="" method="post">
 <table>
 		<tr>
 			<td>
@@ -39,95 +38,83 @@
             <tr>
                     <td>
                         <label>Nom</label>
-					<input class="text_input" type="text" name="nom" value="{{post.nom}}" pattern="([A-Za-z ]{1,50})"/>
+					{{post.nom}}
                         </td>
                         <td>
 			      	<label>Cognom 1</label>
-			        	<input class="text_input" type="text" name="cognom1" value="{{post.cognom1}}" pattern=".{0}|([A-Za-z ]{1,50})"/>
+			        	{{post.cognom1}}
                         </td>
                         <td>
 			      	<label>Cognom 2</label>
-			        	<input class="text_input" type="text" name="cognom2" value="{{post.cognom2}}" pattern=".{0}|([A-Za-z ]{1,50})"/>
+			        	{{post.cognom2}}
                         </td>
             </tr>
             <tr>
                         <td>			      	
 			      	<label>Sexe</label>
-        				<select id="sexe" name="sexe" size="1">
-                    			<option value="{{post.sexe}}" selected="selected">
         					{% if 1 == post.sexe|int() %}
         						Home
         					{% elif 0 == post.sexe|int() %}
         						Dona
         					{% endif %}
-        					</option>
-                        		<option value="1">Home</option>
-            		        	<option value="0">Dona</option>
-        	        		</select>
                       </td>
                       <td>
         				<label>DNI</label>
-                	                <input class="text_input" type="text" name="dni" value="{{post.dni}}" pattern=".{0}|([0-9]{8})+([a-z]{1})"/> 
+                	                {{post.dni}}
                       </td>
                       <td>
         				<label>PASSPORT</label>
-                	                <input class="text_input" type="text" name="passport" value="{{post.passport}}"/>
+                	                {{post.passport}}
                       </td>
             </tr>
             <tr>
                       <td>
         				<label>Data Naixement</label>
-                        	        <input type="date" name="data_naix" value="{{post.data_naix}}"/>                 	
+                        	        {{post.data_naix}}               	
                         </td>
                         <td>
             			<label>Telefon 1</label>
-                                 	<input class="text_input" type="text" name="telefon1" value="{{post.telefon1}}" pattern="[0-9]{9}"/>
+                                 	{{post.telefon1}}
                         </td>
                         <td>
                             <label>Telefon 2</label>
-                                <input class="text_input" type="text" name="telefon2" value="{{post.telefon2}}" pattern="[0-9]{9}"/>
+                                {{post.telefon2}}
                         </td>
             </tr>
             <tr>
                         <td>
                             <label>Email 1</label>
-                                <input class="text_input" type="email" name="email1" value="{{post.email1}}"/>
+                                {{post.email1}}
                         </td>
                         <td>
                             <label>Email 2</label>
-                                    <input class="text_input" type="email" name="email2" value="{{post.email2}}"/>
+                                {{post.email2}}
                         </td>
                         <td>
                             <label>Actiu</label>
-                                <select id="actiu" name="actiu" size="1">
-        				        <option value="{{post.actiu}}" selected="selected">
         						{% if post.actiu|int() == 1 %}
         							Si
         						{% elif post.actiu|int() == 0 %}
         							No
         						{% endif %}
-                                    </option>
-                                    <option value="1">Si</option>
-                                    <option value="0">No</option>	
-                                </select>
                         </td>
                         <td rowspan="2">
-                            <label>Assignació de permisos</label>
-                    {% set var = {'c': True} %}
-                    {% for grup in grups %}
-                            {% for perm_grup in perm_grup %}
-                                {% for perm_asig in perm_asig %}
-                                    {% if var.c and perm_asig.id_permis == perm_grup.id_permis %}
-                                            <input type="hidden" name="grup" value="">
-                                            <input type="checkbox" name="grup" value={{grup.id_grup}} checked="True"/> 
-                                                {{ grup.nom_grup }}<br>
-                                            <input type="date" name="inici_permis" value={{ perm_asig.inici_permis }}>
-                                            <input type="date" name="fi_permis" value={{ perm_asig.fi_permis }}>
-                                            {% if var.update({'c': False}) %} {% endif %}
-                                        {% endif %}
-                                {% endfor %}
-                            {% endfor %}
-                            {% if var.c %}
+                            <label>Permisos</label>
+                            {% set var = {'c': True} %}
+                            {% for grup in grups %}
+                                    {% for perm_grup in perm_grup %}
+                                        {% for perm_asig in perm_asig %}
+                                            {% if var.c and perm_asig.id_permis == perm_grup.id_permis %}
+                                                    <input type="hidden" name="grup" value="">
+                                                    <input type="checkbox" name="grup" value={{grup.id_grup}} checked="True"/> 
+                                                        {{ grup.nom_grup }}<br>
+                                                    <input type="date" name="inici_permis" value={{ perm_asig.inici_permis }}>
+                                                    <input type="date" name="fi_permis" value={{ perm_asig.fi_permis }}>
+                                                    {% if var.update({'c': False}) %} {% endif %}
+                                                {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                    {% if var.c %}
                                 <input type="hidden" name="grup" value="">
                                 <input type="checkbox" name="grup" value={{grup.id_grup}}/> {{ grup.nom_grup }}<br>
                                 <input type="date" name="inici_permis"><br>
@@ -140,14 +127,10 @@
             </tr>
             <tr>
 			<td>
-				<button class="input" type="submit">Edit</button>
-                </td>
-			<td>
 				<label>Foto</label>
-        			<input class="text_input" type="text" name="foto" value="{{post.foto}}"/><br><br>
+        			{{post.foto}}<br>
         			<a href="/upload" class="input">Puja'n una</a>				
-</form>         </td>
-		</tr>
+         </td>
+	</tr>
 </table>
-
 {% endblock %}
