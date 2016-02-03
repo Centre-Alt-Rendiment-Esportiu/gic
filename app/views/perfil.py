@@ -25,7 +25,7 @@ def profile():
 def canvi_password(id):
     """canvia de password """
     correu = session['email_usu']
-    sql = text("select id from A_GIC_PERSONA where email1 like '%s' ;"%correu)
+    sql = text("select id from A_GIC_PERSONA where email1 like '%s' "%correu)
     result = db.engine.execute(sql)
     names = []
     for row in result:
@@ -45,7 +45,7 @@ def canvi_password(id):
 def canvi_password_admin(id):
     """canvi de password per admins"""
     correu = session['email']
-    sql = text("select id from A_GIC_ADMIN where email like '%s' ;"%correu)
+    sql = text("select id from A_GIC_ADMIN where email like '%s' "%correu)
     result = db.engine.execute(sql)
     names = []
     for row in result:
