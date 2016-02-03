@@ -7,6 +7,9 @@ pip install:
 - Mysql-python
 - WTforms
 - SQLalchemy
+- flask-restful-swagger-2
+- Marshmallow
+- marshmallow-jsonapi
 - Flask-Login
 - Flask-Migrate
 - Flask-Script

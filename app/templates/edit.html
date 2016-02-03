@@ -121,8 +121,8 @@
                                             <input type="hidden" name="grup" value="">
                                             <input type="checkbox" name="grup" value={{grup.id_grup}} checked="True"/> 
                                                 {{ grup.nom_grup }}<br>
-                                            <input type="date" name="inici_permis" value={{ perm_asig.inici_permis }}>
-                                            <input type="date" name="fi_permis" value={{ perm_asig.fi_permis }}>
+                                            <input type="date" name="inici_permis" value={{ perm_asig.inici }}>
+                                            <input type="date" name="fi_permis" value={{ perm_asig.fi }}>
                                             {% if var.update({'c': False}) %} {% endif %}
                                         {% endif %}
                                 {% endfor %}

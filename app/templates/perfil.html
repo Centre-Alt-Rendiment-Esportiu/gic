@@ -2,7 +2,7 @@
 {% block content %}
 <h3>Dades</h3>
 <hr>
-<table>
+<table width="80%">
 		<tr>
 			<td>
 				<label>ID</label>
@@ -16,21 +16,11 @@
                     {% for rol in rols %}
                             {% for ti in tip %}
                             {% if ti.id_rol == rol.id_rol %}
-                                    <input type="hidden" name="rol" value="">
-                                    <input type="checkbox" name="rol" value={{rol.id_rol}} checked="True"/> 
-                                        {{ rol.nom_rol }}<br>
-                                    <input type="date" name="inici" value={{ ti.inici }}><br>
-                                    <input type="date" name="fi" value={{ ti.fi }}><br><br>
-                                    {% if var.update({'v': False}) %} {% endif %}
-                                {% endif %}
-                            {% endfor %}
-                            {% if var.v %}
-                                <input type="hidden" name="rol" value="">
-                                <input type="checkbox" name="rol" value={{rol.id_rol}}/> {{ rol.nom_rol }}<br>
-                                <input type="date" name="inici"><br>
-                                <input type="date" name="fi"><br><br>
+                                {{ rol.nom_rol }}<br>
+                                Inici: {{ ti.inici }}<br>
+                                Fi: {{ ti.fi }}<br><br>
                             {% endif %}
-                            {% if var.update({'v': True}) %} {% endif %}
+                            {% endfor %}                           
                     {% endfor %}
                     
 			</td>
@@ -100,36 +90,23 @@
                         </td>
                         <td rowspan="2">
                             <label>Permisos</label>
-                            {% set var = {'c': True} %}
                             {% for grup in grups %}
                                     {% for perm_grup in perm_grup %}
                                         {% for perm_asig in perm_asig %}
-                                            {% if var.c and perm_asig.id_permis == perm_grup.id_permis %}
-                                                    <input type="hidden" name="grup" value="">
-                                                    <input type="checkbox" name="grup" value={{grup.id_grup}} checked="True"/> 
-                                                        {{ grup.nom_grup }}<br>
-                                                    <input type="date" name="inici_permis" value={{ perm_asig.inici_permis }}>
-                                                    <input type="date" name="fi_permis" value={{ perm_asig.fi_permis }}>
-                                                    {% if var.update({'c': False}) %} {% endif %}
-                                                {% endif %}
+                                            {% if perm_asig.id_permis == perm_grup.id_permis %}
+                                                {{ grup.nom_grup }}<br>
+                                                Inici: {{ perm_asig.inici }}<br>
+                                                Fi: {{ perm_asig.fi }}<br><br>
+                                            {% endif %}
                                         {% endfor %}
                                     {% endfor %}
-                                    {% if var.c %}
-                                <input type="hidden" name="grup" value="">
-                                <input type="checkbox" name="grup" value={{grup.id_grup}}/> {{ grup.nom_grup }}<br>
-                                <input type="date" name="inici_permis"><br>
-                                <input type="date" name="fi_permis"><br><br>
-                            {% endif %}
-                            {% if var.update({'c': True}) %} {% endif %}
-                    {% endfor %}
-                            
+                            {% endfor %}
                         </td>
             </tr>
             <tr>
 			<td>
 				<label>Foto</label>
-        			{{post.foto}}<br>
-        			<a href="/upload" class="input">Puja'n una</a>				
+        			{{post.foto}}<br>			
          </td>
 	</tr>
 </table>

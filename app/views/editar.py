@@ -2,7 +2,7 @@
 """
 @author: dani.ruiz
 """
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from app import app, db
 from sqlalchemy.orm import load_only
 from app.models import User, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \

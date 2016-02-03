@@ -4,10 +4,8 @@ from app.models import User, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \
 GIC_CFG_GRUP, GIC_PERMIS
 from sqlalchemy.orm import load_only
 from werkzeug import generate_password_hash
-from sqlalchemy import create_engine
 import hashlib
 from sqlalchemy import text
-import re
 
 @app.route('/profile')
 def profile():
