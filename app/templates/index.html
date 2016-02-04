@@ -32,12 +32,22 @@
 			<button class="input" type="submit">Cerca</button>
 		</td>
 </form>
+		<td>
+<form action="cerca_per_gecar" method="POST">
+			<label>Cerca Persones GECAR:</label>
+			<hr>
+			<input class="text_input" type="text" name="cerca"/>			
+		</td>
+		<td><br><br><br>
+			<button class="input" type="submit">Cerca</button>
+		</td>
+</form>
 	</tr>
 </table>
 <table>
         <tr>
                 <td>                   
-        <form action="cerca_rol" method="POST">
+<form action="cerca_rol" method="POST">
                 <label>Cerca Rols:</label>
                         <hr>
                         <input class="text_input" type="text" name="cerca"/>
@@ -45,7 +55,7 @@
                 <td><br><br><br>
                         <button class="input" type="submit">Cerca</button>
                 </td>
-        </form>
+</form>
         </tr>
 </table>
 {% elif 'email_usu' in session %}

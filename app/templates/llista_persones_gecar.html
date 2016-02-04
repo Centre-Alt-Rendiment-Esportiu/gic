@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h3>Llistat de Persones GE CAR</h3>
+<hr>
+<table>
+    <tr>
+        <td><label>Nom</label><hr></td>
+        <td><label>Cognom 1</label><hr></td>
+        <td><label>Email 1</label><hr></td>
+        <td></td>
+    </tr>
+{% for post in post.items %}
+    <tr>
+        <td><a href="{{ url_for('perfil_gecar', id=post.identificador) }}"> {{ post.nom }}</a></td>
+        <td> {{ post.cognom1 }}</td>
+        <td> {{ post.e_mail }}</td>
+<!--        <td><a class="input" href="{{ url_for('edit', id=post.id) }}">Edita</a></td> -->
+    </tr>
+{% endfor %}
+</table>
+{% if post.has_prev %}
+    <a href="{{ url_for('llista_per_gecar', page=post.prev_num) }}">&lt;&lt; Pagina Anterior</a>
+{% else %}
+    &lt;&lt; Pagina Anterior
+{% endif %} | 
+{% if post.has_next %}
+    <a href="{{ url_for('llista_per_gecar', page=post.next_num) }}">Pagina següent &gt;&gt;</a>
+{% else %}
+    Pagina Següent &gt;&gt;
+{% endif %}
+{% endblock %}

@@ -1,0 +1,287 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>Dades</h3>
+<hr>
+<table width="100%">
+		<tr>
+                <td>
+                        <label>ID</label>
+                            {{ post.id }}
+                </td>
+                <td>
+                        <label>Foto</label>
+					{{post.foto}}
+                </td>
+                <td>
+                        <label>DNI</label>
+                    	      {{post.dni}}
+                </td>
+                <td>
+                        <label>PASSPORT</label>
+                	           {{post.passaport}}
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <label>Nom</label>
+					{{post.nom}}
+                </td>
+                <td>
+                        <label>Cognom 1</label>
+                            {{post.cognom1}}
+                </td>
+                <td>
+                        <label>Cognom 2</label>
+                            {{post.cognom2}}
+                </td>
+                <td>			      	
+                        <label>Sexe</label>
+     					{% if 1 == post.sexe|int() %}
+     						Home
+     					{% elif 0 == post.sexe|int() %}
+     						Dona
+     					{% endif %}
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <label>SS</label>
+					{{post.ss}}
+                </td>
+                <td>
+                        <label>Tipus</label>
+					{{post.tipus}}
+                </td>
+                <td>
+                        <label>Data Naixement</label>
+                            {{post.data_neix}}               	
+                </td>
+                <td>
+                        <label>Lloc Naixement</label>
+                            {{post.lloc_neix}}               	
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <label>Provincia Naixement</label>
+                            {{post.provincia_neix}}               	
+                </td>
+                <td>
+                        <label>Comarca Naixement</label>
+                            {{post.comarca_neix}}               	
+                </td>
+                <td>
+                        <label>Comunitat Naixement</label>
+                            {{post.auto_neix}}               	
+                </td>
+                <td>
+                        <label>Pais Naixement</label>
+                            {{post.pais_neix}}               	
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <label>Direcció</label>
+                            {{post.direccio}}               	
+                </td>
+                <td>
+                        <label>Població</label>
+                            {{post.poblacio}}               	
+                </td>
+                <td>
+                        <label>Provincia</label>
+                            {{post.provincia}}               	
+                </td>
+                <td>
+                        <label>CP</label>
+                            {{post.cp}}               	
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <label>Comarca</label>
+                            {{post.comarca}}               	
+                </td>
+			<td>
+                <td>
+                        <label>Autonomia</label>
+                            {{post.autonomia}}               	
+                </td>
+                <td>
+                        <label>Pais</label>
+                            {{post.pais}}               	
+                </td>
+                <td>
+                        <label>Telefon 1</label>
+                            {{post.telefon1}}               	
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <label>Telefon 2</label>
+                            {{post.telefon2}}
+                </td>
+                <td>
+                        <label>Email 1</label>
+                            {{post.e_mail}}
+                </td>
+                <td>
+                        <label>Estudis Actuals</label>
+                            {{post.estudis_act}}
+                </td>
+                <td>
+                        <label>Nivell Academic</label>
+                            {{post.nivel_academic}}
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <label>Tipus Centre</label>
+                            {{post.tipus_centre}}
+                </td>
+                <td>
+                        <label>Nom Centre</label>
+                            {{post.nom_centre}}
+                </td>
+                <td>
+                        <label>Aceptació</label>
+                            {{post.aceptacio}}
+                </td>
+                <td>
+                        <label>Revisió Medica</label>
+                            {{post.revisiom}}
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <label>Revisió Psicologica</label>
+                            {{post.revisiops}}
+                </td>
+                <td>
+                        <label>Fitxa Complerta</label>
+                            {{post.fitxacomplerta}}
+                </td>
+                <td>
+                        <label>Vehicle</label>
+                            {{post.vehicle}}
+                </td>
+                <td>
+                        <label>Matricula</label>
+                            {{post.matricula}}
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <label>Tutor 1</label>
+                            {{post.tutor1}}
+                </td>
+                <td>
+                        <label>Contacte 1</label>
+                            {{post.contacto1}}
+                </td>
+                <td>
+                        <label>tutor 2</label>
+                            {{post.tutor2}}
+                </td>
+                <td>
+                        <label>Contacte 2</label>
+                            {{post.cotacto2}}
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <label>Email 1</label>
+                            {{post.email1}}
+                </td>
+                <td>
+                        <label>Actiu</label>
+        				{% if post.actiu|int() == 1 %}
+        					Si
+        				{% elif post.actiu|int() == 0 %}
+        					No
+        				{% endif %}
+                </td>
+                <td>
+                        <label>Identificador Anterior</label>
+                            {{post.identificador_ant}}
+                </td>
+                <td>
+                        <label>ID Med</label>
+                            {{post.id_med}}
+                </td>
+                <td>
+                        <label>ID Fis</label>
+                            {{post.id_fis}}
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <label>ID Psi</label>
+                            {{post.id_psi}}
+                </td>
+                <td>
+                        <label>CIP</label>
+                            {{post.cip}}
+                </td>
+                <td>
+                        <label>Consentiment</label>
+                            {{post.consentiment}}
+                </td>
+                <td>
+                        <label>Data Consentiment</label>
+                            {{post.consentiment}}
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <label>Data Revisio Medica</label>
+                            {{post.data_revisiom}}
+                </td>
+                <td>
+                        <label>Consentiment DAD</label>
+                            {{post.consentiment_dad}}
+                </td>
+                <td>
+                        <label>Consentiment PROINF</label>
+                            {{post.consentiment_proinf}}
+                </td>
+                <td>
+                        <label>PRO SAL ES</label>
+                            {{post.pro_sal_es}}
+                </td>
+                <td>
+                        <label>Email 2</label>
+                            {{post.e_mail2}}
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <label> Rols</label>
+                            {% set var = {'v': True} %}
+                            {% for rol in rols %}
+                                    {% for ti in tip %}
+                                    {% if ti.id_rol == rol.id_rol %}
+                                        {{ rol.nom_rol }}<br>
+                                        Inici: {{ ti.inici }}<br>
+                                        Fi: {{ ti.fi }}<br><br>
+                                    {% endif %}
+                                    {% endfor %}                           
+                            {% endfor %}
+			</td>        
+                <td>
+                        <label>Permisos</label>
+                            {% for grup in grups %}
+                                    {% for perm_grup in perm_grup %}
+                                        {% for perm_asig in perm_asig %}
+                                            {% if perm_asig.id_permis == perm_grup.id_permis %}
+                                                {{ grup.nom_grup }}<br>
+                                                Inici: {{ perm_asig.inici }}<br>
+                                                Fi: {{ perm_asig.fi }}<br><br>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                            {% endfor %}
+                </td>
+        </tr>
+</table>
+{% endblock %}

@@ -34,17 +34,17 @@ def edit(id):
             post.email2 = request.form['email2']
             post.actiu = request.form['actiu']
             post.foto = request.form['foto']
-            lrols = request.form.getlist('rol')  
-    #        for lrol in lrols:
-    #            db.session.delete(treu_rol)
-    #            db.session.flush()
-            grups = request.form.getlist('grup')
-    #        for grups in grups:
-    #            perm = GIC_CFG_PERMIS.query.filter_by(grup=grups)
-    #            for perm in perm:
-    #                grups = GIC_PERMIS(post.id, perm.id_permis, request.form['inici_permis'], request.form['fi_permis'])
-    #                db.session.add(grups)
-    #                db.session.flush()
+#            lrols = request.form.getlist('rol')  
+#            for lrol in lrols:
+#            db.session.delete(treu_rol)
+#            db.session.flush()
+#            grups = request.form.getlist('grup')
+#            for grups in grups:
+#                perm = GIC_CFG_PERMIS.query.filter_by(grup=grups)
+#                for perm in perm:
+#                    grups = GIC_PERMIS(post.id, perm.id_permis, request.form['inici_permis'], request.form['fi_permis'])
+#                    db.session.add(grups)
+#                    db.session.flush()
             db.session.commit()
             return  redirect(url_for('index'))
         return render_template('edit.html', post=post, tip=tip, rols=rols, grups=grups, perm_grup=perm_grup, perm_asig=perm_asig)
@@ -81,7 +81,6 @@ def edit_permis(id_permis):
 @app.route('/edit_grup/<id_grup>', methods=['POST', 'GET'])
 def edit_grup(id_grup):
     """pagina editar grups de permisos"""
-
     if 'email' not in session:
         return render_template('no_permis.html')
     else:
