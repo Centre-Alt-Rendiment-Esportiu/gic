@@ -34,13 +34,16 @@
         var pass2 = document.getElementById("pass2").value;
         var ok = true;
         if (pass1 != pass2) {
-            alert("Passwords Do not match");
+            alert("Els passwords no coincideixen.");
             document.getElementById("pass1")
             document.getElementById("pass2")
             ok = false;
         }
         else {
-            //alert("Passwords Match!!!");
+                if (pass1.length < 8) {
+                    alert("El password ha de tenir mínim 6 caràcters."); 
+                    ok = false;
+                }
         }
         return ok;
     }
