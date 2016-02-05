@@ -16,14 +16,14 @@ def profile():
         user = User.query.filter_by(email=session['email']).first()
         return render_template('profile.html', user=user)
     elif 'email_usu' in session:
-        post_user = Post.query.filter_by(email1=session['email_usu']).first()
+        post_user = A_GE_CAR_PERSONA.query.filter_by(e_mail=session['email_usu']).first()
         return render_template('profile.html', post_user=post_user)
 
 @app.route('/canvi_password/<id>', methods=['GET', 'POST'])
 def canvi_password(id):
     """canvia de password """
     correu = session['email_usu']
-    sql = text("select id from A_GIC_PERSONA where email1 like '%s' "%correu)
+    sql = text("select identificador from A_GE_CAR_PERSONA where e_mail like '%s' "%correu)
     result = db.engine.execute(sql)
     names = []
     for row in result:
@@ -31,10 +31,10 @@ def canvi_password(id):
     if 'email_usu' not in session or str(id) != str(names[0]):
         return render_template('no_permis.html')
     else:
-        post = Post.query.get(id)
+        post = A_GE_CAR_PERSONA.query.get(id)
         if request.method == 'POST':
-            post = Post.query.get(id)
-            post.pwdhash = hashlib.sha256('[B@3f13a310' + request.form['password']).hexdigest()
+            post = A_GE_CAR_PERSONA.query.get(id)
+            post.password = hashlib.sha256('[B@3f13a310' + request.form['password']).hexdigest()
             db.session.commit()
             return redirect(url_for('correcte'))
         return render_template('reset.html', post=post)

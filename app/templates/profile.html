@@ -17,6 +17,6 @@
     Nom: {{ post_user.nom }}<br>
     Cognom: {{ post_user.cognom1 }}
     <br><br>
-    <a class="input" href="{{ url_for('canvi_password', id=post_user.id) }}">Canvia password</a>
+    <a class="input" href="{{ url_for('canvi_password', id=post_user.identificador) }}">Canvia password</a>
 {% endif %}
 {% endblock %}

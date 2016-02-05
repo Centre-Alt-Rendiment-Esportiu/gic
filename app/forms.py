@@ -4,7 +4,7 @@
 """
 from flask.ext.wtf import Form
 from wtforms import StringField, TextAreaField, SubmitField, validators, PasswordField
-from app.models import db, User, Post
+from app.models import db, User, Post, A_GE_CAR_PERSONA
 
 class SignupForm(Form):
     """formulari per registrar-se"""
@@ -61,7 +61,7 @@ class Inici_Clients_Form(Form):
     def validate(self):
         if not Form.validate(self):
             return False
-        user = Post.query.filter_by(email1=self.email.data.lower()).first()
+        user = A_GE_CAR_PERSONA.query.filter_by(e_mail=self.email.data.lower()).first()
         if user and user.check_password(self.password.data):
             return True
         elif not user:
@@ -84,7 +84,7 @@ class emailForm(Form):
     def validate(self):
         if not Form.validate(self):
             return False
-        user = Post.query.filter_by(email1=self.email.data.lower()).first()
+        user = A_GE_CAR_PERSONA.query.filter_by(e_mail=self.email.data.lower()).first()
         if user:
             return True
         elif not user:

@@ -4,7 +4,7 @@
 """
 from flask import render_template, request, redirect, url_for, session
 from app import app, db
-from app.models import User, Post
+from app.models import User, Post, A_GE_CAR_PERSONA
 from flask.ext.mail import Message
 from app import mail
 from app.token import generate_confirmation_token, confirm_token
@@ -21,11 +21,11 @@ def enviat():
             return render_template('f_password.html', form=form)
         else:
             correu = request.form['email']
-            user = Post.query.filter_by(email1=correu).first()
+            user = A_GE_CAR_PERSONA.query.filter_by(e_mail=correu).first()
             token = generate_confirmation_token(correu)
             confirm_url = url_for('confirm_email', token=token, _external=True)
             html = render_template('canvi_pass.html', confirm_url=confirm_url)
-            sender = ['no-reply@sau.car.edu', user.email1]
+            sender = ['no-reply@sau.car.edu', user.e_mail]
             msg = Message('Restablir Password', sender=sender[0], recipients=sender)
             msg.html = html
             mail.send(msg)
@@ -71,8 +71,8 @@ def confirm_email(token):
     """confirma el token del correu i canvia el password"""
     if request.method == 'POST':
         email = request.form['email']
-        user = Post.query.filter_by(email1=email).first()
-        user.pwdhash = hashlib.sha256('[B@3f13a310' + request.form['password']).hexdigest()
+        user = A_GE_CAR_PERSONA.query.filter_by(e_mail=email).first()
+        user.password = hashlib.sha256('[B@3f13a310' + request.form['password']).hexdigest()
         db.session.commit()
         return redirect(url_for('index'))
     else:
@@ -81,7 +81,7 @@ def confirm_email(token):
         except:
             return redirect(url_for('error'))
         if email:
-            user = Post.query.filter_by(email1=email).first()
+            user = A_GE_CAR_PERSONA.query.filter_by(e_mail=email).first()
             return render_template('reset.html', user=user, email=email)
         else:
             return redirect(url_for('error'))

@@ -36,15 +36,7 @@ def add_ge_car():
             request.form['data_revisiom'], request.form['consentiment_dad'], request.form['consentiment_proinf'], \
             request.form['pro_sal_es'], request.form['e_mail2'], 'randompassword', 'randomsalt')
             db.session.add(post)
-            db.session.flush()
-    ######### Bucle 10000 registres ########
-    #        v = 10000
-    #        for b in range(v):
-    #            bucle = Post(b, b, b, 1, (str(b)+'A'), \
-    #            b, '2015/11/15', b, b, (str(b)+'@mail.com'),(str(b)+'@mail.com'),1, b, (str(b)+'@mail.com'))
-    #            db.session.add(bucle)
-    #            db.session.flush
-    ########################################         
+            db.session.flush()      
             lrol = request.form.getlist('rol')
             lini = request.form.getlist('inici')
             lfi = request.form.getlist('fi')
@@ -66,7 +58,7 @@ def add_ge_car():
             for a in range(i):
                 lista.insert(a, [lrol[a], listaini[a], listafi[a]])
             for li in lista:
-                tip = GIC_ROL(post.id, li[0], li[1], li[2])
+                tip = GIC_ROL(post.identificador, li[0], li[1], li[2])
                 db.session.add(tip)
                 db.session.flush()
             lgrups = request.form.getlist('grup')
@@ -89,7 +81,7 @@ def add_ge_car():
             for gru in lista_grups:
                 perm = GIC_CFG_PERMIS.query.filter_by(grup=gru[0])
                 for per in perm:
-                    insert_permis = GIC_PERMIS(post.id, per.id_permis, gru[1], gru[2])
+                    insert_permis = GIC_PERMIS(post.identificador, per.id_permis, gru[1], gru[2])
                     db.session.add(insert_permis)
                     db.session.flush()
             db.session.commit()
