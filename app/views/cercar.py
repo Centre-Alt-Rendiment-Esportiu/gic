@@ -29,7 +29,7 @@ def llista_per_gecar(page=1):
         """buscar persones gecar"""
         nom = session['cerca_gecar']
         conc = "%" + nom + "%"
-        post = A_GE_CAR_PERSONA.query.filter(or_(A_GE_CAR_PERSONA.nom.like(conc), A_GE_CAR_PERSONA.cognom1.like(conc))).paginate(page, 5, False)
+        post = A_GE_CAR_PERSONA.query.filter(or_(A_GE_CAR_PERSONA.nom.like(conc), A_GE_CAR_PERSONA.cognom1.like(conc))).paginate(page, 10, False)
         return render_template('llista_persones_gecar.html', post=post)
 
 @app.route('/cerca_per', methods=['POST', 'GET'])

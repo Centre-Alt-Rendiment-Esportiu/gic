@@ -6,7 +6,7 @@
 		<tr>
                 <td>
                         <label>ID</label>
-                            {{ post.id }}
+                            {{ post.identificador }}
                 </td>
                 <td>
                         <label>Foto</label>
@@ -36,9 +36,9 @@
                 </td>
                 <td>			      	
                         <label>Sexe</label>
-     					{% if 1 == post.sexe|int() %}
+     					{% if 0 == post.sexe|int() %}
      						Home
-     					{% elif 0 == post.sexe|int() %}
+     					{% elif 1 == post.sexe|int() %}
      						Dona
      					{% endif %}
                 </td>
