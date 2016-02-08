@@ -39,7 +39,7 @@ login_manager.login_view = 'login'
 
 from app import models, forms, token
 
-from app.views import add, editar, index, signup, cercar, esborrar, upload, perfil, signin, signout, f_password, add_ge_car, json
+from app.views import add, editar, index, signup, cercar, esborrar, upload, perfil, signin, signout, f_password, add_ge_car, json, editar_gecar
 
 # Blueprints   
 from app.views.json import users

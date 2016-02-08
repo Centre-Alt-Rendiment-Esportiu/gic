@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-<h3>Dades</h3>
+<h3>Editar Registre GE CAR</h3>
 <hr>
+<form action="" method="post">
 <table width="100%">
 		<tr>
                 <td>
@@ -10,248 +11,259 @@
                 </td>
                 <td>
                         <label>Foto</label>
-					{{post.foto}}
+                            <input class="text_input" type="text" name="foto" value="{{post.foto}}"/><br>			
                 </td>
                 <td>
                         <label>DNI</label>
-                    	      {{post.dni}}
+                        <input class="text_input" type="text" name="dni" value="{{post.dni}}" pattern=".{0}|([0-9]{8})+([a-z]{1})"/>
                 </td>
                 <td>
                         <label>PASSPORT</label>
-                	           {{post.passaport}}
+                        <input class="text_input" type="text" name="passaport" value="{{post.passaport}}"/>
                 </td>
         </tr>
         <tr>
                 <td>
                         <label>Nom</label>
-					{{post.nom}}
+				  <input class="text_input" type="text" name="nom" value="{{post.nom}}" pattern="([A-Za-z ]{1,20})"/>
                 </td>
                 <td>
                         <label>Cognom 1</label>
-                            {{post.cognom1}}
+                        <input class="text_input" type="text" name="cognom1" value="{{post.cognom1}}" pattern=".{0}|([A-Za-z ]{1,20})"/>
                 </td>
                 <td>
                         <label>Cognom 2</label>
-                            {{post.cognom2}}
+                        <input class="text_input" type="text" name="cognom2" value="{{post.cognom2}}" pattern=".{0}|([A-Za-z ]{1,20})"/>
                 </td>
                 <td>			      	
                         <label>Sexe</label>
-     					{% if 0 == post.sexe|int() %}
-     						Home
-     					{% elif 1 == post.sexe|int() %}
-     						Dona
-     					{% endif %}
+        				<select id="sexe" name="sexe" size="1">
+                    			<option value="{{post.sexe}}" selected="selected">
+        					{% if 0 == post.sexe|int() %}
+        						Home
+        					{% elif 1 == post.sexe|int() %}
+        						Dona
+        					{% endif %}
+        					</option>
+                        		<option value="0">Home</option>
+            		        	<option value="1">Dona</option>
+         	        		</select>
                 </td>
         </tr>
         <tr>
                 <td>
                         <label>SS</label>
-					{{post.ss}}
+                        <input class="text_input" type="text" name="ss" value="{{post.ss}}"/>
                 </td>
                 <td>
                         <label>Tipus</label>
-					{{post.tipus}}
+                        <input class="text_input" type="text" name="tipus" value="{{post.tipus}}"/>
                 </td>
                 <td>
                         <label>Data Naixement</label>
-                            {{post.data_neix}}               	
+                        <input type="date" name="data_neix" value="{{post.data_neix}}"/>             	
                 </td>
                 <td>
                         <label>Lloc Naixement</label>
-                            {{post.lloc_neix}}               	
+                        <input class="text_input" type="text" name="lloc_neix" value="{{post.lloc_neix}}"/>
                 </td>
         </tr>
         <tr>
                 <td>
                         <label>Provincia Naixement</label>
-                            {{post.provincia_neix}}               	
+                        <input class="text_input" type="text" name="provincia_neix" value="{{post.provincia_neix}}"/>
                 </td>
                 <td>
                         <label>Comarca Naixement</label>
-                            {{post.comarca_neix}}               	
+                        <input class="text_input" type="text" name="comarca_neix" value="{{post.comarca_neix}}"/>
                 </td>
                 <td>
                         <label>Comunitat Naixement</label>
-                            {{post.auto_neix}}               	
+                        <input class="text_input" type="text" name="auto_neix" value="{{post.auto_neix}}"/>
                 </td>
                 <td>
                         <label>Pais Naixement</label>
-                            {{post.pais_neix}}               	
+                        <input class="text_input" type="text" name="pais_neix" value="{{post.pais_neix}}"/>
                 </td>
         </tr>
         <tr>
                 <td>
                         <label>Direcció</label>
-                            {{post.direccio}}               	
+                        <input class="text_input" type="text" name="direccio" value="{{post.direccio}}"/>
                 </td>
                 <td>
                         <label>Població</label>
-                            {{post.poblacio}}               	
+                        <input class="text_input" type="text" name="poblacio" value="{{post.poblacio}}"/>
                 </td>
                 <td>
                         <label>Provincia</label>
-                            {{post.provincia}}               	
+                        <input class="text_input" type="text" name="provincia" value="{{post.provincia}}"/>
                 </td>
                 <td>
                         <label>CP</label>
-                            {{post.cp}}               	
+                        <input class="text_input" type="text" name="cp" value="{{post.cp}}"/>
                 </td>
         </tr>
         <tr>
                 <td>
                         <label>Comarca</label>
-                            {{post.comarca}}               	
+                        <input class="text_input" type="text" name="comarca" value="{{post.comarca}}"/>
                 </td>
-			<td>
                 <td>
                         <label>Autonomia</label>
-                            {{post.autonomia}}               	
+                        <input class="text_input" type="text" name="autonomia" value="{{post.autonomia}}"/>
                 </td>
                 <td>
                         <label>Pais</label>
-                            {{post.pais}}               	
+                        <input class="text_input" type="text" name="pais" value="{{post.pais}}"/>
                 </td>
                 <td>
                         <label>Telefon 1</label>
-                            {{post.telefon1}}               	
+                        <input class="text_input" type="text" name="telefon1" value="{{post.telefon1}}"/>         	
                 </td>
         </tr>
         <tr>
                 <td>
                         <label>Telefon 2</label>
-                            {{post.telefon2}}
+                        <input class="text_input" type="text" name="telefon2" value="{{post.telefon2}}"/>
                 </td>
                 <td>
                         <label>Email 1</label>
-                            {{post.e_mail}}
+                        <input class="text_input" type="email" name="e_mail" value="{{post.e_mail}}"/>
                 </td>
                 <td>
                         <label>Estudis Actuals</label>
-                            {{post.estudis_act}}
+                        <input class="text_input" type="text" name="estudis_act" value="{{post.estudis_act}}"/>
                 </td>
                 <td>
                         <label>Nivell Academic</label>
-                            {{post.nivel_academic}}
+                        <input class="text_input" type="text" name="nivel_academic" value="{{post.nivel_academic}}"/>
                 </td>
         </tr>
         <tr>
                 <td>
                         <label>Tipus Centre</label>
-                            {{post.tipus_centre}}
+                        <input class="text_input" type="text" name="tipus_centre" value="{{post.tipus_centre}}"/>
                 </td>
                 <td>
                         <label>Nom Centre</label>
-                            {{post.nom_centre}}
+                        <input class="text_input" type="text" name="nom_centre" value="{{post.nom_centre}}"/>
                 </td>
                 <td>
                         <label>Aceptació</label>
-                            {{post.aceptacio}}
+                        <input class="text_input" type="text" name="aceptacio" value="{{post.aceptacio}}"/>
                 </td>
                 <td>
                         <label>Revisió Medica</label>
-                            {{post.revisiom}}
+                        <input class="text_input" type="text" name="revisiom" value="{{post.revisiom}}"/>
                 </td>
         </tr>
         <tr>
                 <td>
                         <label>Revisió Psicologica</label>
-                            {{post.revisiops}}
+                        <input class="text_input" type="text" name="revisiops" value="{{post.revisiops}}"/>
                 </td>
                 <td>
                         <label>Fitxa Complerta</label>
-                            {{post.fitxacomplerta}}
+                        <input class="text_input" type="text" name="fitxacomplerta" value="{{post.fitxacomplerta}}"/>
                 </td>
                 <td>
                         <label>Vehicle</label>
-                            {{post.vehicle}}
+                        <input class="text_input" type="text" name="vehicle" value="{{post.vehicle}}"/>
                 </td>
                 <td>
                         <label>Matricula</label>
-                            {{post.matricula}}
+                        <input class="text_input" type="text" name="matricula" value="{{post.matricula}}"/>
                 </td>
         </tr>
         <tr>
                 <td>
                         <label>Tutor 1</label>
-                            {{post.tutor1}}
+                        <input class="text_input" type="text" name="tutor1" value="{{post.tutor1}}"/>
                 </td>
                 <td>
                         <label>Contacte 1</label>
-                            {{post.contacto1}}
+                        <input class="text_input" type="text" name="contacto1" value="{{post.contacto1}}"/>
                 </td>
                 <td>
                         <label>tutor 2</label>
-                            {{post.tutor2}}
+                        <input class="text_input" type="text" name="tutor2" value="{{post.tutor2}}"/>
                 </td>
                 <td>
                         <label>Contacte 2</label>
-                            {{post.cotacto2}}
+                        <input class="text_input" type="text" name="contacto2" value="{{post.contacto2}}"/>
                 </td>
         </tr>
         <tr>
                 <td>
                         <label>Email 1</label>
-                            {{post.email1}}
+                        <input class="text_input" type="text" name="e_mail" value="{{post.e_mail}}"/>
                 </td>
-                <td>
+                 <td>
                         <label>Actiu</label>
-        				{% if post.actiu|int() == 1 %}
-        					Si
-        				{% elif post.actiu|int() == 0 %}
-        					No
-        				{% endif %}
+                        <select id="actiu" name="actiu" size="1">
+            			<option value="{{post.actiu}}" selected="selected">
+            				{% if post.actiu|int() == 1 %}
+        						Si
+        					{% elif post.actiu|int() == 0 %}
+        						No
+            				{% endif %}
+                            </option>
+                            <option value="1">Si</option>
+                            <option value="0">No</option>	
+                        </select>
                 </td>
                 <td>
                         <label>Identificador Anterior</label>
-                            {{post.identificador_ant}}
+                        <input class="text_input" type="text" name="identificador_ant" value="{{post.identificador_ant}}"/>
                 </td>
                 <td>
                         <label>ID Med</label>
-                            {{post.id_med}}
+                        <input class="text_input" type="text" name="id_med" value="{{post.id_med}}"/>
                 </td>
                 <td>
                         <label>ID Fis</label>
-                            {{post.id_fis}}
+                        <input class="text_input" type="text" name="id_fis" value="{{post.id_fis}}"/>
                 </td>
         </tr>
         <tr>
                 <td>
                         <label>ID Psi</label>
-                            {{post.id_psi}}
+                        <input class="text_input" type="text" name="id_psi" value="{{post.id_psi}}"/>
                 </td>
                 <td>
                         <label>CIP</label>
-                            {{post.cip}}
+                        <input class="text_input" type="text" name="cip" value="{{post.cip}}"/>
                 </td>
                 <td>
                         <label>Consentiment</label>
-                            {{post.consentiment}}
+                        <input class="text_input" type="text" name="consentiment" value="{{post.consentiment}}"/>
                 </td>
                 <td>
                         <label>Data Consentiment</label>
-                            {{post.consentiment}}
+                        <input type="date" name="data_consentiment" value="{{post.data_consentiment}}"/>             	
                 </td>
         </tr>
         <tr>
                 <td>
                         <label>Data Revisio Medica</label>
-                            {{post.data_revisiom}}
+                        <input type="date" name="data_revisiom" value="{{post.data_revisiom}}"/>             	
                 </td>
                 <td>
                         <label>Consentiment DAD</label>
-                            {{post.consentiment_dad}}
+                        <input class="text_input" type="text" name="consentiment_dad" value="{{post.consentiment_dad}}"/>
                 </td>
                 <td>
                         <label>Consentiment PROINF</label>
-                            {{post.consentiment_proinf}}
+                        <input class="text_input" type="text" name="consentiment_proinf" value="{{post.consentiment_proinf}}"/>
                 </td>
                 <td>
                         <label>PRO SAL ES</label>
-                            {{post.pro_sal_es}}
+                        <input class="text_input" type="text" name="pro_sal_es" value="{{post.pro_sal_es}}"/>
                 </td>
                 <td>
                         <label>Email 2</label>
-                            {{post.e_mail2}}
+                             <input class="text_input" type="email" name="e_mail2" value="{{post.e_mail2}}"/>
                 </td>
         </tr>
         <tr>
@@ -281,6 +293,13 @@
                                     {% endfor %}
                             {% endfor %}
                 </td>
+                	<td>
+				<button class="input" type="submit">Edit</button>
+                </td>
+                <td>
+                    <a href="/upload" class="input">Puja'n una</a>	
+                </td>
         </tr>
 </table>
+</form>
 {% endblock %}
