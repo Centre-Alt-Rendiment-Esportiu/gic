@@ -33,7 +33,7 @@ def edit_gecar(id):
             post.data_neix = request.form['data_neix']
             post.lloc_neix = request.form['lloc_neix']
             post.provincia_neix = request.form['provincia_neix']
-            post.cormarca_neix = request.form['comarca_neix']
+            post.comarca_neix = request.form['comarca_neix']
             post.auto_neix = request.form['auto_neix']
             post.pais_neix = request.form['pais_neix']
             post.direccio = request.form['direccio']
