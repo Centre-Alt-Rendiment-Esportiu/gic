@@ -18,13 +18,13 @@
     </td>
 </tr>
 <tr>	<td><label>	Nom</label>
-		<input  class="text_input" type="text_input" name="nom" minlenght="1" pattern="([A-Za-z ]{1,20})" required/> 
+		<input  class="text_input" type="text_input" name="nom" minlenght="1" pattern="([A-Za-z ']{1,20})" required/> 
 	</td>
 	<td>	<label>Cognom 1</label>
 		<input class="text_input" type="text_input" name="cognom1" pattern=".{0}|([A-Za-z ']{1,20})"/>
 	</td>
 	<td>	<label>Cognom 2</label>
-		<input class="text_input" type="text_input" name="cognom2" pattern=".{0}|([A-Za-z ]{1,20})"/>
+		<input class="text_input" type="text_input" name="cognom2" pattern=".{0}|([A-Za-z ']{1,20})"/>
 	</td>
     <td>	
 	<label>Sexe</label>
@@ -44,7 +44,7 @@
     </td>
 	<td>
 		<label>Data de naixement</label>
-		<input type="text_input" name="data_neix"/>
+		<input type="date" name="data_neix"/>
 	</td>
 	<td>
 		<label>Lloc de naixement</label>

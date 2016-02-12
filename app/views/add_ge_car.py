@@ -6,7 +6,13 @@ from flask import render_template, request, redirect, url_for, session
 from app import app, db
 from app.models import User, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \
 GIC_CFG_GRUP, GIC_PERMIS, A_GE_CAR_PERSONA
+import datetime
 
+def data_gecar(data):
+    if data == '':
+        return ''
+    elif data:
+        return datetime.datetime.strptime(data,'%Y-%m-%d').date()
 
 @app.route('/add-ge-car', methods=['POST', 'GET'])
 def add_ge_car():
@@ -20,7 +26,7 @@ def add_ge_car():
             post = A_GE_CAR_PERSONA(request.form['foto'], request.form['dni'], \
             request.form['passaport'], request.form['nom'], request.form['cognom1'], \
             request.form['cognom2'], request.form['sexe'], request.form['ss'], \
-            request.form['tipus'], request.form['data_neix'], request.form['lloc_neix'], \
+            request.form['tipus'], data_gecar(request.form['data_neix']), request.form['lloc_neix'], \
             request.form['provincia_neix'], request.form['comarca_neix'], request.form['auto_neix'], \
             request.form['pais_neix'], request.form['direccio'], request.form['poblacio'], \
             request.form['provincia'], request.form['cp'], request.form['comarca'], \
@@ -32,8 +38,9 @@ def add_ge_car():
             request.form['tutor1'], request.form['contacto1'], request.form['tutor2'], \
             request.form['contacto2'], request.form['actiu'], request.form['identificador_ant'], \
             request.form['id_med'], request.form['id_fis'], request.form['id_psi'], \
-            request.form['cip'], request.form['consentiment'], request.form['data_consentiment'], \
-            request.form['data_revisiom'], request.form['consentiment_dad'], request.form['consentiment_proinf'], \
+            request.form['cip'], request.form['consentiment'], \
+            data_gecar(request.form['data_consentiment']), data_gecar(request.form['data_revisiom']), \
+            request.form['consentiment_dad'], request.form['consentiment_proinf'], \
             request.form['pro_sal_es'], request.form['e_mail2'], 'randompassword', 'randomsalt')
             db.session.add(post)
             db.session.flush()      

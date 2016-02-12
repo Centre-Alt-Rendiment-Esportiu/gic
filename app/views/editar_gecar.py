@@ -7,6 +7,13 @@ from app import app, db
 from sqlalchemy.orm import load_only
 from app.models import User, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \
 GIC_CFG_GRUP, GIC_PERMIS, A_GE_CAR_PERSONA
+import datetime
+
+def data_gecar(data):
+    if data == '':
+        return ''
+    elif data:
+        return datetime.datetime.strptime(data,'%Y-%m-%d').date()
 
 @app.route('/edit_gecar/<id>', methods=['POST', 'GET'])
 def edit_gecar(id):
@@ -30,7 +37,7 @@ def edit_gecar(id):
             post.sexe = request.form['sexe']
             post.ss = request.form['ss']
             post.tipus = request.form['tipus']
-            post.data_neix = request.form['data_neix']
+            post.data_neix = data_gecar(request.form['data_neix'])
             post.lloc_neix = request.form['lloc_neix']
             post.provincia_neix = request.form['provincia_neix']
             post.comarca_neix = request.form['comarca_neix']
@@ -67,8 +74,8 @@ def edit_gecar(id):
             post.id_psi = request.form['id_psi']
             post.cip = request.form['cip']
             post.consentiment = request.form['consentiment']
-            post.data_consentiment = request.form['data_consentiment']
-            post.data_revisiom = request.form['data_revisiom']
+            post.data_consentiment = data_gecar(request.form['data_consentiment'])
+            post.data_revisiom = data_gecar(request.form['data_revisiom'])
             post.consentiment_dad = request.form['consentiment_dad']
             post.consentiment_proinf = request.form['consentiment_proinf']
             post.pro_sal_es = request.form['pro_sal_es']
