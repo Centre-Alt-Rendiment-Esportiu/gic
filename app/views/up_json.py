@@ -3,7 +3,7 @@
 @author: dani.ruiz
 """
 from flask import Blueprint, request, jsonify, make_response
-from app.models import Post, UsersSchema, A_GE_CAR_PERSONA
+from app.models import Post, UsersSchema
 from flask_restful import Api, Resource
 from sqlalchemy.exc import SQLAlchemyError
 from marshmallow import ValidationError
@@ -20,16 +20,9 @@ engine = create_engine(SQLALCHEMY_DATABASE_URI)
 
 class UsersList(Resource):
     def get(self):
-#        users_query = Post.query.all()
-#        results = schema.dump(users_query, many=True).data
-#sql = text("select extract(year from DATA_NEIX),COUNT(*) from A_GE_CAR_PERSONA group by extract(year from DATA_NEIX) order by extract(year from DATA_NEIX) DESC;")
-        list = [
-            {
-                'Homes': Post.query.filter_by(sexe="1").count(),
-                 'Dones': Post.query.filter_by(sexe="0").count(),
-           }
-            ]
-        return jsonify(resultats = list)
+        users_query = Post.query.all()
+        results = schema.dump(users_query, many=True).data
+        return jsonify(results)
 
     def post(self):
         raw_dict = request.get_json(force=True)
@@ -39,11 +32,11 @@ class UsersList(Resource):
                 user = Post(user_dict['nom'], user_dict['cognom1'], user_dict['cognom2'], user_dict['sexe'], user_dict['dni'] \
                 , user_dict['passport'], user_dict['data_naix'], user_dict['telefon1'], user_dict['telefon2'] \
                 , user_dict['email1'], user_dict['email2'], user_dict['actiu'], user_dict['foto'], '1234')
-                user.add(user)            
+                user.add(user)
                 query = Post.query.get(user.id)
                 results = schema.dump(query).data                
                 return results, 201
-            
+                
         except ValidationError as err:
                 resp = jsonify({"error": err.messages})
                 resp.status_code = 403

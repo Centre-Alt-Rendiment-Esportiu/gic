@@ -1,4 +1,4 @@
-# -*- coding: ISO-8859-1 -*-
+# -*- coding: utf-8 -*-
 """
 @author: dani.ruiz
 """
@@ -17,7 +17,7 @@ def llista_per(page=1):
         """buscar persones"""
         nom = session['cerca']
         conc = "%" + nom + "%"
-        post = Post.query.filter(or_(Post.nom.ilike(conc), Post.cognom1.ilike(conc))).paginate(page, 5, False)
+        post = Post.query.filter(or_(Post.nom.like(conc), Post.cognom1.like(conc))).paginate(page, 5, False)
         return render_template('llista_persones.html', post=post)
 
 @app.route('/llista_per_gecar', methods=['POST', 'GET'])
@@ -29,7 +29,7 @@ def llista_per_gecar(page=1):
         """buscar persones gecar"""
         nom = session['cerca_gecar']
         conc = "%" + nom + "%"
-        post = A_GE_CAR_PERSONA.query.filter(or_(A_GE_CAR_PERSONA.nom.ilike(conc), A_GE_CAR_PERSONA.cognom1.ilike(conc))).paginate(page, 10, False)
+        post = A_GE_CAR_PERSONA.query.filter(or_(A_GE_CAR_PERSONA.nom.like(conc), A_GE_CAR_PERSONA.cognom1.like(conc))).paginate(page, 10, False)
         return render_template('llista_persones_gecar.html', post=post)
 
 @app.route('/cerca_per', methods=['POST', 'GET'])

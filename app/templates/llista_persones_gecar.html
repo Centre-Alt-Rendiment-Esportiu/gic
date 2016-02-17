@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+
 <h3>Llistat de Persones GE CAR</h3>
 <hr>
 <table>
@@ -12,7 +13,7 @@
 {% for post in post.items %}
     <tr>
         <td><a href="{{ url_for('perfil_gecar', id=post.identificador) }}"> {{ post.nom }}</a></td>
-        <td> {{ post.cognom1|forceescape }}</td>
+        <td> {{ post.cognom1 }}</td>
         <td> {{ post.e_mail }}</td>
         <td><a class="input" href="{{ url_for('edit_gecar', id=post.identificador) }}">Edita</a></td>
     </tr>
