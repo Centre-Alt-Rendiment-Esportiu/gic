@@ -190,7 +190,7 @@ class GIC_ROL(db.Model):
         self.inici = inici
         self.fi = fi
     
-class A_GE_CAR_PERSONA(db.Model):
+class A_GE_CAR_PERSONA(db.Model,CRUD):
     """taula ge car"""
     __tablename__ = 'A_GE_CAR_PERSONA'
     identificador = db.Column(db.String(20), primary_key=True)

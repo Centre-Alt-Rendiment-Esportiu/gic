@@ -3,7 +3,7 @@
 @author: dani.ruiz
 """
 from flask import Blueprint, request, jsonify, make_response
-from app.models import Post, UsersSchema
+from app.models import Post, UsersSchema, A_GE_CAR_PERSONA
 from flask_restful import Api, Resource
 from sqlalchemy.exc import SQLAlchemyError
 from marshmallow import ValidationError
@@ -27,15 +27,35 @@ class UsersList(Resource):
     def post(self):
         raw_dict = request.get_json(force=True)
         try:
-                schema.validate(raw_dict)
+#                schema.validate(raw_dict)
                 user_dict = raw_dict['data']['attributes']
-                user = Post(user_dict['nom'], user_dict['cognom1'], user_dict['cognom2'], user_dict['sexe'], user_dict['dni'] \
-                , user_dict['passport'], user_dict['data_naix'], user_dict['telefon1'], user_dict['telefon2'] \
-                , user_dict['email1'], user_dict['email2'], user_dict['actiu'], user_dict['foto'], '1234')
+#                user = Post(user_dict['nom'], user_dict['cognom1'], user_dict['cognom2'], user_dict['sexe'], user_dict['dni'] \
+#                , user_dict['passport'], user_dict['data_naix'], user_dict['telefon1'], user_dict['telefon2'] \
+#                , user_dict['email1'], user_dict['email2'], user_dict['actiu'], user_dict['foto'], '1234')
+                user = A_GE_CAR_PERSONA(user_dict['foto'], user_dict['dni'], \
+                user_dict['passaport'], user_dict['nom'], user_dict['cognom1'], \
+                user_dict['cognom2'], user_dict['sexe'], user_dict['ss'], \
+                user_dict['tipus'], user_dict['data_neix'], user_dict['lloc_neix'], \
+                user_dict['provincia_neix'], user_dict['comarca_neix'], user_dict['auto_neix'], \
+                user_dict['pais_neix'], user_dict['direccio'], user_dict['poblacio'], \
+                user_dict['provincia'], user_dict['cp'], user_dict['comarca'], \
+                user_dict['autonomia'], user_dict['pais'], user_dict['telefon1'], \
+                user_dict['telefon2'], user_dict['e_mail'], user_dict['estudis_act'], \
+                user_dict['nivel_academic'], user_dict['tipus_centre'], user_dict['nom_centre'], \
+                user_dict['aceptacio'], user_dict['revisiom'], user_dict['revisiops'], \
+                user_dict['fitxacomplerta'], user_dict['vehicle'], user_dict['matricula'], \
+                user_dict['tutor1'], user_dict['contacto1'], user_dict['tutor2'], \
+                user_dict['contacto2'], user_dict['actiu'], user_dict['identificador_ant'], \
+                user_dict['id_med'], user_dict['id_fis'], user_dict['id_psi'], \
+                user_dict['cip'], user_dict['consentiment'], \
+                user_dict['data_consentiment'], user_dict['data_revisiom'], \
+                user_dict['consentiment_dad'], user_dict['consentiment_proinf'], \
+                user_dict['pro_sal_es'], user_dict['e_mail2'], 'randompassword', 'randomsalt')
                 user.add(user)
-                query = Post.query.get(user.id)
-                results = schema.dump(query).data                
-                return results, 201
+#                query = Post.query.get(user.id)
+#                results = schema.dump(query).data                
+#                return results, 201
+                return 'okey'
                 
         except ValidationError as err:
                 resp = jsonify({"error": err.messages})
