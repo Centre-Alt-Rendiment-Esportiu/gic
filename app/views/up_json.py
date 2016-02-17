@@ -10,6 +10,12 @@ from marshmallow import ValidationError
 from app import app, db
 from config import SQLALCHEMY_DATABASE_URI
 from sqlalchemy import text, create_engine
+import string
+import random
+
+def password_generator(size=8, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
+
 
 users = Blueprint('users', __name__)
 
@@ -50,12 +56,12 @@ class UsersList(Resource):
                 user_dict['cip'], user_dict['consentiment'], \
                 user_dict['data_consentiment'], user_dict['data_revisiom'], \
                 user_dict['consentiment_dad'], user_dict['consentiment_proinf'], \
-                user_dict['pro_sal_es'], user_dict['e_mail2'], 'randompassword', 'randomsalt')
+                user_dict['pro_sal_es'], user_dict['e_mail2'], password_generator(), 'salt')
                 user.add(user)
 #                query = Post.query.get(user.id)
 #                results = schema.dump(query).data                
 #                return results, 201
-                return 'okey'
+                return 'okey', 201
                 
         except ValidationError as err:
                 resp = jsonify({"error": err.messages})
