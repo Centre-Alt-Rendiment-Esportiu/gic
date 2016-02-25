@@ -7,9 +7,8 @@ from itsdangerous import URLSafeTimedSerializer
 
 #Create an Instance of Flask
 app = Flask(__name__)
+
 #Include config from config.py
-
-
 app.config.from_object('config')
 app.config['UPLOAD_FOLDER'] = 'app/static/img/'
 app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg', 'jpeg', 'csv'])
@@ -32,14 +31,9 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-#class MyResponse(Response):
-#     default_mimetype = 'application/xml'
-
-#app.response_class = MyResponse
-
 from app import models, forms, token
 
-from app.views import add, editar, index, signup, cercar, esborrar, upload, perfil, signin, signout, f_password, add_ge_car, up_json, editar_gecar
+from app.views import index, signup, cercar, esborrar, upload, perfil, signin, signout, f_password, add_ge_car, up_json, editar_gecar
 
 # Blueprints   
 from app.views.up_json import users

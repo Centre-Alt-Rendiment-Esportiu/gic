@@ -47,12 +47,12 @@ def upload_csv():
             out = []
             for row in reader:
                 out = row
-            print out
+#            print out
 #        out = json.dumps([ row for row in reader ])
             dataj = json.dumps({"data": {"type":"users","attributes": out}}, sort_keys=True)
             url = "http://127.0.0.1:5000/persones.json"
             headers = {'content-type': "application/json", 'cache-control': "no-cache", 'postman-token': "72921f98-7d3e-c7be-72e6-50fad56c1eb3"}
             response = requests.request("POST", url, data=dataj, headers=headers)
-            print response.raise_for_status()
+#            print response.raise_for_status()
             return redirect(url_for('index'))
         return render_template('up_csv.html')

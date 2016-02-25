@@ -7,6 +7,7 @@ from app import app, db
 from app.models import User, Post, GIC_CFG_ROL, GIC_ROL, GIC_CFG_PERMIS, \
 GIC_CFG_GRUP, GIC_PERMIS, A_GE_CAR_PERSONA
 import datetime
+from sqlalchemy.orm import load_only
 
 def data_gecar(data):
     if data == '':
@@ -94,3 +95,46 @@ def add_ge_car():
             db.session.commit()
             return redirect(url_for('upload'))
         return render_template('add_gecar.html', rols=rols, grups=grups)
+
+
+@app.route('/add_permis', methods=['POST', 'GET'])
+def add_permis():
+    """afegir permisos"""
+    if 'email' not in session:
+        return render_template('no_permis.html')
+    else:
+        grups = GIC_CFG_GRUP.query.filter_by(actiu="1")
+        if request.method == 'POST':
+            post = GIC_CFG_PERMIS(request.form['nom_permis'], request.form['actiu'], \
+            request.form['grup'])
+            db.session.add(post)
+            db.session.commit()
+            return redirect(url_for('conf'))
+        return render_template('add_permis.html', grups=grups)
+
+@app.route('/add_rol', methods=['POST', 'GET'])
+def add_rol():
+    """afegir rols"""
+    if 'email' not in session:
+        return render_template('no_permis.html')
+    else:
+        if request.method == 'POST':
+            post = GIC_CFG_ROL(request.form['nom_rol'], request.form['template'], request.form['actiu'])
+            db.session.add(post)
+            db.session.commit()
+            return redirect(url_for('index'))
+        return render_template('add_rol.html')
+
+@app.route('/add_grup', methods=['POST', 'GET'])
+def add_grup():
+    """afegir grups"""
+    if 'email' not in session:
+        return render_template('no_permis.html')
+    else:
+        if request.method == 'POST':
+            post = GIC_CFG_GRUP(request.form['nom_grup'], request.form['actiu'])
+            db.session.add(post)
+            db.session.commit()
+            return redirect(url_for('conf'))
+        return render_template('add_grup.html')
+

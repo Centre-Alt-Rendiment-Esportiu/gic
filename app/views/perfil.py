@@ -67,20 +67,6 @@ def correcte():
     else:
         return render_template('correcte.html')
 
-@app.route('/perfil/<id>', methods=['POST', 'GET'])
-def perfil(id):
-    """Veure de persones"""
-    if 'email' not in session:
-        return render_template('no_permis.html')
-    else:
-        post = Post.query.get(id)
-        tip = GIC_ROL.query.filter_by(id_persona=id)
-        rols = GIC_CFG_ROL.query.filter_by(actiu="1")
-        grups = GIC_CFG_GRUP.query.filter_by(actiu="1").options(load_only("id_grup"))
-        perm_grup = GIC_CFG_PERMIS.query.filter(GIC_CFG_PERMIS.grup.in_(grups))
-        perm_asig = GIC_PERMIS.query.filter_by(id_persona=id)
-        return render_template('perfil.html', post=post, tip=tip, rols=rols, grups=grups, perm_grup=perm_grup, perm_asig=perm_asig)
-
 @app.route('/perfil_gecar/<id>', methods=['POST', 'GET'])
 def perfil_gecar(id):
     """Veure de persones gecar"""

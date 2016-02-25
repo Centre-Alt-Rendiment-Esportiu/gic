@@ -16,7 +16,6 @@ import random
 def password_generator(size=8, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
-
 users = Blueprint('users', __name__)
 
 schema = UsersSchema()
@@ -33,11 +32,8 @@ class UsersList(Resource):
     def post(self):
         raw_dict = request.get_json(force=True)
         try:
-#                schema.validate(raw_dict)
+                schema.validate(raw_dict)
                 user_dict = raw_dict['data']['attributes']
-#                user = Post(user_dict['nom'], user_dict['cognom1'], user_dict['cognom2'], user_dict['sexe'], user_dict['dni'] \
-#                , user_dict['passport'], user_dict['data_naix'], user_dict['telefon1'], user_dict['telefon2'] \
-#                , user_dict['email1'], user_dict['email2'], user_dict['actiu'], user_dict['foto'], '1234')
                 user = A_GE_CAR_PERSONA(user_dict['foto'], user_dict['dni'], \
                 user_dict['passaport'], user_dict['nom'], user_dict['cognom1'], \
                 user_dict['cognom2'], user_dict['sexe'], user_dict['ss'], \
@@ -58,15 +54,15 @@ class UsersList(Resource):
                 user_dict['consentiment_dad'], user_dict['consentiment_proinf'], \
                 user_dict['pro_sal_es'], user_dict['e_mail2'], password_generator(), 'salt')
                 user.add(user)
-#                query = Post.query.get(user.id)
-#                results = schema.dump(query).data                
-#                return results, 201
-                return 'okey', 201
+                query = A_GE_CAR_PERSONA.query.get(user.id)
+                results = schema.dump(query).data                
+                return results, 201
+#                return 'okey', 201
                 
         except ValidationError as err:
                 resp = jsonify({"error": err.messages})
                 resp.status_code = 403
-                return resp               
+                return resp
                 
         except SQLAlchemyError as e:
                 db.session.rollback()
